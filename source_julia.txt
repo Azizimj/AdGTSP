@@ -1,0 +1,2 @@
+source /home/rcf-proj2/ma2/azizim/software/julia/0.6.0/setup.sh
+source /usr/usc/gurobi/default/setup.sh
