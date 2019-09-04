@@ -44,6 +44,12 @@ if size(ARGS)[1]>0
 	dim = 2
 end
 
+print("num_cluster is ", num_cluster, "\n")
+print("card is ", card, "\n")
+print("visit_m is ", visit_m, "\n")
+print("limits_ is ", limits_, "\n")
+print("dim is ", dim, "\n")
+
 gtsp_ex = gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
 num_pts = gtsp_ex[1]
 data_points = gtsp_ex[2]
@@ -95,15 +101,12 @@ end
 # status = solve(AdMST)
 optimize!(AdMST)
 
-print("obj val ",objective_value(AdMST), "\n")
+print("obj val ",objective_value(AdMST), "\n");
 
-x_ = JuMP.value.(x)
-y_ = JuMP.value.(y)
-y_ = JuMP.value.(z)
+x_ = JuMP.value.(x);
+y_ = JuMP.value.(y);
+z_ = JuMP.value.(z);
 
 print("x is ", x_, "\n")
 print("y is ", y_, "\n")
 print("z is ", z_, "\n")
-
-x=convert(DataFrame,x_);
-writetable(string("x_",string(num_cluster)," ",string(card),".csv"),x_bin);
