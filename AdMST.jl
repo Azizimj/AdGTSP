@@ -1,10 +1,11 @@
 # cd("F:/Acad/research/JGC/ATSP/AdTSP_code")
-using DataFrames;
+# using DataFrames;
 using JuMP
 using Gurobi
 using Random
 using LinearAlgebra
 using Combinatorics
+using Pandas
 ################################
 
 function gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
@@ -107,7 +108,7 @@ end
 
 @objective(AdMST,Min, sum((size(Pow_pts[s])[1]-1)*y[s] for s=1:Pow_pts_size) );
 
-print(AdMST)
+# print(AdMST)
 # status = solve(AdMST)
 optimize!(AdMST)
 
@@ -118,5 +119,14 @@ y_ = JuMP.value.(y);
 z_ = JuMP.value.(z);
 
 print("x is ", x_, "\n")
-print("y is ", y_, "\n")
-print("z is ", z_, "\n")
+# print("y is ", y_, "\n")
+# print("z is ", z_, "\n")
+
+dir_ = string(num_cluster,"_",card,"_",visit_m,"/")
+mkdir(dir_)
+j_file_name = string(num_cluster,"_",card,"_",visit_m)
+to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
+to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
+to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
+
+# print(read_json( "x_.json"))
