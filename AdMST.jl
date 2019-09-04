@@ -7,45 +7,6 @@ using LinearAlgebra
 using Combinatorics
 ################################
 
-function gen_rand_gtsp_(num_clusters, card, visit_m, x_limit, y_limit)
-    data_points = []
-    clusters = []
-    crt_vertex = 1
-    visit_times = []
-	# st pts
-	temp_x = rand(1)*x_limit
-	temp_y = rand(1)*y_limit
-# 	data_points.append!([temp_x, temp_y])
-	append!(data_points, [temp_x, temp_y])
-	append!(clusters,[crt_vertex])
-	append!(visit_times, 1)
-	crt_vertex += 1
-
-    for i in 1:num_clusters
-		temp_k = visit_m
-		temp_cluster = []
-		for j in 0:card
-			temp_x = rand(1)*x_limit
-			temp_y = rand(1)*y_limit
-			append!(data_points, [temp_x, temp_y])
-			append!(temp_cluster,crt_vertex)
-			crt_vertex += 1
-		append!(clusters,[crt_vertex])
-		append!(visit_times, temp_k)
-		end
-	end
-	num_data_points = size(data_points)[1]
-    distance_matrix = ones(num_data_points, num_data_points) * Inf
-    for i in 1:num_data_points
-        for j in 1:num_data_points
-            if i != j
-                distance_matrix[i, j] = norm(data_points[i]- data_points[j])
-			end
-		end
-	end
-    return [distance_matrix, clusters, visit_times, data_points]
-end
-
 function gen_rand_gtsp(num_clusters, card, visit_m, limits_, dim)
 	num_pts = num_clusters*card
     data_points = zeros(num_pts, dim)
@@ -69,24 +30,19 @@ function gen_rand_gtsp(num_clusters, card, visit_m, limits_, dim)
 
 end
 
-# aa = gen_rand_gtsp(3, 2, 1, [1,1], 2)
-#
-# print(aa[1])
-# print("\n")
-# print(aa[2])
-# print("\n")
-# # print(aa[3])
-# # print("\n")
-# # print(aa[4])
-# # print("\n")
-# exit()
-
-
-num_clusters=5
-card=3
+num_clusters=3
+card=2
 visit_m=2
 limits_=[1,1]
 dim = 2
+
+if size(ARGS)[1]>0
+	num_clusters=parse(Int,ARGS[1])
+	card=parse(Int,ARGS[2])
+	visit_m=2
+	limits_=[1,1]
+	dim = 2
+end
 
 gtsp_ex = gen_rand_gtsp(num_clusters, card, visit_m, limits_, dim)
 num_pts = gtsp_ex[1]

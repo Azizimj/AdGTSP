@@ -19,11 +19,15 @@ test:
 # for aa in a:
 #     print(aa)
 
-import Pkg; Pkg.add("Combinatorics")
+# import Pkg; Pkg.add("Combinatorics")
+#
+# using Combinatorics
+# a = collect(powerset([1,2,3]))
+# print(a)
 
-using Combinatorics
-a = collect(powerset([1,2,3]))
-print(a)
+# using Random
+# print(rand(1)*10)
 
-using Random
-print(rand(1)*10)
+if size(ARGS)[1]>0
+print(parse(Int,ARGS[1]))
+end
