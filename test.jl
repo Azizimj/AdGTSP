@@ -28,6 +28,9 @@ test:
 # using Random
 # print(rand(1)*10)
 
-if size(ARGS)[1]>0
-print(parse(Int,ARGS[1]))
-end
+# if size(ARGS)[1]>0
+# print(parse(Int,ARGS[1]))
+# end
+
+a =1
+print(string(a, 2)+" -")

@@ -15,7 +15,7 @@ if hpc_is:
     ntasks = 10
     time_ = '24:00:00'
     jobs_files = []
-    hdir = "/auto/rcf-proj2/ma2/azizim/BAI"
+    hdir = "/auto/rcf-proj2/ma2/azizim/GTSP"
     pdir = "/usr/usc/python/3.6.0/setup.sh"
     julia_dir = "/usr/usc/julia/1.1.1/setup.sh"
 
@@ -26,12 +26,10 @@ if hpc_is:
         f.write("#!/bin/bash \n")
         f.write("#SBATCH --ntasks={}\n".format(ntasks))
         f.write("#SBATCH --time={}\n".format(time_))
-        f.write("#SBATCH --output=" + jname + ".txt" + "\n")
-        f.write("#SBATCH --error=" + "e" + jname + ".txt" + "\n")
         f.write("#SBATCH --job-name=" + jname + "\n")
         f.write("cd " + hdir + "\n")
         f.write("source " + julia_dir + "\n")
-        f.write("julia AdMST.jl " + str(num_cluster) + " " + str(card) + "\n")
+        f.write("julia AdMST.jl " + str(num_cluster) + " " + str(card) + "> "+jname+".txt \n")
         print(jname)
         f.close()
 

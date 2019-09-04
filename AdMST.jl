@@ -1,5 +1,5 @@
 # cd("F:/Acad/research/JGC/ATSP/AdTSP_code")
-# using DataFrames;
+using DataFrames;
 using JuMP
 using Gurobi
 using Random
@@ -7,8 +7,8 @@ using LinearAlgebra
 using Combinatorics
 ################################
 
-function gen_rand_gtsp(num_clusters, card, visit_m, limits_, dim)
-	num_pts = num_clusters*card
+function gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
+	num_pts = num_cluster*card
     data_points = zeros(num_pts, dim)
     for i in 1:num_pts
 		for d in 1:dim
@@ -30,21 +30,21 @@ function gen_rand_gtsp(num_clusters, card, visit_m, limits_, dim)
 
 end
 
-num_clusters=3
+num_cluster=3
 card=2
 visit_m=2
 limits_=[1,1]
 dim = 2
 
 if size(ARGS)[1]>0
-	num_clusters=parse(Int,ARGS[1])
+	num_cluster=parse(Int,ARGS[1])
 	card=parse(Int,ARGS[2])
 	visit_m=2
 	limits_=[1,1]
 	dim = 2
 end
 
-gtsp_ex = gen_rand_gtsp(num_clusters, card, visit_m, limits_, dim)
+gtsp_ex = gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
 num_pts = gtsp_ex[1]
 data_points = gtsp_ex[2]
 distance_matrix = gtsp_ex[3]
@@ -97,6 +97,13 @@ optimize!(AdMST)
 
 print("obj val ",objective_value(AdMST), "\n")
 
-print("x is ", JuMP.value.(x), "\n")
-print("y is ", JuMP.value.(y), "\n")
-print("z is ", JuMP.value.(z), "\n")
+x_ = JuMP.value.(x)
+y_ = JuMP.value.(y)
+y_ = JuMP.value.(z)
+
+print("x is ", x_, "\n")
+print("y is ", y_, "\n")
+print("z is ", z_, "\n")
+
+x=convert(DataFrame,x_);
+writetable(string("x_",string(num_cluster)," ",string(card),".csv"),x_bin);
