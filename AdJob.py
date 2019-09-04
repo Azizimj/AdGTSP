@@ -11,7 +11,7 @@ hpc_is = True
 
 # num_clusters_card_m = [(2,2,1),(3,3,1),(4,2,1),(5,5,1),(10,2,1),(20,2,1)]
 # num_clusters_card_m = [(5,4,2),(5,10,3)]
-num_clusters_card_m = [(5,5,2),(20,4,3),(5,3,2)]
+num_clusters_card_m = [(5,2,1),(10,2,1),(4,2,1),(5,5,1)]
 
 if hpc_is:
 

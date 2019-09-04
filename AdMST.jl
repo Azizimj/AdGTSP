@@ -82,7 +82,7 @@ for u = 1:num_pts
     for v = 1:num_pts
         if u != v
                 @constraint(AdMST, -sum(y[s] for s=num_pts+1:Pow_pts_size if u in Pow_pts[s] && v in Pow_pts[s]) <=
-				 distance_matrix[u,v]*(2-x[u]-x[v])*M_1);
+				 distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
 		end
 	end
 end
