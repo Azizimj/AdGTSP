@@ -18,6 +18,8 @@ if hpc_is:
     hdir = "/auto/rcf-proj2/ma2/azizim/GTSP"
     pdir = "/usr/usc/python/3.6.0/setup.sh"
     julia_dir = "/usr/usc/julia/1.1.1/setup.sh"
+    gurobi_dir_ = "/usr/usc/gurobi/default/setup.sh"
+
 
     for num_cluster, card in num_clusters_card:
         jname = str(num_cluster)+"_"+str(card)
@@ -29,7 +31,8 @@ if hpc_is:
         f.write("#SBATCH --job-name=" + jname + "\n")
         f.write("cd " + hdir + "\n")
         f.write("source " + julia_dir + "\n")
-        f.write("julia AdMST.jl " + str(num_cluster) + " " + str(card) + "> "+jname+".txt \n")
+        f.write("source " + gurobi_dir_ + "\n")
+        f.write("julia AdMST.jl " + str(num_cluster) + " " + str(card) + " > "+jname+".txt \n")
         print(jname)
         f.close()
 
