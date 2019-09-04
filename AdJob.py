@@ -10,10 +10,11 @@ def make_dir(dir):
 hpc_is = True
 
 # num_clusters_card_m = [(2,2,1),(3,3,1),(4,2,1),(5,5,1),(10,2,1),(20,2,1)]
-num_clusters_card_m = [(5,4,2),(5,10,3)]
+# num_clusters_card_m = [(5,4,2),(5,10,3)]
+num_clusters_card_m = [(5,5,2),(20,4,3),(5,3,2)]
 
 if hpc_is:
-    ntasks = 10
+
     time_ = '24:00:00'
     jobs_files = []
     hdir = "/auto/rcf-proj2/ma2/azizim/GTSP"
@@ -23,13 +24,15 @@ if hpc_is:
 
 
     for num_cluster, card, m in num_clusters_card_m:
+        ntasks = 10 * num_cluster * card
         jname = str(num_cluster)+"_"+str(card)+"_"+str(m)
         f = open(jname + ".slurm", "w")
         jobs_files.append(jname + ".slurm")
         f.write("#!/bin/bash \n")
         f.write("#SBATCH --ntasks={}\n".format(ntasks))
         f.write("#SBATCH --time={}\n".format(time_))
-        f.write("#SBATCH --output=" + jname + ".txt" + "\n")
+        f.write("#SBATCH --output=O" + jname + ".txt" + "\n")
+        f.write("#SBATCH --error=" + "e" + jname + ".txt" + "\n")
         f.write("#SBATCH --job-name=" + jname + "\n")
         f.write("cd " + hdir + "\n")
         f.write("source " + julia_dir + "\n")
