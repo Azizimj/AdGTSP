@@ -39,7 +39,7 @@ dim = 2
 if size(ARGS)[1]>0
 	num_cluster=parse(Int,ARGS[1])
 	card=parse(Int,ARGS[2])
-	visit_m=2
+	visit_m=parse(Int,ARGS[3])
 	limits_=[1,1]
 	dim = 2
 end
@@ -66,9 +66,14 @@ Pow_pts_size = size(Pow_pts)[1]
 
 M_1 = 10000000
 
-AdMST = Model(with_optimizer(Gurobi.Optimizer));
+# env = Gurobi.Env()
+t_lim = 5*3600
+# setparams!(env; IterationLimit=1000, TimeLimit= t_lim)
 
-@variable(AdMST, 1>= x[1:num_pts] >= 0 );
+AdMST = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim));
+
+# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
+@variable(AdMST, x[1:num_pts], Bin);
 @variable(AdMST, z[1:Pow_pts_size]);
 @variable(AdMST, y[1:Pow_pts_size]);
 
@@ -96,8 +101,13 @@ for s=1:Pow_pts_size
 	end
 end
 
-@objective(AdMST,Max, - sum((size(Pow_pts[s])[1]-1)*y[s] for s=1:Pow_pts_size) );
+for i=1:num_cluster
+	@constraint(AdMST, sum(x[v] for v=(i-1)*card+1:i*card) == visit_m);
+end
 
+@objective(AdMST,Min, sum((size(Pow_pts[s])[1]-1)*y[s] for s=1:Pow_pts_size) );
+
+print(AdMST)
 # status = solve(AdMST)
 optimize!(AdMST)
 
