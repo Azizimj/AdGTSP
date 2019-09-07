@@ -1,0 +1,38 @@
+num_cluster is 3
+card is 2
+visit_m is 1
+limits_ is [1, 1]
+dim is 2
+AdGTSP 
+Academic license - for non-commercial use only
+Academic license - for non-commercial use only
+Optimize a model with 239 rows, 122 columns and 743 nonzeros
+Variable types: 116 continuous, 6 integer (6 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+06]
+  Objective range  [1e+00, 4e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+00, 2e+06]
+Presolve removed 211 rows and 107 columns
+Presolve time: 0.05s
+Presolved: 28 rows, 15 columns, 92 nonzeros
+Variable types: 9 continuous, 6 integer (6 binary)
+
+Root relaxation: objective 3.999998e+06, 15 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 3999998.18    0    5          - 3999998.18      -     -    0s
+H    0     0                    2409921.5621 3999998.18  66.0%     -    0s
+H    0     0                    3999996.7866 3999998.18  0.00%     -    0s
+
+Explored 1 nodes (15 simplex iterations) in 0.07 seconds
+Thread count was 4 (of 4 available processors)
+
+Solution count 2: 4e+06 2.40992e+06 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 3.999996786588e+06, best bound 3.999998177240e+06, gap 0.0000%
+obj val 3.9999967865877626e6
+x is [1.0, 0.0, 1.0, 0.0, 1.0, 0.0]
