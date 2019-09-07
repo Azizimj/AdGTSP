@@ -136,5 +136,9 @@ if AdMST_instan
 	to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
 
 	# print(read_json( "x_.json"))
+elseif AdNN
+
+
+
 end
 
