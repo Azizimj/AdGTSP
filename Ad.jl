@@ -31,7 +31,8 @@ function gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
 
 end
 
-AdMST_instan = true
+AdMSTinstan = false
+AdNNinstan = true
 
 
 num_cluster=5
@@ -76,7 +77,9 @@ t_lim = 5*3600
 # setparams!(env; IterationLimit=1000, TimeLimit= t_lim)
 
 
-if AdMST_instan
+if AdMSTinstan
+	print("AdMST \n")
+
 	AdMST = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim));
 
 	# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
@@ -136,9 +139,78 @@ if AdMST_instan
 	to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
 
 	# print(read_json( "x_.json"))
-elseif AdNN
 
+elseif AdNNinstan
 
+	print("AdNN \n")
+	M_1 = 1000000
+	M_2 = 1000000
+	M_3 = 1000000
+	M_4 = 1000000
+
+	AdNN = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim));
+
+	# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
+	@variable(AdNN, x[1:num_pts], Bin);
+	@variable(AdNN, y[1:num_pts]);
+	@variable(AdNN, z[1:num_pts,1:num_pts]);
+	@variable(AdNN, w[1:num_pts]);
+	@variable(AdNN, p[1:num_pts,1:num_pts]);
+
+	for u = 1:num_pts
+		for v = 1:num_pts
+			if u != v
+					@constraint(AdNN, y[v]+y[u]+z[u,v] <= distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
+			end
+		end
+	end
+
+	for v = 1:num_pts
+		@constraint(AdNN, w[v] <= y[v])
+		@constraint(AdNN, w[v] <= x[v]*M_2)
+		@constraint(AdNN, w[v] >= y[v]+x[v]-1)
+	end
+
+	for u = 1:num_pts
+		for v = 1:num_pts
+			if u != v
+					@constraint(AdNN, p[u,v]<=z[u,v]);
+					@constraint(AdNN, p[u,v]<=x[u]*M_3);
+					@constraint(AdNN, p[u,v]<=x[v]*M_4);
+					@constraint(AdNN, p[u,v]>=z[u,v]+x[u]+x[v]-2)
+			end
+		end
+	end
+
+	for i=1:num_cluster
+		@constraint(AdMST, sum(x[v] for v=(i-1)*card+1:i*card) == visit_m);
+	end
+
+	@objective(AdNN,Max,
+	sum(w[v] for v=1:num_pts) + sum(p[u,v] for u =1:num_pts, v=1:num_pts if u!=v ) );
+
+	optimize!(AdNN)
+
+	print("obj val ",objective_value(AdNN), "\n");
+
+	x_ = JuMP.value.(x);
+	y_ = JuMP.value.(y);
+	z_ = JuMP.value.(z);
+	w_ = JuMP.value.(w);
+	p_ = JuMP.value.(p);
+
+	print("x is ", x_, "\n")
+	# print("y is ", y_, "\n")
+	# print("z is ", z_, "\n")
+
+	dir_ = string("AdNN_", num_cluster,"_",card,"_",visit_m,"/")
+	mkdir(dir_)
+	j_file_name = string(num_cluster,"_",card,"_",visit_m)
+	to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
+	to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
+	to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
+	to_json(DataFrame(w_), string(dir_,"w_",j_file_name,".json"))
+	to_json(DataFrame(p_), string(dir_,"p_",j_file_name,".json"))
 
 end
 
