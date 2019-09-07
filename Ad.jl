@@ -26,16 +26,20 @@ function gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
 		end
 	end
 # 	clusters = zeros(num_pts)
+#     distance_matrix[1, 2] = Inf if wanted to remove an edge just leave it Inf
 
 	return [num_pts, data_points, distance_matrix]
 
 end
 
 AdMSTinstan = false
-AdNNinstan = true
+AdNNinstan = false
+AdGTSP_instan = true
 
+#TODO: if e exits in some cons use check Inf in distance_matrix
+#TODO: add *M in the bilinear cons
 
-num_cluster=5
+num_cluster=3
 card=2
 visit_m=1
 limits_=[1,1]
@@ -101,7 +105,7 @@ if AdMSTinstan
 	# print("ss")
 	# exit()
 	for s=1:Pow_pts_size
-		@constraint(AdMST, y[s]<=z[s]);
+		@constraint(AdMST, y[s]<=z[s]*M_2);
 		for v in Pow_pts[s]
 			@constraint(AdMST, y[s]<=x[v]*M_2);
 		end
@@ -131,7 +135,7 @@ if AdMSTinstan
 	# print("y is ", y_, "\n")
 	# print("z is ", z_, "\n")
 
-	dir_ = string(num_cluster,"_",card,"_",visit_m,"/")
+	dir_ = string("AdMST_",num_cluster,"_",card,"_",visit_m,"/")
 	mkdir(dir_)
 	j_file_name = string(num_cluster,"_",card,"_",visit_m)
 	to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
@@ -166,7 +170,7 @@ elseif AdNNinstan
 	end
 
 	for v = 1:num_pts
-		@constraint(AdNN, w[v] <= y[v])
+		@constraint(AdNN, w[v] <= y[v]*M_2)
 		@constraint(AdNN, w[v] <= x[v]*M_2)
 		@constraint(AdNN, w[v] >= y[v]+x[v]-1)
 	end
@@ -174,7 +178,7 @@ elseif AdNNinstan
 	for u = 1:num_pts
 		for v = 1:num_pts
 			if u != v
-					@constraint(AdNN, p[u,v]<=z[u,v]);
+					@constraint(AdNN, p[u,v]<=z[u,v]*M_3);
 					@constraint(AdNN, p[u,v]<=x[u]*M_3);
 					@constraint(AdNN, p[u,v]<=x[v]*M_4);
 					@constraint(AdNN, p[u,v]>=z[u,v]+x[u]+x[v]-2)
@@ -183,7 +187,7 @@ elseif AdNNinstan
 	end
 
 	for i=1:num_cluster
-		@constraint(AdMST, sum(x[v] for v=(i-1)*card+1:i*card) == visit_m);
+		@constraint(AdNN, sum(x[v] for v=(i-1)*card+1:i*card) == visit_m);
 	end
 
 	@objective(AdNN,Max,
@@ -211,6 +215,112 @@ elseif AdNNinstan
 	to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
 	to_json(DataFrame(w_), string(dir_,"w_",j_file_name,".json"))
 	to_json(DataFrame(p_), string(dir_,"p_",j_file_name,".json"))
+
+elseif AdGTSP_instan
+
+	print("AdGTSP \n")
+	M_1 = 1000000
+	M_2 = 1000000
+	M_3 = 1000000
+	M_4 = 1000000
+	M_5 = 1000000
+
+	Pow_pts_v1 = collect(powerset(2:num_pts))
+	Pow_pts_v1 = Pow_pts_v1[2:end] # remove empty set
+	Pow_pts_v1_size = size(Pow_pts_v1)[1]
+
+	AdGTSP = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim));
+
+	# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
+	@variable(AdGTSP, x[1:num_pts], Bin);
+	@variable(AdGTSP, y[1:num_pts]);
+	@variable(AdGTSP, z[1:Pow_pts_v1_size]);
+	@variable(AdGTSP, q[1:num_pts,1:num_pts]);
+	@variable(AdGTSP, w[1:num_pts]);
+	@variable(AdGTSP, p[1:Pow_pts_v1_size]);
+	@variable(AdGTSP, g[1:num_pts]);
+
+	# we take the first point as v_1
+	@constraint(AdGTSP, x[1]==1);
+
+	for u = 2:num_pts
+		for v = 2:num_pts
+			if distance_matrix[u,v] != Inf
+				@constraint(AdGTSP, y[u]+y[v]-sum(p[s] for s=num_pts:Pow_pts_v1_size if u in Pow_pts_v1[s]
+				 && v in Pow_pts_v1[s]) <= distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
+			end
+		end
+	end
+
+	for u=2:num_pts
+		if distance_matrix[u,1] != Inf
+			@constraint(AdGTSP, y[u]+y[1]-q[u,1] <= distance_matrix[u,1]+(1-x[u])*M_2)
+			@constraint(AdGTSP, g[u] >=0 )
+		end
+	end
+
+
+	for s=1:Pow_pts_v1_size-1  # s!= V\v_1
+		@constraint(AdGTSP, p[s] >=0 )
+	end
+
+
+	for v=1:num_pts
+		@constraint(AdGTSP, w[v] <=x[v]*M_3 )
+		@constraint(AdGTSP, w[v] <=y[v]*M_3)
+		@constraint(AdGTSP, w[v] >=y[v]+x[v]-1)
+	end
+
+	for s=1:Pow_pts_v1_size
+		@constraint(AdGTSP, p[s] <=z[s]*M_4 )
+		for v in Pow_pts_v1[s]
+		@constraint(AdGTSP, p[s] <=x[v]*M_4 )
+		end
+		@constraint(AdGTSP, p[s]>=z[s]+sum(x[v] for v in Pow_pts_v1[s])- size(Pow_pts_v1[s])[1]);
+	end
+
+	for v=2:num_pts
+		if distance_matrix[v,1] != Inf
+			@constraint(AdGTSP, g[v] <=q[v]*M_5 )
+			@constraint(AdGTSP, g[v] <=x[v]*M_5 )
+			@constraint(AdGTSP, g[v] >=q[v]+x[v]-1)
+		end
+	end
+
+	for i=1:num_cluster
+		@constraint(AdGTSP, sum(x[v] for v=(i-1)*card+1:i*card) == visit_m);
+	end
+
+	@objective(AdGTSP,Max,
+	sum(w[v] for v=1:num_pts) +sum((size(Pow_pts_v1[s])[1]-1)*p[s] for s=1:Pow_pts_v1_size)-
+	sum(g[v] for v=2:num_pts if distance_matrix[v,1]!=Inf));
+
+
+	optimize!(AdGTSP)
+
+	print("obj val ",objective_value(AdGTSP), "\n");
+
+	x_ = JuMP.value.(x);
+	y_ = JuMP.value.(y);
+	z_ = JuMP.value.(z);
+	q_ = JuMP.value.(q);
+	w_ = JuMP.value.(w);
+	p_ = JuMP.value.(p);
+	g_ = JuMP.value.(g);
+
+	print("x is ", x_, "\n")
+
+	dir_ = string("AdGTSP_", num_cluster,"_",card,"_",visit_m,"/")
+	mkdir(dir_)
+	j_file_name = string(num_cluster,"_",card,"_",visit_m)
+	to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
+	to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
+	to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
+	to_json(DataFrame(q_), string(dir_,"q_",j_file_name,".json"))
+	to_json(DataFrame(w_), string(dir_,"w_",j_file_name,".json"))
+	to_json(DataFrame(p_), string(dir_,"p_",j_file_name,".json"))
+	to_json(DataFrame(g_), string(dir_,"g_",j_file_name,".json"))
+
 
 end
 
