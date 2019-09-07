@@ -66,6 +66,7 @@ Pow_pts_size = size(Pow_pts)[1]
 # Pow_pts_edge_size = size(Pow_pts_edge)
 
 M_1 = 10000000
+M_2 = 10000000
 
 # env = Gurobi.Env()
 t_lim = 5*3600
@@ -94,7 +95,7 @@ end
 for s=1:Pow_pts_size
 	@constraint(AdMST, y[s]<=z[s]);
 	for v in Pow_pts[s]
-		@constraint(AdMST, y[s]<=x[v]);
+		@constraint(AdMST, y[s]<=x[v]*M_2);
 	end
 	@constraint(AdMST, y[s]>=z[s]+sum(x[v] for v in Pow_pts[s])- size(Pow_pts[s])[1]);
 	if s != Pow_pts_size
