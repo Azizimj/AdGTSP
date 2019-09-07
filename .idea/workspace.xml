@@ -2,21 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5e51aaf-04b4-4315-b162-813504fb9fc4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/AdNN_5_2_1/o.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdNN_5_2_1/p_5_2_1.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdNN_5_2_1/w_5_2_1.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdNN_5_2_1/x_5_2_1.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdNN_5_2_1/y_5_2_1.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdNN_5_2_1/z_5_2_1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/3_2_2/x_3_2_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/AdMST_3_2_2/x_3_2_2.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/3_2_2/y_3_2_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/AdMST_3_2_2/y_3_2_2.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/3_2_2/z_3_2_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/AdMST_3_2_2/z_3_2_2.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/5_2_1/out.txt" beforeDir="false" afterPath="$PROJECT_DIR$/AdMST_5_2_1/out.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/5_2_1/x_5_2_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/AdMST_5_2_1/x_5_2_1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/5_2_1/y_5_2_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/AdMST_5_2_1/y_5_2_1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/5_2_1/z_5_2_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/AdMST_5_2_1/z_5_2_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ad.jl" beforeDir="false" afterPath="$PROJECT_DIR$/Ad.jl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.jl" beforeDir="false" afterPath="$PROJECT_DIR$/test.jl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdGTSP_3_2_1/g_3_2_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/AdGTSP_3_2_1/g_3_2_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdGTSP_3_2_1/o.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdGTSP_3_2_1/q_3_2_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/AdGTSP_3_2_1/q_3_2_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdJob.py" beforeDir="false" afterPath="$PROJECT_DIR$/AdJob.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,24 +17,107 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Ad.jl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="253" column="19" lean-forward="true" selection-start-line="253" selection-start-column="19" selection-end-line="253" selection-end-column="19" />
+            <state relative-caret-position="4505">
+              <caret line="319" column="28" selection-start-line="319" selection-start-column="28" selection-end-line="319" selection-end-column="28" />
+              <folding>
+                <element signature="e#189#799#0" />
+                <element signature="e#528#625#0" />
+                <element signature="e#1034#1051#0" />
+                <element signature="e#1066#1070#0" />
+                <element signature="e#1078#1088#0" />
+                <element signature="e#1096#1100#0" />
+                <element signature="e#1108#1121#0" />
+                <element signature="e#1132#1136#0" />
+                <element signature="e#1144#1157#0" />
+                <element signature="e#1168#1172#0" />
+                <element signature="e#1180#1189#0" />
+                <element signature="e#1196#1200#0" />
+                <element signature="e#1762#1772#0" />
+                <element signature="e#2047#2215#0" />
+                <element signature="e#2483#2541#0" />
+                <element signature="e#2794#2804#0" />
+                <element signature="e#2829#2833#0" />
+                <element signature="e#2911#2918#0" />
+                <element signature="e#2924#2928#0" />
+                <element signature="e#3002#3010#0" />
+                <element signature="e#3023#3026#0" />
+                <element signature="e#3032#3035#0" />
+                <element signature="e#3044#3047#0" />
+                <element signature="e#3096#3099#0" />
+                <element signature="e#3105#3108#0" />
+                <element signature="e#3154#3158#0" />
+                <element signature="e#3171#3178#0" />
+                <element signature="e#3217#3221#0" />
+                <element signature="e#3234#3241#0" />
+                <element signature="e#3280#3284#0" />
+                <element signature="e#3297#3304#0" />
+                <element signature="e#3367#3376#0" />
+                <element signature="e#3780#3880#0" />
+                <element signature="e#4073#4264#0" />
+                <element signature="e#4504#4514#0" />
+                <element signature="e#4538#4542#0" />
+                <element signature="e#4664#4671#0" />
+                <element signature="e#4677#4681#0" />
+                <element signature="e#4755#4762#0" />
+                <element signature="e#4776#4779#0" />
+                <element signature="e#4785#4788#0" />
+                <element signature="e#4797#4800#0" />
+                <element signature="e#4849#4852#0" />
+                <element signature="e#4858#4861#0" />
+                <element signature="e#4907#4911#0" />
+                <element signature="e#4924#4931#0" />
+                <element signature="e#4970#4974#0" />
+                <element signature="e#4987#4994#0" />
+                <element signature="e#5033#5037#0" />
+                <element signature="e#5050#5057#0" />
+                <element signature="e#5096#5100#0" />
+                <element signature="e#5113#5120#0" />
+                <element signature="e#5159#5163#0" />
+                <element signature="e#5176#5183#0" />
+                <element signature="e#5209#5220#0" />
+                <element signature="e#5834#6057#0" />
+                <element signature="e#6086#6199#0" />
+                <element signature="e#6879#7040#0" />
+                <element signature="e#7310#7320#0" />
+                <element signature="e#7346#7350#0" />
+                <element signature="e#7599#7606#0" />
+                <element signature="e#7612#7616#0" />
+                <element signature="e#7690#7699#0" />
+                <element signature="e#7713#7716#0" />
+                <element signature="e#7722#7725#0" />
+                <element signature="e#7734#7737#0" />
+                <element signature="e#7786#7789#0" />
+                <element signature="e#7795#7798#0" />
+                <element signature="e#7844#7848#0" />
+                <element signature="e#7861#7868#0" />
+                <element signature="e#7907#7911#0" />
+                <element signature="e#7924#7931#0" />
+                <element signature="e#7970#7974#0" />
+                <element signature="e#7987#7994#0" />
+                <element signature="e#8027#8031#0" />
+                <element signature="e#8044#8051#0" />
+                <element signature="e#8033#8037#0" />
+                <element signature="e#8050#8057#0" />
+                <element signature="e#8096#8100#0" />
+                <element signature="e#8113#8120#0" />
+                <element signature="e#8216#8220#0" />
+                <element signature="e#8233#8240#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AdJob.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
-              <caret line="35" column="65" selection-start-line="35" selection-start-column="65" selection-end-line="35" selection-end-column="65" />
+            <state relative-caret-position="124">
+              <caret line="49" column="48" selection-start-line="49" selection-start-column="48" selection-end-line="49" selection-end-column="48" />
               <folding>
                 <element signature="e#57#155#0" />
                 <element signature="e#93#155#0" />
-                <element signature="e#172#247#0" />
               </folding>
             </state>
           </provider>
@@ -52,8 +126,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.jl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="64" selection-start-line="64" selection-end-line="64" selection-end-column="79" />
+            <state relative-caret-position="250">
+              <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -85,9 +159,9 @@
       <list>
         <option value="$PROJECT_DIR$/Ad.py" />
         <option value="$PROJECT_DIR$/AdMST.jl" />
-        <option value="$PROJECT_DIR$/AdJob.py" />
         <option value="$PROJECT_DIR$/test.jl" />
         <option value="$PROJECT_DIR$/Ad.jl" />
+        <option value="$PROJECT_DIR$/AdJob.py" />
       </list>
     </option>
   </component>
@@ -224,15 +298,38 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="AdJob" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="AdTSP_code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/AdJob.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Julia.AdMST" />
       <item itemvalue="Julia.test" />
       <item itemvalue="Python.Ad" />
       <item itemvalue="Julia.Ad" />
+      <item itemvalue="Python.AdJob" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Julia.Ad" />
+        <item itemvalue="Python.AdJob" />
         <item itemvalue="Julia.test" />
         <item itemvalue="Julia.AdMST" />
         <item itemvalue="Python.Ad" />
@@ -355,7 +452,28 @@
       <option name="project" value="LOCAL" />
       <updated>1567884309204</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="AdGTSP">
+      <created>1567895579168</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1567895579168</updated>
+    </task>
+    <task id="LOCAL-00017" summary="AdGTSP">
+      <created>1567895590747</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1567895590747</updated>
+    </task>
+    <task id="LOCAL-00018" summary="AdGTSP">
+      <created>1567896345086</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1567896345086</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -367,13 +485,13 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.5499182" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.56301147" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.16202946" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.34042552" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4977307" weight="0.16202946" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4977307" weight="0.12274959" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50075644" side_tool="true" weight="0.39443535" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -390,7 +508,8 @@
     <MESSAGE value="corrected c_e + ..." />
     <MESSAGE value="save json" />
     <MESSAGE value="model corrected" />
-    <option name="LAST_COMMIT_MESSAGE" value="model corrected" />
+    <MESSAGE value="AdGTSP" />
+    <option name="LAST_COMMIT_MESSAGE" value="AdGTSP" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Ad.py" />
@@ -404,29 +523,112 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AdJob.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="35" column="65" selection-start-line="35" selection-start-column="65" selection-end-line="35" selection-end-column="65" />
-          <folding>
-            <element signature="e#57#155#0" />
-            <element signature="e#93#155#0" />
-            <element signature="e#172#247#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test.jl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="64" selection-start-line="64" selection-end-line="64" selection-end-column="79" />
+        <state relative-caret-position="250">
+          <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Ad.jl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="253" column="19" lean-forward="true" selection-start-line="253" selection-start-column="19" selection-end-line="253" selection-end-column="19" />
+        <state relative-caret-position="4505">
+          <caret line="319" column="28" selection-start-line="319" selection-start-column="28" selection-end-line="319" selection-end-column="28" />
+          <folding>
+            <element signature="e#189#799#0" />
+            <element signature="e#528#625#0" />
+            <element signature="e#1034#1051#0" />
+            <element signature="e#1066#1070#0" />
+            <element signature="e#1078#1088#0" />
+            <element signature="e#1096#1100#0" />
+            <element signature="e#1108#1121#0" />
+            <element signature="e#1132#1136#0" />
+            <element signature="e#1144#1157#0" />
+            <element signature="e#1168#1172#0" />
+            <element signature="e#1180#1189#0" />
+            <element signature="e#1196#1200#0" />
+            <element signature="e#1762#1772#0" />
+            <element signature="e#2047#2215#0" />
+            <element signature="e#2483#2541#0" />
+            <element signature="e#2794#2804#0" />
+            <element signature="e#2829#2833#0" />
+            <element signature="e#2911#2918#0" />
+            <element signature="e#2924#2928#0" />
+            <element signature="e#3002#3010#0" />
+            <element signature="e#3023#3026#0" />
+            <element signature="e#3032#3035#0" />
+            <element signature="e#3044#3047#0" />
+            <element signature="e#3096#3099#0" />
+            <element signature="e#3105#3108#0" />
+            <element signature="e#3154#3158#0" />
+            <element signature="e#3171#3178#0" />
+            <element signature="e#3217#3221#0" />
+            <element signature="e#3234#3241#0" />
+            <element signature="e#3280#3284#0" />
+            <element signature="e#3297#3304#0" />
+            <element signature="e#3367#3376#0" />
+            <element signature="e#3780#3880#0" />
+            <element signature="e#4073#4264#0" />
+            <element signature="e#4504#4514#0" />
+            <element signature="e#4538#4542#0" />
+            <element signature="e#4664#4671#0" />
+            <element signature="e#4677#4681#0" />
+            <element signature="e#4755#4762#0" />
+            <element signature="e#4776#4779#0" />
+            <element signature="e#4785#4788#0" />
+            <element signature="e#4797#4800#0" />
+            <element signature="e#4849#4852#0" />
+            <element signature="e#4858#4861#0" />
+            <element signature="e#4907#4911#0" />
+            <element signature="e#4924#4931#0" />
+            <element signature="e#4970#4974#0" />
+            <element signature="e#4987#4994#0" />
+            <element signature="e#5033#5037#0" />
+            <element signature="e#5050#5057#0" />
+            <element signature="e#5096#5100#0" />
+            <element signature="e#5113#5120#0" />
+            <element signature="e#5159#5163#0" />
+            <element signature="e#5176#5183#0" />
+            <element signature="e#5209#5220#0" />
+            <element signature="e#5834#6057#0" />
+            <element signature="e#6086#6199#0" />
+            <element signature="e#6879#7040#0" />
+            <element signature="e#7310#7320#0" />
+            <element signature="e#7346#7350#0" />
+            <element signature="e#7599#7606#0" />
+            <element signature="e#7612#7616#0" />
+            <element signature="e#7690#7699#0" />
+            <element signature="e#7713#7716#0" />
+            <element signature="e#7722#7725#0" />
+            <element signature="e#7734#7737#0" />
+            <element signature="e#7786#7789#0" />
+            <element signature="e#7795#7798#0" />
+            <element signature="e#7844#7848#0" />
+            <element signature="e#7861#7868#0" />
+            <element signature="e#7907#7911#0" />
+            <element signature="e#7924#7931#0" />
+            <element signature="e#7970#7974#0" />
+            <element signature="e#7987#7994#0" />
+            <element signature="e#8027#8031#0" />
+            <element signature="e#8044#8051#0" />
+            <element signature="e#8033#8037#0" />
+            <element signature="e#8050#8057#0" />
+            <element signature="e#8096#8100#0" />
+            <element signature="e#8113#8120#0" />
+            <element signature="e#8216#8220#0" />
+            <element signature="e#8233#8240#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AdJob.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="49" column="48" selection-start-line="49" selection-start-column="48" selection-end-line="49" selection-end-column="48" />
+          <folding>
+            <element signature="e#57#155#0" />
+            <element signature="e#93#155#0" />
+          </folding>
         </state>
       </provider>
     </entry>

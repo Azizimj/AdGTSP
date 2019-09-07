@@ -32,9 +32,9 @@ function gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
 
 end
 
-AdMSTinstan = false
-AdNNinstan = false
-AdGTSP_instan = false
+AdMSTinstan = true
+AdNNinstan = true
+AdGTSP_instan = true
 
 #TODO: if e exits in some cons use check Inf in distance_matrix
 #TODO: add *M in the bilinear cons
@@ -51,13 +51,13 @@ if size(ARGS)[1]>0
 	visit_m=parse(Int,ARGS[3])
 	limits_=[1,1]
 	dim = 2
-	if ARGS[4] == "GTSP"
-		AdGTSP_instan = true
-	elseif ARGS[4] == "MST"
-		AdMSTinstan = true
-	elseif ARGS[4] == "NN"
-		AdNNinstan = false
-	end
+# 	if ARGS[4] == "GTSP"
+# 		AdGTSP_instan = true
+# 	elseif ARGS[4] == "MST"
+# 		AdMSTinstan = true
+# 	elseif ARGS[4] == "NN"
+# 		AdNNinstan = false
+# 	end
 
 end
 
@@ -90,7 +90,7 @@ t_lim = 22*3600
 
 
 if AdMSTinstan
-	print("AdMST \n")
+	print("\n\n\n\n AdMST \n")
 
 	AdMST = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim));
 
@@ -127,7 +127,7 @@ if AdMSTinstan
 		@constraint(AdMST, sum(x[v] for v=(i-1)*card+1:i*card) == visit_m);
 	end
 
-	@objective(AdMST,Min, sum((size(Pow_pts[s])[1]-1)*y[s] for s=1:Pow_pts_size) );
+	@objective(AdMST,Max, -sum((size(Pow_pts[s])[1]-1)*y[s] for s=1:Pow_pts_size) );
 
 	# print(AdMST)
 	# status = solve(AdMST)
@@ -151,10 +151,10 @@ if AdMSTinstan
 	to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
 
 	# print(read_json( "x_.json"))
+end
+if AdNNinstan
 
-elseif AdNNinstan
-
-	print("AdNN \n")
+	print("\n\n\n\n AdNN \n")
 	M_1 = 1000000
 	M_2 = 1000000
 	M_3 = 1000000
@@ -224,7 +224,8 @@ elseif AdNNinstan
 	to_json(DataFrame(w_), string(dir_,"w_",j_file_name,".json"))
 	to_json(DataFrame(p_), string(dir_,"p_",j_file_name,".json"))
 
-elseif AdGTSP_instan
+end
+if AdGTSP_instan
 
 	print("AdGTSP \n")
 	M_1 = 1000000
