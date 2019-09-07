@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5e51aaf-04b4-4315-b162-813504fb9fc4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/juliaConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdJob.py" beforeDir="false" afterPath="$PROJECT_DIR$/AdJob.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdMST.jl" beforeDir="false" afterPath="$PROJECT_DIR$/AdMST.jl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,26 +13,31 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AdMST.jl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="123" lean-forward="true" selection-start-line="123" selection-end-line="123" />
+            <state relative-caret-position="153">
+              <caret line="37" column="6" lean-forward="true" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
               <folding>
-                <element signature="e#1217#1749#0" />
+                <element signature="e#189#719#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AdJob.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="21" column="43" lean-forward="true" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+            <state relative-caret-position="153">
+              <caret line="55" column="18" lean-forward="true" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
               <folding>
-                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#57#155#0" />
+                <element signature="e#93#155#0" />
+                <element signature="e#172#247#0" />
+                <element signature="e#401#1768#0" />
+                <element signature="e#693#1497#0" />
+                <element signature="e#1668#1749#0" />
               </folding>
             </state>
           </provider>
@@ -40,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.jl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="24" column="32" lean-forward="true" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
+            <state relative-caret-position="408">
+              <caret line="24" column="32" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -68,19 +74,8 @@
       <list>
         <option value="$PROJECT_DIR$/Ad.py" />
         <option value="$PROJECT_DIR$/test.jl" />
-        <option value="$PROJECT_DIR$/AdMST.jl" />
         <option value="$PROJECT_DIR$/AdJob.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/AdTSP_code.iml" />
-        <option value="$PROJECT_DIR$/.idea/misc.xml" />
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
-        <option value="$PROJECT_DIR$/.idea/modules.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/R_User_Library.xml" />
+        <option value="$PROJECT_DIR$/AdMST.jl" />
       </list>
     </option>
   </component>
@@ -95,6 +90,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -106,12 +102,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="Julia.Configuration" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -125,7 +121,30 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Ad">
+  <component name="RunManager" selected="Julia.AdMST">
+    <configuration name="AdMST" type="JULIA_RUN_CONFIG_ID" factoryName="Julia" temporary="true">
+      <setting name="workingDir" value="$PROJECT_DIR$" />
+      <setting name="targetFile" value="$PROJECT_DIR$/AdMST.jl" />
+      <setting name="additionalOptions" value="" />
+      <setting name="programArgs" value="" />
+      <setting name="juliaExecutive" value="E:\program\julia_v1\Julia-1.2.0\bin\julia.exe" />
+      <setting name="jitCompiler" value="yes" />
+      <setting name="deprecationWarning" value="yes" />
+      <setting name="codeCoverage" value="none" />
+      <setting name="trackAllocation" value="none" />
+      <setting name="systemImage" value="" />
+      <setting name="systemImageOption" value="false" />
+      <setting name="inlineOption" value="false" />
+      <setting name="checkBoundsOption" value="false" />
+      <setting name="colorOption" value="true" />
+      <setting name="mathModeOption" value="false" />
+      <setting name="handleSignalOption" value="false" />
+      <setting name="startupFileOption" value="true" />
+      <setting name="historyOption" value="false" />
+      <setting name="launchReplOption" value="false" />
+      <setting name="optimizationLevel" value="3" />
+      <method v="2" />
+    </configuration>
     <configuration name="test" type="JULIA_RUN_CONFIG_ID" factoryName="Julia" temporary="true">
       <setting name="workingDir" value="$PROJECT_DIR$" />
       <setting name="targetFile" value="$PROJECT_DIR$/test.jl" />
@@ -170,8 +189,14 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Julia.AdMST" />
+      <item itemvalue="Julia.test" />
+      <item itemvalue="Python.Ad" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Julia.AdMST" />
         <item itemvalue="Python.Ad" />
         <item itemvalue="Julia.test" />
       </list>
@@ -251,33 +276,40 @@
       <option name="project" value="LOCAL" />
       <updated>1567632256990</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="model corrected">
+      <created>1567879958699</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1567879958699</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.099167295" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.102118" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Terminal" weight="0.3453355" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.111292966" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.26350245" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="JuliaSciView" />
-      <window_info anchor="right" id="R Packages" />
-      <window_info anchor="right" id="R Graphics" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4977307" weight="0.3453355" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50075644" side_tool="true" weight="0.39443535" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="JuliaSciView" order="3" />
+      <window_info anchor="right" id="R Graphics" order="4" />
+      <window_info anchor="right" id="R Packages" order="5" />
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
@@ -285,57 +317,39 @@
     <MESSAGE value="hpc" />
     <MESSAGE value="corrected c_e + ..." />
     <MESSAGE value="save json" />
-    <option name="LAST_COMMIT_MESSAGE" value="save json" />
+    <MESSAGE value="model corrected" />
+    <option name="LAST_COMMIT_MESSAGE" value="model corrected" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Ad.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="33" column="39" selection-end-line="86" selection-end-column="18" />
-          <folding>
-            <element signature="e#57#155#0" />
-            <element signature="e#93#155#0" />
-            <element signature="e#4869#4950#0" />
-            <element signature="e#4982#6584#0" />
-            <element signature="e#5025#6345#0" />
-            <element signature="e#5049#5742#0" />
-            <element signature="e#5082#5742#0" />
-            <element signature="e#5117#5742#0" />
-            <element signature="e#5162#5742#0" />
-            <element signature="e#5216#5742#0" />
-            <element signature="e#5777#6345#0" />
-            <element signature="e#5810#6345#0" />
-            <element signature="e#5845#6345#0" />
-            <element signature="e#5892#6345#0" />
-            <element signature="e#5946#6345#0" />
-            <element signature="e#6517#6565#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Ad.py" />
     <entry file="file://$PROJECT_DIR$/test.jl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="24" column="32" lean-forward="true" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AdMST.jl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="123" lean-forward="true" selection-start-line="123" selection-end-line="123" />
-          <folding>
-            <element signature="e#1217#1749#0" />
-          </folding>
+        <state relative-caret-position="408">
+          <caret line="24" column="32" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AdJob.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="21" column="43" lean-forward="true" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+        <state relative-caret-position="153">
+          <caret line="55" column="18" lean-forward="true" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#57#155#0" />
+            <element signature="e#93#155#0" />
+            <element signature="e#172#247#0" />
+            <element signature="e#401#1768#0" />
+            <element signature="e#693#1497#0" />
+            <element signature="e#1668#1749#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AdMST.jl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="37" column="6" lean-forward="true" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
+          <folding>
+            <element signature="e#189#719#0" />
           </folding>
         </state>
       </provider>

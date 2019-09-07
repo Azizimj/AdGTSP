@@ -31,9 +31,12 @@ function gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
 
 end
 
-num_cluster=3
+AdMST_instan = true
+
+
+num_cluster=5
 card=2
-visit_m=2
+visit_m=1
 limits_=[1,1]
 dim = 2
 
@@ -72,62 +75,66 @@ M_2 = 10000000
 t_lim = 5*3600
 # setparams!(env; IterationLimit=1000, TimeLimit= t_lim)
 
-AdMST = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim));
 
-# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
-@variable(AdMST, x[1:num_pts], Bin);
-@variable(AdMST, z[1:Pow_pts_size]);
-@variable(AdMST, y[1:Pow_pts_size]);
+if AdMST_instan
+	AdMST = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim));
+
+	# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
+	@variable(AdMST, x[1:num_pts], Bin);
+	@variable(AdMST, z[1:Pow_pts_size]);
+	@variable(AdMST, y[1:Pow_pts_size]);
 
 
-for u = 1:num_pts
-    for v = 1:num_pts
-        if u != v
-                @constraint(AdMST, -sum(y[s] for s=num_pts+1:Pow_pts_size if u in Pow_pts[s] && v in Pow_pts[s]) <=
-				 distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
+	for u = 1:num_pts
+		for v = 1:num_pts
+			if u != v
+					@constraint(AdMST, -sum(y[s] for s=num_pts+1:Pow_pts_size if u in Pow_pts[s] && v in Pow_pts[s]) <=
+					 distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
+			end
 		end
 	end
-end
 
-# s=1:Pow_pts_size
-# print("ss")
-# exit()
-for s=1:Pow_pts_size
-	@constraint(AdMST, y[s]<=z[s]);
-	for v in Pow_pts[s]
-		@constraint(AdMST, y[s]<=x[v]*M_2);
+	# s=1:Pow_pts_size
+	# print("ss")
+	# exit()
+	for s=1:Pow_pts_size
+		@constraint(AdMST, y[s]<=z[s]);
+		for v in Pow_pts[s]
+			@constraint(AdMST, y[s]<=x[v]*M_2);
+		end
+		@constraint(AdMST, y[s]>=z[s]+sum(x[v] for v in Pow_pts[s])- size(Pow_pts[s])[1]);
+		if s != Pow_pts_size
+			@constraint(AdMST, y[s]>=0);
+		end
 	end
-	@constraint(AdMST, y[s]>=z[s]+sum(x[v] for v in Pow_pts[s])- size(Pow_pts[s])[1]);
-	if s != Pow_pts_size
-		@constraint(AdMST, y[s]>=0);
+
+	for i=1:num_cluster
+		@constraint(AdMST, sum(x[v] for v=(i-1)*card+1:i*card) == visit_m);
 	end
+
+	@objective(AdMST,Min, sum((size(Pow_pts[s])[1]-1)*y[s] for s=1:Pow_pts_size) );
+
+	# print(AdMST)
+	# status = solve(AdMST)
+	optimize!(AdMST)
+
+	print("obj val ",objective_value(AdMST), "\n");
+
+	x_ = JuMP.value.(x);
+	y_ = JuMP.value.(y);
+	z_ = JuMP.value.(z);
+
+	print("x is ", x_, "\n")
+	# print("y is ", y_, "\n")
+	# print("z is ", z_, "\n")
+
+	dir_ = string(num_cluster,"_",card,"_",visit_m,"/")
+	mkdir(dir_)
+	j_file_name = string(num_cluster,"_",card,"_",visit_m)
+	to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
+	to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
+	to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
+
+	# print(read_json( "x_.json"))
 end
 
-for i=1:num_cluster
-	@constraint(AdMST, sum(x[v] for v=(i-1)*card+1:i*card) == visit_m);
-end
-
-@objective(AdMST,Min, sum((size(Pow_pts[s])[1]-1)*y[s] for s=1:Pow_pts_size) );
-
-# print(AdMST)
-# status = solve(AdMST)
-optimize!(AdMST)
-
-print("obj val ",objective_value(AdMST), "\n");
-
-x_ = JuMP.value.(x);
-y_ = JuMP.value.(y);
-z_ = JuMP.value.(z);
-
-print("x is ", x_, "\n")
-# print("y is ", y_, "\n")
-# print("z is ", z_, "\n")
-
-dir_ = string(num_cluster,"_",card,"_",visit_m,"/")
-mkdir(dir_)
-j_file_name = string(num_cluster,"_",card,"_",visit_m)
-to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
-to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
-to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
-
-# print(read_json( "x_.json"))
