@@ -34,7 +34,7 @@ end
 
 AdMSTinstan = false
 AdNNinstan = false
-AdGTSP_instan = true
+AdGTSP_instan = false
 
 #TODO: if e exits in some cons use check Inf in distance_matrix
 #TODO: add *M in the bilinear cons
@@ -51,6 +51,14 @@ if size(ARGS)[1]>0
 	visit_m=parse(Int,ARGS[3])
 	limits_=[1,1]
 	dim = 2
+	if ARGS[4] == "GTSP"
+		AdGTSP_instan = true
+	elseif ARGS[4] == "MST"
+		AdMSTinstan = true
+	elseif ARGS[4] == "NN"
+		AdNNinstan = false
+	end
+
 end
 
 print("num_cluster is ", num_cluster, "\n")
@@ -77,7 +85,7 @@ M_1 = 10000000
 M_2 = 10000000
 
 # env = Gurobi.Env()
-t_lim = 5*3600
+t_lim = 22*3600
 # setparams!(env; IterationLimit=1000, TimeLimit= t_lim)
 
 
