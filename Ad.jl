@@ -37,9 +37,11 @@ function mkdire_(dire_)
 		mkdir(dir_)
 	end
 end
-AdMSTinstan = true
-AdNNinstan = true
-AdGTSP_instan = true
+
+AdMSTinstan = false
+AdNNinstan = false
+AdGTSP_instan = false
+AdNN2_instan = true
 
 #TODO: if e exits in some cons use check Inf in distance_matrix
 #TODO: add *M in the bilinear cons
@@ -86,8 +88,9 @@ Pow_pts_size = size(Pow_pts)[1]
 # exit()
 # Pow_pts_edge_size = size(Pow_pts_edge)
 
-M_1 = 10000000
-M_2 = 10000000
+M_1 = 1000000000
+M_2 = 1000000000
+
 
 # env = Gurobi.Env()
 t_lim = 22*3600
@@ -114,9 +117,6 @@ if AdMSTinstan
 		end
 	end
 
-	# s=1:Pow_pts_size
-	# print("ss")
-	# exit()
 	for s=1:Pow_pts_size
 		@constraint(AdMST, y[s]<=z[s]*M_2);
 		for v in Pow_pts[s]
@@ -160,10 +160,11 @@ end
 if AdNNinstan
 
 	print("\n\n\n\n AdNN \n")
-	M_1 = 1000000
-	M_2 = 1000000
-	M_3 = 1000000
-	M_4 = 1000000
+	M_1 = 1000000000
+	M_2 = 1000000000
+	M_3 = 1000000000
+	M_4 = 1000000000
+
 
 	AdNN = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim));
 
@@ -232,12 +233,12 @@ if AdNNinstan
 end
 if AdGTSP_instan
 
-	print("AdGTSP \n")
-	M_1 = 1000000
-	M_2 = 1000000
-	M_3 = 1000000
-	M_4 = 1000000
-	M_5 = 1000000
+	print("\n\n\n\n AdGTSP \n")
+	M_1 = 1000000000
+	M_2 = 1000000000
+	M_3 = 1000000000
+	M_4 = 1000000000
+	M_5 = 1000000000
 
 	Pow_pts_v1 = collect(powerset(2:num_pts))
 	Pow_pts_v1 = Pow_pts_v1[2:end] # remove empty set
@@ -338,3 +339,73 @@ if AdGTSP_instan
 
 end
 
+if AdNN2_instan
+
+	print("\n\n\n\n AdNN2 \n")
+	M_1 = 1000000000
+	M_2 = 1000000000
+	M_3 = 1000000000
+	M_4 = 1000000000
+
+# 	AdNN = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim));
+# 	AdNN = Model(with_optimizer(NLopt.Optimizer, TimeLimit= t_lim));
+# 	AdNN = Model(with_optimizer(Ipopt.Optimizer, max_cpu_time=60.0));
+# 	AdNN = Model(with_optimizer(BaronSolver));
+# 	AdNN = Model(with_optimizer(KNITRO.KnitroSolver));
+
+# 	using AmplNLWriter, KNITRO
+# 	AdNN = with_optimizer(AmplNLWriter.Optimizer, KNITRO.amplexe, ["outlev=3"])
+
+	using KNITRO
+# 	AdNN = Model(solver=KnitroSolver()) # JuMP v0.18
+	AdNN = Model(with_optimizer(KNITRO.Optimizer)) # JuMP v0.18
+
+	# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
+	@variable(AdNN, x[1:num_pts], Bin);
+	@variable(AdNN, y[1:num_pts]);
+	@variable(AdNN, z[1:num_pts,1:num_pts]);
+
+	for u = 1:num_pts
+		for v = 1:num_pts
+			if u != v
+					@constraint(AdNN, y[v]+y[u]+z[u,v] <= distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
+			end
+		end
+	end
+
+	for u = 1:num_pts
+		for v = 1:num_pts
+			if u != v
+					@NLconstraint(AdNN, z[u,v]*x[u]*x[v]>=0);
+			end
+		end
+	end
+
+	for i=1:num_cluster
+		@constraint(AdNN, sum(x[v] for v=(i-1)*card+1:i*card) == visit_m);
+	end
+
+	@NLobjective(AdNN,Max,
+	sum(y[v]*x[v] for v=1:num_pts) + sum(z[u,v]*x[u]*x[v] for u =1:num_pts, v=1:num_pts if u!=v ) );
+
+	optimize!(AdNN)
+
+	print("obj val ",objective_value(AdNN), "\n");
+
+	x_ = JuMP.value.(x);
+	y_ = JuMP.value.(y);
+	z_ = JuMP.value.(z);
+
+	print("x is ", x_, "\n")
+	# print("y is ", y_, "\n")
+	# print("z is ", z_, "\n")
+
+	dir_ = string("AdNN2_", num_cluster,"_",card,"_",visit_m,"/")
+	mkdire_(dir_)
+	j_file_name = string(num_cluster,"_",card,"_",visit_m)
+	to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
+	to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
+	to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
+
+
+end
