@@ -126,7 +126,7 @@ if AdMSTinstan
 	end
 
 	for s=1:Pow_pts_size
-		@constraint(AdMST, y[s]<=z[s]*M_2);
+		@constraint(AdMST, y[s]<=z[s]);
 		for v in Pow_pts[s]
 			@constraint(AdMST, y[s]<=x[v]*M_2);
 		end
@@ -192,7 +192,7 @@ if AdNNinstan
 	end
 
 	for v = 1:num_pts
-		@constraint(AdNN, w[v] <= y[v]*M_2)
+		@constraint(AdNN, w[v] <= y[v])
 		@constraint(AdNN, w[v] <= x[v]*M_2)
 		@constraint(AdNN, w[v] >= y[v]+x[v]-1)
 	end
@@ -290,12 +290,12 @@ if AdGTSP_instan
 
 	for v=1:num_pts
 		@constraint(AdGTSP, w[v] <=x[v]*M_3 )
-		@constraint(AdGTSP, w[v] <=y[v]*M_3)
+		@constraint(AdGTSP, w[v] <=y[v])
 		@constraint(AdGTSP, w[v] >=y[v]+x[v]-1)
 	end
 
 	for s=1:Pow_pts_v1_size
-		@constraint(AdGTSP, p[s] <=z[s]*M_4 )
+		@constraint(AdGTSP, p[s] <=z[s])
 		for v in Pow_pts_v1[s]
 		@constraint(AdGTSP, p[s] <=x[v]*M_4 )
 		end
@@ -304,7 +304,7 @@ if AdGTSP_instan
 
 	for v=2:num_pts
 		if distance_matrix[v,1] != Inf
-			@constraint(AdGTSP, g[v] <=q[v]*M_5 )
+			@constraint(AdGTSP, g[v] <=q[v] )
 			@constraint(AdGTSP, g[v] <=x[v]*M_5 )
 			@constraint(AdGTSP, g[v] >=q[v]+x[v]-1)
 		end
@@ -367,7 +367,7 @@ if AdNN2_instan
 
 	using KNITRO
 # 	AdNN = Model(solver=KnitroSolver()) # JuMP v0.18
-	AdNN = Model(with_optimizer(KNITRO.Optimizer)) # JuMP v0.18
+	AdNN = Model(with_optimizer(KNITRO.Optimizer)) # JuMP v0.19
 
 	# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
 	@variable(AdNN, x[1:num_pts], Bin);
@@ -376,7 +376,7 @@ if AdNN2_instan
 
 	for u = 1:num_pts
 		for v = 1:num_pts
-			if distance_matrix[v,1] != Inf
+			if distance_matrix[u,v] != Inf
 					@constraint(AdNN, y[v]+y[u]+z[u,v] <= distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
 			end
 		end
@@ -384,7 +384,7 @@ if AdNN2_instan
 
 	for u = 1:num_pts
 		for v = 1:num_pts
-			if distance_matrix[v,1] != Inf
+			if distance_matrix[u,v] != Inf
 					@NLconstraint(AdNN, z[u,v]*x[u]*x[v]>=0);
 			end
 		end
@@ -395,7 +395,7 @@ if AdNN2_instan
 	end
 
 	@NLobjective(AdNN,Max,
-	sum(y[v]*x[v] for v=1:num_pts) + sum(z[u,v]*x[u]*x[v] for u =1:num_pts, v=1:num_pts if u!=v ) );
+	sum(y[v]*x[v] for v=1:num_pts) + sum(z[u,v]*x[u]*x[v] for u =1:num_pts, v=1:num_pts if distance_matrix[u,v] != Inf ) );
 
 	optimize!(AdNN)
 
