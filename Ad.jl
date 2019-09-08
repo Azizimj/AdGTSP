@@ -28,6 +28,14 @@ function gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
 # 	clusters = zeros(num_pts)
 #     distance_matrix[1, 2] = Inf if wanted to remove an edge just leave it Inf
 
+	sum_dis=0
+	for i=1:num_pts, j=1:num_pts
+		if distance_matrix[i,j]!= Inf
+			sum_dis = sum_dis + distance_matrix[i,j]
+		end
+	end
+	print("sum dis ",sum_dis,"\n\n")
+
 	return [num_pts, data_points, distance_matrix]
 
 end
@@ -342,6 +350,7 @@ end
 if AdNN2_instan
 
 	print("\n\n\n\n AdNN2 \n")
+
 	M_1 = 1000000000
 	M_2 = 1000000000
 	M_3 = 1000000000
@@ -367,7 +376,7 @@ if AdNN2_instan
 
 	for u = 1:num_pts
 		for v = 1:num_pts
-			if u != v
+			if distance_matrix[v,1] != Inf
 					@constraint(AdNN, y[v]+y[u]+z[u,v] <= distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
 			end
 		end
@@ -375,7 +384,7 @@ if AdNN2_instan
 
 	for u = 1:num_pts
 		for v = 1:num_pts
-			if u != v
+			if distance_matrix[v,1] != Inf
 					@NLconstraint(AdNN, z[u,v]*x[u]*x[v]>=0);
 			end
 		end
@@ -397,7 +406,7 @@ if AdNN2_instan
 	z_ = JuMP.value.(z);
 
 	print("x is ", x_, "\n")
-	# print("y is ", y_, "\n")
+	print("y is ", y_, "\n")
 	# print("z is ", z_, "\n")
 
 	dir_ = string("AdNN2_", num_cluster,"_",card,"_",visit_m,"/")

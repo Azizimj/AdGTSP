@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5e51aaf-04b4-4315-b162-813504fb9fc4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/hpc_lic/artelys_lic_trial_artelys_knitro_academic_f3-1e-ec-13-f4.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/setup_knitro_in_hpc.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ad.jl" beforeDir="false" afterPath="$PROJECT_DIR$/Ad.jl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdNN2_3_2_1/x_3_2_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/AdNN2_3_2_1/x_3_2_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdNN2_3_2_1/y_3_2_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/AdNN2_3_2_1/y_3_2_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdNN2_3_2_1/z_3_2_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/AdNN2_3_2_1/z_3_2_1.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,11 +21,9 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Ad.jl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="360" column="50" selection-start-line="360" selection-start-column="11" selection-end-line="360" selection-end-column="50" />
+            <state relative-caret-position="125">
+              <caret line="389" column="11" lean-forward="true" selection-start-line="389" selection-start-column="11" selection-end-line="389" selection-end-column="11" />
               <folding>
-                <element signature="e#189#799#0" />
-                <element signature="e#528#625#0" />
                 <element signature="e#801#865#0" />
                 <element signature="e#819#853#0" />
                 <element signature="e#1017#1290#0" />
@@ -82,7 +85,6 @@
                 <element signature="e#5565#5585#0" />
                 <element signature="e#5834#6057#0" />
                 <element signature="e#6086#6199#0" />
-                <element signature="e#6879#7040#0" />
                 <element signature="e#7310#7320#0" />
                 <element signature="e#7346#7350#0" />
                 <element signature="e#7599#7606#0" />
@@ -130,7 +132,7 @@
         <entry file="file://$PROJECT_DIR$/AdJob.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
-              <caret line="26" column="41" lean-forward="true" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="46" />
+              <caret line="26" column="41" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="46" />
               <folding>
                 <element signature="e#57#155#0" />
                 <element signature="e#93#155#0" />
@@ -505,25 +507,31 @@
       <option name="project" value="LOCAL" />
       <updated>1567922560974</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="jobs mem and ntasks">
+      <created>1567964756327</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1567964756327</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.102118" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924356" weight="0.33060557" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.54664487" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.34042552" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4977307" visible="true" weight="0.46153846" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4977307" weight="0.5662848" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50075644" side_tool="true" weight="0.39443535" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -567,7 +575,7 @@
     <entry file="file://$PROJECT_DIR$/AdJob.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="26" column="41" lean-forward="true" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="46" />
+          <caret line="26" column="41" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="46" />
           <folding>
             <element signature="e#57#155#0" />
             <element signature="e#93#155#0" />
@@ -577,11 +585,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Ad.jl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="360" column="50" selection-start-line="360" selection-start-column="11" selection-end-line="360" selection-end-column="50" />
+        <state relative-caret-position="125">
+          <caret line="389" column="11" lean-forward="true" selection-start-line="389" selection-start-column="11" selection-end-line="389" selection-end-column="11" />
           <folding>
-            <element signature="e#189#799#0" />
-            <element signature="e#528#625#0" />
             <element signature="e#801#865#0" />
             <element signature="e#819#853#0" />
             <element signature="e#1017#1290#0" />
@@ -643,7 +649,6 @@
             <element signature="e#5565#5585#0" />
             <element signature="e#5834#6057#0" />
             <element signature="e#6086#6199#0" />
-            <element signature="e#6879#7040#0" />
             <element signature="e#7310#7320#0" />
             <element signature="e#7346#7350#0" />
             <element signature="e#7599#7606#0" />

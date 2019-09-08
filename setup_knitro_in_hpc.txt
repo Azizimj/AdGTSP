@@ -1,0 +1,6 @@
+download KNITRO for linux
+$ tar xvf KNITRO file
+$ KNITRODIR = "dire to folder"
+$ export KNITRODIR   --> makes it an env var
+$ printenv | grep KNITRODIR  --> prints
+
