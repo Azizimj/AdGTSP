@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5e51aaf-04b4-4315-b162-813504fb9fc4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/hpc_lic/artelys_lic_trial_artelys_knitro_academic_f3-1e-ec-13-f4.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/setup_knitro_in_hpc.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ad.jl" beforeDir="false" afterPath="$PROJECT_DIR$/Ad.jl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AdNN2_3_2_1/x_3_2_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/AdNN2_3_2_1/x_3_2_1.json" afterDir="false" />
@@ -21,9 +19,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Ad.jl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="389" column="11" lean-forward="true" selection-start-line="389" selection-start-column="11" selection-end-line="389" selection-end-column="11" />
+            <state relative-caret-position="255">
+              <caret line="229" column="30" selection-start-line="229" selection-start-column="30" selection-end-line="229" selection-end-column="30" />
               <folding>
+                <element signature="e#189#799#0" />
+                <element signature="e#528#625#0" />
+                <element signature="e#817#897#0" />
+                <element signature="e#884#894#0" />
+                <element signature="e#903#909#0" />
                 <element signature="e#801#865#0" />
                 <element signature="e#819#853#0" />
                 <element signature="e#1017#1290#0" />
@@ -57,10 +60,7 @@
                 <element signature="e#3234#3241#0" />
                 <element signature="e#3280#3284#0" />
                 <element signature="e#3297#3304#0" />
-                <element signature="e#3624#5477#0" />
                 <element signature="e#3656#3674#0" />
-                <element signature="e#3780#3880#0" />
-                <element signature="e#4073#4264#0" />
                 <element signature="e#4504#4514#0" />
                 <element signature="e#4538#4542#0" />
                 <element signature="e#4664#4671#0" />
@@ -81,10 +81,9 @@
                 <element signature="e#5113#5120#0" />
                 <element signature="e#5159#5163#0" />
                 <element signature="e#5176#5183#0" />
-                <element signature="e#5478#8360#0" />
                 <element signature="e#5565#5585#0" />
-                <element signature="e#5834#6057#0" />
                 <element signature="e#6086#6199#0" />
+                <element signature="e#6879#7040#0" />
                 <element signature="e#7310#7320#0" />
                 <element signature="e#7346#7350#0" />
                 <element signature="e#7599#7606#0" />
@@ -109,9 +108,15 @@
                 <element signature="e#8113#8120#0" />
                 <element signature="e#8216#8220#0" />
                 <element signature="e#8233#8240#0" />
+                <element signature="e#8473#10397#0" />
+                <element signature="e#8639#8658#0" />
+                <element signature="e#9877#9887#0" />
                 <element signature="e#9673#9677#0" />
                 <element signature="e#9799#9806#0" />
                 <element signature="e#9812#9816#0" />
+                <element signature="e#10158#10165#0" />
+                <element signature="e#10171#10175#0" />
+                <element signature="e#10084#10092#0" />
                 <element signature="e#9911#9914#0" />
                 <element signature="e#9920#9923#0" />
                 <element signature="e#9932#9935#0" />
@@ -514,18 +519,33 @@
       <option name="project" value="LOCAL" />
       <updated>1567964756327</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="jobs mem and ntasks">
+      <created>1567967974937</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1567967974937</updated>
+    </task>
+    <task id="LOCAL-00023" summary="KNITRO and ADNN2">
+      <created>1567969125510</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1567969125510</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.102118" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.54664487" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.0883797" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.34042552" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -551,7 +571,8 @@
     <MESSAGE value="AdGTSP" />
     <MESSAGE value="all together" />
     <MESSAGE value="jobs mem and ntasks" />
-    <option name="LAST_COMMIT_MESSAGE" value="jobs mem and ntasks" />
+    <MESSAGE value="KNITRO and ADNN2" />
+    <option name="LAST_COMMIT_MESSAGE" value="KNITRO and ADNN2" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Ad.py" />
@@ -585,9 +606,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Ad.jl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="389" column="11" lean-forward="true" selection-start-line="389" selection-start-column="11" selection-end-line="389" selection-end-column="11" />
+        <state relative-caret-position="255">
+          <caret line="229" column="30" selection-start-line="229" selection-start-column="30" selection-end-line="229" selection-end-column="30" />
           <folding>
+            <element signature="e#189#799#0" />
+            <element signature="e#528#625#0" />
+            <element signature="e#817#897#0" />
+            <element signature="e#884#894#0" />
+            <element signature="e#903#909#0" />
             <element signature="e#801#865#0" />
             <element signature="e#819#853#0" />
             <element signature="e#1017#1290#0" />
@@ -621,10 +647,7 @@
             <element signature="e#3234#3241#0" />
             <element signature="e#3280#3284#0" />
             <element signature="e#3297#3304#0" />
-            <element signature="e#3624#5477#0" />
             <element signature="e#3656#3674#0" />
-            <element signature="e#3780#3880#0" />
-            <element signature="e#4073#4264#0" />
             <element signature="e#4504#4514#0" />
             <element signature="e#4538#4542#0" />
             <element signature="e#4664#4671#0" />
@@ -645,10 +668,9 @@
             <element signature="e#5113#5120#0" />
             <element signature="e#5159#5163#0" />
             <element signature="e#5176#5183#0" />
-            <element signature="e#5478#8360#0" />
             <element signature="e#5565#5585#0" />
-            <element signature="e#5834#6057#0" />
             <element signature="e#6086#6199#0" />
+            <element signature="e#6879#7040#0" />
             <element signature="e#7310#7320#0" />
             <element signature="e#7346#7350#0" />
             <element signature="e#7599#7606#0" />
@@ -673,9 +695,15 @@
             <element signature="e#8113#8120#0" />
             <element signature="e#8216#8220#0" />
             <element signature="e#8233#8240#0" />
+            <element signature="e#8473#10397#0" />
+            <element signature="e#8639#8658#0" />
+            <element signature="e#9877#9887#0" />
             <element signature="e#9673#9677#0" />
             <element signature="e#9799#9806#0" />
             <element signature="e#9812#9816#0" />
+            <element signature="e#10158#10165#0" />
+            <element signature="e#10171#10175#0" />
+            <element signature="e#10084#10092#0" />
             <element signature="e#9911#9914#0" />
             <element signature="e#9920#9923#0" />
             <element signature="e#9932#9935#0" />

@@ -47,9 +47,9 @@ function mkdire_(dire_)
 end
 
 AdMSTinstan = false
-AdNNinstan = false
+AdNNinstan = true
 AdGTSP_instan = false
-AdNN2_instan = true
+AdNN2_instan = false
 
 #TODO: if e exits in some cons use check Inf in distance_matrix
 #TODO: add *M in the bilinear cons
@@ -185,7 +185,7 @@ if AdNNinstan
 
 	for u = 1:num_pts
 		for v = 1:num_pts
-			if u != v
+			if distance_matrix[u,v] != Inf
 					@constraint(AdNN, y[v]+y[u]+z[u,v] <= distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
 			end
 		end
@@ -199,8 +199,8 @@ if AdNNinstan
 
 	for u = 1:num_pts
 		for v = 1:num_pts
-			if u != v
-					@constraint(AdNN, p[u,v]<=z[u,v]*M_3);
+			if distance_matrix[u,v] != Inf
+					@constraint(AdNN, p[u,v]<=z[u,v]);
 					@constraint(AdNN, p[u,v]<=x[u]*M_3);
 					@constraint(AdNN, p[u,v]<=x[v]*M_4);
 					@constraint(AdNN, p[u,v]>=z[u,v]+x[u]+x[v]-2)
@@ -213,7 +213,7 @@ if AdNNinstan
 	end
 
 	@objective(AdNN,Max,
-	sum(w[v] for v=1:num_pts) + sum(p[u,v] for u =1:num_pts, v=1:num_pts if u!=v ) );
+	sum(w[v] for v=1:num_pts) + sum(p[u,v] for u =1:num_pts, v=1:num_pts if distance_matrix[u,v] != Inf ) );
 
 	optimize!(AdNN)
 
@@ -226,7 +226,7 @@ if AdNNinstan
 	p_ = JuMP.value.(p);
 
 	print("x is ", x_, "\n")
-	# print("y is ", y_, "\n")
+	print("y is ", y_, "\n")
 	# print("z is ", z_, "\n")
 
 	dir_ = string("AdNN_", num_cluster,"_",card,"_",visit_m,"/")
@@ -385,7 +385,8 @@ if AdNN2_instan
 	for u = 1:num_pts
 		for v = 1:num_pts
 			if distance_matrix[u,v] != Inf
-					@NLconstraint(AdNN, z[u,v]*x[u]*x[v]>=0);
+# 					@NLconstraint(AdNN, z[u,v]*x[u]*x[v]>=0);
+					@NLconstraint(AdNN, z[u,v]>=0);
 			end
 		end
 	end
@@ -407,7 +408,7 @@ if AdNN2_instan
 
 	print("x is ", x_, "\n")
 	print("y is ", y_, "\n")
-	# print("z is ", z_, "\n")
+	print("z is ", z_, "\n")
 
 	dir_ = string("AdNN2_", num_cluster,"_",card,"_",visit_m,"/")
 	mkdire_(dir_)
