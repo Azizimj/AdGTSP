@@ -32,6 +32,11 @@ function gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
 
 end
 
+function mkdire_(dire_)
+	if !isdir(dire_)
+		mkdir(dir_)
+	end
+end
 AdMSTinstan = true
 AdNNinstan = true
 AdGTSP_instan = true
@@ -144,7 +149,7 @@ if AdMSTinstan
 	# print("z is ", z_, "\n")
 
 	dir_ = string("AdMST_",num_cluster,"_",card,"_",visit_m,"/")
-	mkdir(dir_)
+	mkdire_(dir_)
 	j_file_name = string(num_cluster,"_",card,"_",visit_m)
 	to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
 	to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
@@ -216,7 +221,7 @@ if AdNNinstan
 	# print("z is ", z_, "\n")
 
 	dir_ = string("AdNN_", num_cluster,"_",card,"_",visit_m,"/")
-	mkdir(dir_)
+	mkdire_(dir_)
 	j_file_name = string(num_cluster,"_",card,"_",visit_m)
 	to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
 	to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
@@ -320,7 +325,7 @@ if AdGTSP_instan
 	print("x is ", x_, "\n")
 
 	dir_ = string("AdGTSP_", num_cluster,"_",card,"_",visit_m,"/")
-	mkdir(dir_)
+	mkdire_(dir_)
 	j_file_name = string(num_cluster,"_",card,"_",visit_m)
 	to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
 	to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))

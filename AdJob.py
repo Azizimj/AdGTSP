@@ -15,7 +15,7 @@ hpc_is = True
 #                        (10,4,2,'GTSP'),(10,4,2,'MST'),(10,4,2,'NN'),
 #                        (20,5,1,'GTSP'),(20,5,1,'MST'),(20,5,1,'NN')]
 
-num_clusters_card_m = [(5,2,1),(5,4,2),(10,2,1),(10,4,2),(20,5,1)]
+num_clusters_card_m = [(5,2,1),(5,2,2),(6,2,1),(5,3,1)]
 
 
 if hpc_is:
@@ -29,14 +29,16 @@ if hpc_is:
 
 
     # for num_cluster, card, m, model_ in num_clusters_card_m:
-    for num_cluster, card, m, model_ in num_clusters_card_m:
-        ntasks = min(10 * num_cluster * card, 200)
+    for num_cluster, card, m in num_clusters_card_m:
+        ntasks = min(30 * num_cluster * card, 1000)
+        mem_per_cpu = "8G"
         # jname = model_+"_"+ str(num_cluster)+"_"+str(card)+"_"+str(m)
         jname = str(num_cluster) + "_" + str(card) + "_" + str(m)
         f = open(jname + ".slurm", "w")
         jobs_files.append(jname + ".slurm")
         f.write("#!/bin/bash \n")
         f.write("#SBATCH --ntasks={}\n".format(ntasks))
+        f.write("#SBATCH --mem-per-cpu={}\n".format(mem_per_cpu))
         f.write("#SBATCH --time={}\n".format(time_))
         f.write("#SBATCH --output=O" + jname + ".txt" + "\n")
         f.write("#SBATCH --error=" + "e" + jname + ".txt" + "\n")
