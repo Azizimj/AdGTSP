@@ -213,7 +213,9 @@ if AdNNinstan
 	end
 
 	@objective(AdNN,Max,
-	sum(w[v] for v=1:num_pts) + sum(p[u,v] for u =1:num_pts, v=1:num_pts if distance_matrix[u,v] != Inf ) );
+	sum(w[v] for v=1:num_pts) +
+	sum(p[u,v] for u =1:num_pts, v=1:num_pts if distance_matrix[u,v] != Inf )
+	);
 
 	optimize!(AdNN)
 
@@ -229,14 +231,14 @@ if AdNNinstan
 	print("y is ", y_, "\n")
 	# print("z is ", z_, "\n")
 
-	dir_ = string("AdNN_", num_cluster,"_",card,"_",visit_m,"/")
-	mkdire_(dir_)
-	j_file_name = string(num_cluster,"_",card,"_",visit_m)
-	to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
-	to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
-	to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
-	to_json(DataFrame(w_), string(dir_,"w_",j_file_name,".json"))
-	to_json(DataFrame(p_), string(dir_,"p_",j_file_name,".json"))
+# 	dir_ = string("AdNN_", num_cluster,"_",card,"_",visit_m,"/")
+# 	mkdire_(dir_)
+# 	j_file_name = string(num_cluster,"_",card,"_",visit_m)
+# 	to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
+# 	to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
+# 	to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
+# 	to_json(DataFrame(w_), string(dir_,"w_",j_file_name,".json"))
+# 	to_json(DataFrame(p_), string(dir_,"p_",j_file_name,".json"))
 
 end
 if AdGTSP_instan
