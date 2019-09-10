@@ -8,6 +8,13 @@ using Combinatorics
 using Pandas
 ################################
 
+function show_matrix(X)
+	size_ = size(X)
+	for i=1:size_[1]
+		print(X[i,:], "\n")
+	end
+end
+
 function gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
 	num_pts = num_cluster*card
     data_points = zeros(num_pts, dim)
@@ -30,13 +37,16 @@ function gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
 
 	sum_dis=0
 	for i=1:num_pts, j=1:num_pts
-		if distance_matrix[i,j]!= Inf
+		if distance_matrix[i,j] < Inf
 			sum_dis = sum_dis + distance_matrix[i,j]
 		end
 	end
 	print("sum dis ",sum_dis,"\n\n")
+	print("dis matrix", distance_matrix, "\n\n\n")
+	show_matrix(distance_matrix)
 
 	return [num_pts, data_points, distance_matrix]
+	exit()
 
 end
 
@@ -46,10 +56,10 @@ function mkdire_(dire_)
 	end
 end
 
-AdMSTinstan = false
+AdMSTinstan = true
 AdNNinstan = true
-AdGTSP_instan = false
-AdNN2_instan = false
+AdGTSP_instan = true
+AdNN2_instan = true
 
 #TODO: if e exits in some cons use check Inf in distance_matrix
 #TODO: add *M in the bilinear cons
@@ -118,7 +128,7 @@ if AdMSTinstan
 
 	for u = 1:num_pts
 		for v = 1:num_pts
-			if u != v
+			if distance_matrix[u,v] < Inf
 					@constraint(AdMST, -sum(y[s] for s=num_pts+1:Pow_pts_size if u in Pow_pts[s] && v in Pow_pts[s]) <=
 					 distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
 			end
@@ -142,8 +152,6 @@ if AdMSTinstan
 
 	@objective(AdMST,Max, -sum((size(Pow_pts[s])[1]-1)*y[s] for s=1:Pow_pts_size) );
 
-	# print(AdMST)
-	# status = solve(AdMST)
 	optimize!(AdMST)
 
 	print("obj val ",objective_value(AdMST), "\n");
@@ -153,8 +161,8 @@ if AdMSTinstan
 	z_ = JuMP.value.(z);
 
 	print("x is ", x_, "\n")
-	# print("y is ", y_, "\n")
-	# print("z is ", z_, "\n")
+	print("y is ", y_, "\n")
+	print("z is ", z_, "\n")
 
 	dir_ = string("AdMST_",num_cluster,"_",card,"_",visit_m,"/")
 	mkdire_(dir_)
@@ -185,7 +193,7 @@ if AdNNinstan
 
 	for u = 1:num_pts
 		for v = 1:num_pts
-			if distance_matrix[u,v] != Inf
+			if distance_matrix[u,v] < Inf
 					@constraint(AdNN, y[v]+y[u]+z[u,v] <= distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
 			end
 		end
@@ -199,7 +207,7 @@ if AdNNinstan
 
 	for u = 1:num_pts
 		for v = 1:num_pts
-			if distance_matrix[u,v] != Inf
+			if distance_matrix[u,v] < Inf
 					@constraint(AdNN, p[u,v]<=z[u,v]);
 					@constraint(AdNN, p[u,v]<=x[u]*M_3);
 					@constraint(AdNN, p[u,v]<=x[v]*M_4);
@@ -214,7 +222,7 @@ if AdNNinstan
 
 	@objective(AdNN,Max,
 	sum(w[v] for v=1:num_pts) +
-	sum(p[u,v] for u =1:num_pts, v=1:num_pts if distance_matrix[u,v] != Inf )
+	sum(p[u,v] for u =1:num_pts, v=1:num_pts if distance_matrix[u,v] < Inf )
 	);
 
 	optimize!(AdNN)
@@ -229,7 +237,9 @@ if AdNNinstan
 
 	print("x is ", x_, "\n")
 	print("y is ", y_, "\n")
-	# print("z is ", z_, "\n")
+	print("z is ", z_, "\n")
+	print("w is ", w_, "\n")
+	print("p is ", p_, "\n")
 
 # 	dir_ = string("AdNN_", num_cluster,"_",card,"_",visit_m,"/")
 # 	mkdire_(dir_)
@@ -270,7 +280,7 @@ if AdGTSP_instan
 
 	for u = 2:num_pts
 		for v = 2:num_pts
-			if distance_matrix[u,v] != Inf
+			if distance_matrix[u,v] < Inf
 				@constraint(AdGTSP, y[u]+y[v]-sum(p[s] for s=num_pts:Pow_pts_v1_size if u in Pow_pts_v1[s]
 				 && v in Pow_pts_v1[s]) <= distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
 			end
@@ -278,7 +288,7 @@ if AdGTSP_instan
 	end
 
 	for u=2:num_pts
-		if distance_matrix[u,1] != Inf
+		if distance_matrix[u,1] < Inf
 			@constraint(AdGTSP, y[u]+y[1]-q[u,1] <= distance_matrix[u,1]+(1-x[u])*M_2)
 			@constraint(AdGTSP, g[u] >=0 )
 		end
@@ -305,7 +315,7 @@ if AdGTSP_instan
 	end
 
 	for v=2:num_pts
-		if distance_matrix[v,1] != Inf
+		if distance_matrix[v,1] < Inf
 			@constraint(AdGTSP, g[v] <=q[v] )
 			@constraint(AdGTSP, g[v] <=x[v]*M_5 )
 			@constraint(AdGTSP, g[v] >=q[v]+x[v]-1)
@@ -378,7 +388,7 @@ if AdNN2_instan
 
 	for u = 1:num_pts
 		for v = 1:num_pts
-			if distance_matrix[u,v] != Inf
+			if distance_matrix[u,v] < Inf
 					@constraint(AdNN, y[v]+y[u]+z[u,v] <= distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
 			end
 		end
@@ -386,7 +396,7 @@ if AdNN2_instan
 
 	for u = 1:num_pts
 		for v = 1:num_pts
-			if distance_matrix[u,v] != Inf
+			if distance_matrix[u,v] < Inf
 # 					@NLconstraint(AdNN, z[u,v]*x[u]*x[v]>=0);
 					@NLconstraint(AdNN, z[u,v]>=0);
 			end
@@ -398,7 +408,7 @@ if AdNN2_instan
 	end
 
 	@NLobjective(AdNN,Max,
-	sum(y[v]*x[v] for v=1:num_pts) + sum(z[u,v]*x[u]*x[v] for u =1:num_pts, v=1:num_pts if distance_matrix[u,v] != Inf ) );
+	sum(y[v]*x[v] for v=1:num_pts) + sum(z[u,v]*x[u]*x[v] for u =1:num_pts, v=1:num_pts if distance_matrix[u,v] < Inf ) );
 
 	optimize!(AdNN)
 
