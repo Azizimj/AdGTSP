@@ -70,7 +70,7 @@ AdNN2_instan = false
 #TODO: if e exits in some cons use check Inf in distance_matrix
 #TODO: add *M in the bilinear cons
 
-num_cluster=5
+num_cluster=6
 card=1
 visit_m=1
 limits_=[1,1]
@@ -190,86 +190,85 @@ end
 if AdNN_instan
 
 	print("\n\n\n\n AdNN \n")
-# 	M_1 = 1000000000
-# 	M_2 = 1000000000
-# 	M_3 = 1000000000
-# 	M_4 = 1000000000
-#
-#
-# 	AdNN = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim));
-#
-# 	# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
-# 	@variable(AdNN, x[1:num_pts], Bin);
-# 	@variable(AdNN, y[1:num_pts]>=0); # this gives sum of dis matrix
-# # 	@variable(AdNN, y[1:num_pts]);
-# 	@variable(AdNN, z[1:num_pts,1:num_pts]>=0);
-# 	@variable(AdNN, w[1:num_pts]);
-# 	@variable(AdNN, p[1:num_pts,1:num_pts]>=0);
-#
-#
-# 	for u = 1:num_pts
-# 		for v = 1:num_pts
-# 			if distance_matrix[u,v] < Inf
-# # 					@constraint(AdNN, y[v]+y[u]+z[u,v] <= distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
-# 					@constraint(AdNN, y[v]+y[u]+z[u,v] <= distance_matrix[u,v]);
-# 			end
-# 		end
-# 	end
-#
-# 	for v = 1:num_pts
-# 		@constraint(AdNN, w[v] <= y[v])
-# 		@constraint(AdNN, w[v] <= x[v]*M_2)
-# 		@constraint(AdNN, w[v] >= y[v]+x[v]-1)
-# 	end
-#
-# 	for u = 1:num_pts
-# 		for v = 1:num_pts
-# 			if distance_matrix[u,v] < Inf
-# 					@constraint(AdNN, p[u,v]<=z[u,v]);
-# 					@constraint(AdNN, p[u,v]<=x[u]*M_3);
-# 					@constraint(AdNN, p[u,v]<=x[v]*M_4);
-# 					@constraint(AdNN, p[u,v]>=z[u,v]+x[u]+x[v]-2)
-# 			end
-# 		end
-# 	end
-#
-# 	for i=1:num_cluster
-# 		@constraint(AdNN, sum(x[v] for v=(i-1)*card+1:i*card) == visit_m);
-# 	end
-#
-# 	@objective(AdNN,Max,
-# 	sum(w[v] for v=1:num_pts) +
-# 	sum(p[u,v] for u =1:num_pts, v=1:num_pts if distance_matrix[u,v] < Inf )
-# 	);
-#
-# 	optimize!(AdNN)
-#
-# 	print("obj val AdNN ",objective_value(AdNN), "\n");
-#
-# 	x_ = JuMP.value.(x);
-# 	y_ = JuMP.value.(y);
-# 	z_ = JuMP.value.(z);
-# 	w_ = JuMP.value.(w);
-# 	p_ = JuMP.value.(p);
-#
-# 	print("x is ", x_, "\n")
-# 	print("y is ", y_, "\n")
-# 	print("z is ", z_, "\n")
-# 	print("w is ", w_, "\n")
-# 	print("p is ", p_, "\n")
-# 	print("\n\n\n")
-#
-# 	if save_res
-#
-# 		dir_ = string("AdNN_", num_cluster,"_",card,"_",visit_m,"/")
-# 		mkdire_(dir_)
-# 		j_file_name = string(num_cluster,"_",card,"_",visit_m)
-# 		to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
-# 		to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
-# 		to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
-# 		to_json(DataFrame(w_), string(dir_,"w_",j_file_name,".json"))
-# 		to_json(DataFrame(p_), string(dir_,"p_",j_file_name,".json"))
-# 	end
+	M_1 = 1000000000
+	M_2 = 1000000000
+	M_3 = 1000000000
+	M_4 = 1000000000
+
+
+	AdNN = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim));
+
+	# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
+	@variable(AdNN, x[1:num_pts], Bin);
+	@variable(AdNN, y[1:num_pts]);
+	@variable(AdNN, z[1:num_pts,1:num_pts]>=0);
+	@variable(AdNN, w[1:num_pts]);
+	@variable(AdNN, p[1:num_pts,1:num_pts]>=0);
+
+
+	for u = 1:num_pts
+		for v = 1:num_pts
+			if distance_matrix[u,v] < Inf
+					@constraint(AdNN, y[u]-z[v,u] <= distance_matrix[v,u]+(2-x[u]-x[v])*M_1);
+# 					@constraint(AdNN, y[u]-z[v,u] <= distance_matrix[v,u]);
+			end
+		end
+	end
+
+	for v = 1:num_pts
+		@constraint(AdNN, w[v] <= y[v])
+		@constraint(AdNN, w[v] <= x[v]*M_2)
+		@constraint(AdNN, w[v] >= y[v]+x[v]-1)
+	end
+
+	for u = 1:num_pts
+		for v = 1:num_pts
+			if distance_matrix[u,v] < Inf
+					@constraint(AdNN, p[u,v]<=z[u,v]);
+					@constraint(AdNN, p[u,v]<=x[u]*M_3);
+					@constraint(AdNN, p[u,v]<=x[v]*M_4);
+					@constraint(AdNN, p[u,v]>=z[u,v]+x[u]+x[v]-2)
+			end
+		end
+	end
+
+	for i=1:num_cluster
+		@constraint(AdNN, sum(x[v] for v=(i-1)*card+1:i*card) == visit_m);
+	end
+
+	@objective(AdNN,Max,
+	sum(w[v] for v=1:num_pts) -
+	sum(p[u,v] for u =1:num_pts, v=1:num_pts if distance_matrix[u,v] < Inf )
+	);
+
+	optimize!(AdNN)
+
+	print("obj val AdNN ",objective_value(AdNN), "\n");
+
+	x_ = JuMP.value.(x);
+	y_ = JuMP.value.(y);
+	z_ = JuMP.value.(z);
+	w_ = JuMP.value.(w);
+	p_ = JuMP.value.(p);
+
+	print("x is ", x_, "\n")
+	print("y is ", y_, "\n")
+	print("z is ", z_, "\n")
+	print("w is ", w_, "\n")
+	print("p is ", p_, "\n")
+	print("\n\n\n")
+
+	if save_res
+
+		dir_ = string("AdNN_", num_cluster,"_",card,"_",visit_m,"/")
+		mkdire_(dir_)
+		j_file_name = string(num_cluster,"_",card,"_",visit_m)
+		to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
+		to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
+		to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
+		to_json(DataFrame(w_), string(dir_,"w_",j_file_name,".json"))
+		to_json(DataFrame(p_), string(dir_,"p_",j_file_name,".json"))
+	end
 
 
 	##########################
