@@ -70,7 +70,7 @@ AdNN2_instan = false
 #TODO: if e exits in some cons use check Inf in distance_matrix
 #TODO: add *M in the bilinear cons
 
-num_cluster=5
+num_cluster=6
 card=1
 visit_m=1
 limits_=[1,1]
