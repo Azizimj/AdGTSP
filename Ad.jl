@@ -7,12 +7,18 @@ using LinearAlgebra
 using Combinatorics
 using Pandas
 ################################
+Random.seed!(110)
+
+grb_seed = 110
+
 
 function show_matrix(X)
+	print("\n dis matrix\n ")
 	size_ = size(X)
 	for i=1:size_[1]
 		print(X[i,:], "\n")
 	end
+	print("\n\n\n")
 end
 
 function gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
@@ -42,7 +48,6 @@ function gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
 		end
 	end
 	print("sum dis ",sum_dis,"\n\n")
-	print("dis matrix", distance_matrix, "\n\n\n")
 	show_matrix(distance_matrix)
 
 	return [num_pts, data_points, distance_matrix]
@@ -56,10 +61,10 @@ function mkdire_(dire_)
 	end
 end
 
-AdMSTinstan = true
-AdNNinstan = true
+AdMST_instan = true
+AdNN_instan = true
 AdGTSP_instan = true
-AdNN2_instan = true
+AdNN2_instan = false
 
 #TODO: if e exits in some cons use check Inf in distance_matrix
 #TODO: add *M in the bilinear cons
@@ -115,14 +120,14 @@ t_lim = 22*3600
 # setparams!(env; IterationLimit=1000, TimeLimit= t_lim)
 
 
-if AdMSTinstan
+if AdMST_instan
 	print("\n\n\n\n AdMST \n")
 
-	AdMST = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim));
+	AdMST = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim, Seed=grb_seed));
 
 	# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
 	@variable(AdMST, x[1:num_pts], Bin);
-	@variable(AdMST, z[1:Pow_pts_size]);
+	@variable(AdMST, z[1:Pow_pts_size]>=0);
 	@variable(AdMST, y[1:Pow_pts_size]);
 
 
@@ -154,7 +159,7 @@ if AdMSTinstan
 
 	optimize!(AdMST)
 
-	print("obj val ",objective_value(AdMST), "\n");
+	print("obj val MST ",objective_value(AdMST), "\n");
 
 	x_ = JuMP.value.(x);
 	y_ = JuMP.value.(y);
@@ -164,16 +169,16 @@ if AdMSTinstan
 	print("y is ", y_, "\n")
 	print("z is ", z_, "\n")
 
-	dir_ = string("AdMST_",num_cluster,"_",card,"_",visit_m,"/")
-	mkdire_(dir_)
-	j_file_name = string(num_cluster,"_",card,"_",visit_m)
-	to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
-	to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
-	to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
+# 	dir_ = string("AdMST_",num_cluster,"_",card,"_",visit_m,"/")
+# 	mkdire_(dir_)
+# 	j_file_name = string(num_cluster,"_",card,"_",visit_m)
+# 	to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
+# 	to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
+# 	to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
 
 	# print(read_json( "x_.json"))
 end
-if AdNNinstan
+if AdNN_instan
 
 	print("\n\n\n\n AdNN \n")
 	M_1 = 1000000000
@@ -186,15 +191,16 @@ if AdNNinstan
 
 	# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
 	@variable(AdNN, x[1:num_pts], Bin);
-	@variable(AdNN, y[1:num_pts]);
-	@variable(AdNN, z[1:num_pts,1:num_pts]);
-	@variable(AdNN, w[1:num_pts]);
-	@variable(AdNN, p[1:num_pts,1:num_pts]);
+	@variable(AdNN, y[1:num_pts]>=0);
+	@variable(AdNN, z[1:num_pts,1:num_pts]>=0);
+	@variable(AdNN, w[1:num_pts]>=0);
+	@variable(AdNN, p[1:num_pts,1:num_pts]>=0);
 
 	for u = 1:num_pts
 		for v = 1:num_pts
 			if distance_matrix[u,v] < Inf
 					@constraint(AdNN, y[v]+y[u]+z[u,v] <= distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
+# 					@constraint(AdNN, y[v]+y[u]+z[u,v] <= distance_matrix[u,v]);
 			end
 		end
 	end
@@ -227,7 +233,7 @@ if AdNNinstan
 
 	optimize!(AdNN)
 
-	print("obj val ",objective_value(AdNN), "\n");
+	print("obj val NN ",objective_value(AdNN), "\n");
 
 	x_ = JuMP.value.(x);
 	y_ = JuMP.value.(y);
@@ -269,11 +275,11 @@ if AdGTSP_instan
 	# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
 	@variable(AdGTSP, x[1:num_pts], Bin);
 	@variable(AdGTSP, y[1:num_pts]);
-	@variable(AdGTSP, z[1:Pow_pts_v1_size]);
-	@variable(AdGTSP, q[1:num_pts,1:num_pts]);
+	@variable(AdGTSP, z[1:Pow_pts_v1_size]>=0);
+	@variable(AdGTSP, q[1:num_pts,1:num_pts]>=0);
 	@variable(AdGTSP, w[1:num_pts]);
 	@variable(AdGTSP, p[1:Pow_pts_v1_size]);
-	@variable(AdGTSP, g[1:num_pts]);
+	@variable(AdGTSP, g[1:num_pts]>=0);
 
 	# we take the first point as v_1
 	@constraint(AdGTSP, x[1]==1);
@@ -327,13 +333,13 @@ if AdGTSP_instan
 	end
 
 	@objective(AdGTSP,Max,
-	sum(w[v] for v=1:num_pts) +sum((size(Pow_pts_v1[s])[1]-1)*p[s] for s=1:Pow_pts_v1_size)-
+	sum(w[v] for v=1:num_pts) -sum((size(Pow_pts_v1[s])[1]-1)*p[s] for s=1:Pow_pts_v1_size)-
 	sum(g[v] for v=2:num_pts if distance_matrix[v,1]!=Inf));
 
 
 	optimize!(AdGTSP)
 
-	print("obj val ",objective_value(AdGTSP), "\n");
+	print("obj val GTSP ",objective_value(AdGTSP), "\n");
 
 	x_ = JuMP.value.(x);
 	y_ = JuMP.value.(y);
@@ -344,17 +350,24 @@ if AdGTSP_instan
 	g_ = JuMP.value.(g);
 
 	print("x is ", x_, "\n")
+	print("y is ", y_, "\n")
+	print("z is ", z_, "\n")
+	print("q is ", q_, "\n")
+	print("w is ", w_, "\n")
+	print("p is ", p_, "\n")
+	print("g is ", g_, "\n")
 
-	dir_ = string("AdGTSP_", num_cluster,"_",card,"_",visit_m,"/")
-	mkdire_(dir_)
-	j_file_name = string(num_cluster,"_",card,"_",visit_m)
-	to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
-	to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
-	to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
-	to_json(DataFrame(q_), string(dir_,"q_",j_file_name,".json"))
-	to_json(DataFrame(w_), string(dir_,"w_",j_file_name,".json"))
-	to_json(DataFrame(p_), string(dir_,"p_",j_file_name,".json"))
-	to_json(DataFrame(g_), string(dir_,"g_",j_file_name,".json"))
+
+# 	dir_ = string("AdGTSP_", num_cluster,"_",card,"_",visit_m,"/")
+# 	mkdire_(dir_)
+# 	j_file_name = string(num_cluster,"_",card,"_",visit_m)
+# 	to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
+# 	to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
+# 	to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
+# 	to_json(DataFrame(q_), string(dir_,"q_",j_file_name,".json"))
+# 	to_json(DataFrame(w_), string(dir_,"w_",j_file_name,".json"))
+# 	to_json(DataFrame(p_), string(dir_,"p_",j_file_name,".json"))
+# 	to_json(DataFrame(g_), string(dir_,"g_",j_file_name,".json"))
 
 
 end
@@ -384,12 +397,13 @@ if AdNN2_instan
 	# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
 	@variable(AdNN, x[1:num_pts], Bin);
 	@variable(AdNN, y[1:num_pts]);
-	@variable(AdNN, z[1:num_pts,1:num_pts]);
+	@variable(AdNN, z[1:num_pts,1:num_pts]>=0);
 
 	for u = 1:num_pts
 		for v = 1:num_pts
 			if distance_matrix[u,v] < Inf
-					@constraint(AdNN, y[v]+y[u]+z[u,v] <= distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
+# 					@constraint(AdNN, y[v]+y[u]+z[u,v] <= distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
+					@constraint(AdNN, y[v]+y[u]+z[u,v] <= distance_matrix[u,v]);
 			end
 		end
 	end
