@@ -1,0 +1,180 @@
+num_cluster is 3
+card is 2
+visit_m is 1
+limits_ is [1, 1]
+dim is 2
+sum dis 12.46269479134476
+
+
+ dis matrix
+ [Inf, 0.5832300048673725, 0.39071674071479434, 0.39714846202555165, 0.17843638417833857, 0.30748080459775895]
+[0.5832300048673725, Inf, 0.19901374361479734, 0.5561458496885472, 0.6716417068766375, 0.4079695547021672]
+[0.39071674071479434, 0.19901374361479734, Inf, 0.4633251989953608, 0.5008081134863097, 0.2272935296800635]
+[0.39714846202555165, 0.5561458496885472, 0.4633251989953608, Inf, 0.302907760569346, 0.5709442217768469]
+[0.17843638417833857, 0.6716417068766375, 0.5008081134863097, 0.302907760569346, Inf, 0.4742853198984874]
+[0.30748080459775895, 0.4079695547021672, 0.2272935296800635, 0.5709442217768469, 0.4742853198984874, Inf]
+
+
+
+
+
+
+
+ AdMST 
+Academic license - for non-commercial use only
+Academic license - for non-commercial use only
+Optimize a model with 413 rows, 132 columns and 1436 nonzeros
+Variable types: 126 continuous, 6 integer (6 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+09]
+  Objective range  [1e+00, 5e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+00, 2e+09]
+Warning: Model contains large matrix coefficients
+Warning: Model contains large rhs
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 353 rows and 108 columns
+Presolve time: 0.01s
+Presolved: 60 rows, 24 columns, 168 nonzeros
+Variable types: 21 continuous, 3 integer (3 binary)
+Found heuristic solution: objective 9.5691531
+
+Root relaxation: objective 1.500000e+01, 3 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   15.00000    0    3    9.56915   15.00000  56.8%     -    0s
+H    0     0                       9.9641154   15.00000  50.5%     -    0s
+     0     0   13.75040    0    3    9.96412   13.75040  38.0%     -    0s
+     0     0   12.31969    0    3    9.96412   12.31969  23.6%     -    0s
+     0     0   11.23986    0    3    9.96412   11.23986  12.8%     -    0s
+     0     0   11.23670    0    3    9.96412   11.23670  12.8%     -    0s
+     0     0   10.52701    0    3    9.96412   10.52701  5.65%     -    0s
+     0     0   10.45252    0    3    9.96412   10.45252  4.90%     -    0s
+     0     0   10.38371    0    3    9.96412   10.38371  4.21%     -    0s
+     0     0   10.07957    0    3    9.96412   10.07957  1.16%     -    0s
+     0     0   10.07833    0    3    9.96412   10.07833  1.15%     -    0s
+     0     0   10.02384    0    3    9.96412   10.02384  0.60%     -    0s
+     0     0   10.00153    0    3    9.96412   10.00153  0.38%     -    0s
+     0     2   10.00153    0    3    9.96412   10.00153  0.38%     -    0s
+
+Cutting planes:
+  Gomory: 2
+  MIR: 6
+  Flow cover: 1
+
+Explored 3 nodes (57 simplex iterations) in 0.02 seconds
+Thread count was 4 (of 4 available processors)
+
+Solution count 2: 9.96412 9.56915 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 9.964115381241e+00, best bound 9.964115381241e+00, gap 0.0000%
+obj val MST 9.964115381240845
+x is [0.0, 1.0, 0.0, 1.0, 0.0, 1.0]
+y is [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.014798402786254883, 0.0, 0.16297483444213867, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.429055690765381, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -3.0]
+z is [-0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.014798402786254883, 0.0, 0.16297483444213867, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.429055690765381, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 0.0, 0.0, 0.0, 0.0, 2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+
+
+
+ AdNN 
+Academic license - for non-commercial use only
+Academic license - for non-commercial use only
+Optimize a model with 171 rows, 90 columns and 498 nonzeros
+Variable types: 84 continuous, 6 integer (6 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+09]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+00, 2e+09]
+Warning: Model contains large matrix coefficients
+Warning: Model contains large rhs
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 126 rows and 69 columns
+Presolve time: 0.00s
+Presolved: 45 rows, 21 columns, 126 nonzeros
+Variable types: 18 continuous, 3 integer (3 binary)
+
+Root relaxation: objective 1.350000e+10, 26 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 1.3500e+10    0    3          - 1.3500e+10      -     -    0s
+H    0     0                       2.1399231 1.3500e+10      -     -    0s
+H    0     0                       3.0701213 1.3500e+10      -     -    0s
+     0     0 1.3500e+10    0    3    3.07012 1.3500e+10      -     -    0s
+H    0     0                       3.0701222 1.3500e+10      -     -    0s
+     0     2 1.3500e+10    0    3    3.07012 1.3500e+10      -     -    0s
+
+Explored 15 nodes (99 simplex iterations) in 0.01 seconds
+Thread count was 4 (of 4 available processors)
+
+Solution count 3: 3.07012 3.07012 2.13992 
+No other solutions better than 3.07012
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 3.070122248974e+00, best bound 3.070122248974e+00, gap 0.0000%
+obj val NN 3.070122248973877
+x is [0.0, 1.0, 0.0, 1.0, 0.0, 1.0]
+y is [0.0, -9.5167431640625e-7, 0.0, 0.0, 0.0, 0.0]
+z is [0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.5561468601226808 0.0 0.407970428466797; 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.5561468601226808 0.0 0.0 0.0 0.5709443092346191; 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.407970428466797 0.0 0.5709443092346191 0.0 0.0]
+w is [0.0, -9.4667431640625e-7, 0.0, 0.0, 0.0, 0.0]
+p is [0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.5561468601226808 0.0 0.407970428466797; 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.5561468601226808 0.0 0.0 0.0 0.5709443092346191; 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.407970428466797 0.0 0.5709443092346191 0.0 0.0]
+
+
+
+
+ AdGTSP 
+Academic license - for non-commercial use only
+Academic license - for non-commercial use only
+Optimize a model with 239 rows, 122 columns and 743 nonzeros
+Variable types: 116 continuous, 6 integer (6 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+09]
+  Objective range  [1e+00, 4e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+00, 2e+09]
+Warning: Model contains large matrix coefficients
+Warning: Model contains large rhs
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 221 rows and 113 columns
+Presolve time: 0.00s
+Presolved: 18 rows, 9 columns, 62 nonzeros
+Variable types: 7 continuous, 2 integer (2 binary)
+
+Root relaxation: objective 2.000000e+09, 9 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 2.0000e+09    0    2          - 2.0000e+09      -     -    0s
+H    0     0                      11.0349806 2.0000e+09      -     -    0s
+H    0     0                      11.1377869 2.0000e+09      -     -    0s
+     0     0 2.0000e+09    0    2   11.13779 2.0000e+09      -     -    0s
+     0     0 2.0000e+09    0    2   11.13779 2.0000e+09      -     -    0s
+     0     2 2.0000e+09    0    2   11.13779 2.0000e+09      -     -    0s
+
+Cutting planes:
+  MIR: 2
+
+Explored 7 nodes (29 simplex iterations) in 0.01 seconds
+Thread count was 4 (of 4 available processors)
+
+Solution count 2: 11.1378 11.035 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.113778686523e+01, best bound 1.113778686523e+01, gap 0.0000%
+obj val GTSP 11.137786865234375
+x is [1.0, 0.0, 0.0, 1.0, 0.0, 1.0]
+y is [1.5668425559997559, -0.0, 0.0, -1.1696940064430237, 0.0, -1.2593616843223572]
+z is [0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 0.0]
+q is [0.0 0.0 0.0 0.0 0.0 0.0; 1.0 0.0 0.0 0.0 0.0 0.0; 1.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0; 1.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0]
+w is [1.5668425559997559, -0.0, 0.0, -1.1696940064430237, 0.0, -1.2593616843223572]
+p is [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -3.0]
+g is [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
