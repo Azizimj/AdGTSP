@@ -97,14 +97,14 @@ AdMST_instan = true
 AdNN_instan = false
 AdNNnew_instan = true
 AdGTSP_instan = false
-AdNN2_instan = false
+AdNN2_instan = false  # nonlinear
 
 #TODO: if e exits in some cons use check Inf in distance_matrix
 #TODO: add *M in the bilinear cons
 
-num_cluster=5
-card=1
-visit_m=1
+num_cluster=6
+card=2
+visit_m=2
 limits_=[1,1]
 dim = 2
 save_res = false
@@ -162,16 +162,15 @@ if AdMST_instan
 
 	# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
 	@variable(AdMST, x[1:num_pts], Bin);
-	@variable(AdMST, z[1:Pow_pts_size]>=0);
+	@variable(AdMST, z[1:Pow_pts_size]);
 	@variable(AdMST, y[1:Pow_pts_size]);
 
 
 	for u = 1:num_pts
 		for v = 1:num_pts
 			if distance_matrix[u,v] < Inf
-				@constraint(AdMST, -sum(y[s] for s=num_pts+1:Pow_pts_size if u in Pow_pts[s] && v in Pow_pts[s]) <=
-				distance_matrix[u,v]);
-
+				@constraint(AdMST, -sum(y[s] for s=num_pts+1:Pow_pts_size if u in Pow_pts[s]
+				&& v in Pow_pts[s]) <= distance_matrix[u,v]);
 			end
 		end
 	end
@@ -181,10 +180,15 @@ if AdMST_instan
 		for v in Pow_pts[s]
 			@constraint(AdMST, y[s]<=x[v]*M_2);
 		end
-		@constraint(AdMST, y[s]>=z[s]+sum(x[v] for v in Pow_pts[s])- size(Pow_pts[s])[1]);
+		@constraint(AdMST, y[s]>=z[s]+sum(x[v] for v in Pow_pts[s]) - size(Pow_pts[s])[1]);
 		if s != Pow_pts_size
 			@constraint(AdMST, y[s]>=0);
 		end
+	end
+
+	for s=1:Pow_pts_size-1
+		@constraint(AdMST, z[s] >= 0)
+		@constraint(AdMST, y[s] >= 0)
 	end
 
 	for i=1:num_cluster
@@ -236,16 +240,15 @@ if AdMST_instan
 	end
 
 	optimize!(MST)
-
 	print("obj val MST ",objective_value(MST), "\n");
-
 	X_ = JuMP.value.(X);
-
 	show_matrix("X", X_)
 
 
 	######################
 	print("\n\n\n\n MST dual \n")
+
+	MSTdual = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim, Seed=grb_seed));
 	@variable(MSTdual, z[1:Pow_pts_size]);
 
 	for u = 1:num_pts
@@ -265,11 +268,8 @@ if AdMST_instan
 	@objective(MSTdual,Max, -sum((size(Pow_pts[s])[1]-1)*z[s] for s=1:Pow_pts_size) );
 
 	optimize!(MSTdual)
-
-	print("obj val AdMST ",objective_value(MSTdual), "\n");
-
+	print("obj val MST dual ",objective_value(MSTdual), "\n");
 	z_ = JuMP.value.(z);
-
 	print("z is ", z_, "\n")
 
 
