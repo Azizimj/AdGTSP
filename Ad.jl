@@ -118,8 +118,8 @@ AdNN2_instan = false  # nonlinear
 
 
 num_cluster=5
-card=1
-visit_m=1
+card=2
+visit_m=2
 limits_=[1,1]
 dim = 2
 save_res = false
