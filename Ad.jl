@@ -113,7 +113,7 @@ AdGTSP_instan = true
 AdNN2_instan = false  # nonlinear
 
 
-num_cluster=4
+num_cluster=3
 card=1
 visit_m=1
 limits_=[1,1]
@@ -714,38 +714,38 @@ if AdGTSP_instan
 #     end
 
 
-	##########################
-# 	print("\n\n\n\n TSP \n")
-#
-#
-# 	TSP = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
-# 	X = 0
-# 	@variable(TSP, X[1:num_pts+1,1:num_pts+1], Bin);
-#
-# 	@objective(TSP, Min,
-# 	sum(distance_matrix[u,v]*X[u,v] for u=1:num_pts+1, v=1:num_pts+1 if distance_matrix[u,v]<Inf))
-#
-# 	for v=1:num_pts+1
-# 		@constraint(TSP, sum(X[v,u] for u=1:num_pts+1 if distance_matrix[v,u]<Inf )+
-# 		sum(X[u,v] for u=1:num_pts+1 if distance_matrix[u,v]<Inf )== 2)
-# 	end
-#
-# 	@constraint(TSP, sum(X[v,u] for v=1:num_pts, u=1:num_pts if distance_matrix[u,v]<Inf  ) == num_pts+1-2
-# 	)
-#
-# 	for s=1:Pow_pts_size-1
-# 		@constraint(TSP, sum(X[v,u] for v in Pow_pts[s], u in Pow_pts[s] if distance_matrix[v,u]<Inf) <=
-# 		 size(Pow_pts[s])[1]-1)
-# 	end
-#
-# 	optimize!(TSP)
-#
-# 	print("obj val TSP ",objective_value(TSP), "\n");
-#
-# 	X_ = JuMP.value.(X);
-#
-# # 	print("X is ", X_, "\n")
-# 	show_matrix("X ", X_)
+	#########################
+	print("\n\n\n\n TSP \n")
+
+
+	TSP = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
+	X = 0
+	@variable(TSP, X[1:num_pts+1,1:num_pts+1], Bin);
+
+	@objective(TSP, Min,
+	sum(distance_matrix[u,v]*X[u,v] for u=1:num_pts+1, v=1:num_pts+1 if distance_matrix[u,v]<Inf))
+
+	for v=1:num_pts+1
+		@constraint(TSP, sum(X[v,u] for u=1:num_pts+1 if distance_matrix[v,u]<Inf )+
+		sum(X[u,v] for u=1:num_pts+1 if distance_matrix[u,v]<Inf )== 2)
+	end
+
+	@constraint(TSP, sum(X[v,u] for v=1:num_pts, u=1:num_pts if distance_matrix[u,v]<Inf  ) == num_pts+1-2
+	)
+
+	for s=1:Pow_pts_size-1
+		@constraint(TSP, sum(X[v,u] for v in Pow_pts[s], u in Pow_pts[s] if distance_matrix[v,u]<Inf) <=
+		 size(Pow_pts[s])[1]-1)
+	end
+
+	optimize!(TSP)
+
+	print("obj val TSP ",objective_value(TSP), "\n");
+
+	X_ = JuMP.value.(X);
+
+# 	print("X is ", X_, "\n")
+	show_matrix("X ", X_)
 
 # 	################################## dual TSP
 	print("\n\n\n\n TSP dual \n")
@@ -755,7 +755,7 @@ if AdGTSP_instan
 	y = 0
 	z = 0
 	q = 0
-	@variable(TSPd, y[1:num_pts+1]);
+	@variable(TSPd, y[1:num_pts+1]>=0);
 	@variable(TSPd, z[1:Pow_pts_size]);
 	@variable(TSPd, q[1:num_pts+1 , 1:num_pts+1 ]);
 
@@ -764,6 +764,8 @@ if AdGTSP_instan
 	- sum(q[u,num_pts+1] for u=1:num_pts if distance_matrix[u,num_pts+1]<Inf)
 	- sum(q[num_pts+1,u] for u=1:num_pts if distance_matrix[num_pts+1,u]<Inf)
 	)
+
+# 	@objective(TSPd, Max, 0)
 
 	for u=1:num_pts, v=1:num_pts
 		if distance_matrix[u,v]<Inf
@@ -783,7 +785,7 @@ if AdGTSP_instan
 # 		end
 	end
 
-	for s=1:Pow_pts_size
+	for s=1:Pow_pts_size-1
 		@constraint(TSPd, z[s]>=0)
 	end
 
@@ -796,7 +798,7 @@ if AdGTSP_instan
 		end
 	end
 
-# 	print(TSPd)
+	print(TSPd)
 
 	optimize!(TSPd)
 
