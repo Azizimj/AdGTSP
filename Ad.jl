@@ -13,12 +13,11 @@ grb_seed = 110
 
 
 function show_matrix(name, X)
-	print("\n", name, " matrix is :\n ")
+	print(name, " matrix is :\n ")
 	size_ = size(X)
 	for i=1:size_[1]
 		print(X[i,:], "\n")
 	end
-	print("\n")
 end
 
 function gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
@@ -62,6 +61,20 @@ function mkdire_(dire_)
 	end
 end
 
+function add_v1_(distance_matrix, v_1, num_pts, data_points)
+
+	dis_to_v1 =  ones(num_pts, 1) * Inf
+	for u=1:num_pts
+		dis_to_v1[u] = norm(data_points[u,:]-v_1)
+	end
+
+	a1 = [distance_matrix dis_to_v1]
+	b1 = [dis_to_v1; Inf]
+	distance_matrix_ = [a1; transpose(b1)]
+	show_matrix("dis mat with v_1", distance_matrix_)
+	return distance_matrix_
+end
+
 function optimizer_print(model, model_name, model_var)
 	optimize!(model)
 
@@ -93,18 +106,16 @@ function optimizer_print(model, model_name, model_var)
 
 end
 
-AdMST_instan = true
+AdMST_instan = false
 AdNN_instan = false
-AdNNnew_instan = true
-AdGTSP_instan = false
+AdNNnew_instan = false
+AdGTSP_instan = true
 AdNN2_instan = false  # nonlinear
 
-#TODO: if e exits in some cons use check Inf in distance_matrix
-#TODO: add *M in the bilinear cons
 
-num_cluster=6
-card=2
-visit_m=2
+num_cluster=4
+card=1
+visit_m=1
 limits_=[1,1]
 dim = 2
 save_res = false
@@ -159,7 +170,9 @@ if AdMST_instan
 	print("\n\n\n\n AdMST \n")
 
 	AdMST = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim, Seed=grb_seed));
-
+	x = 0
+	z = 0
+	y = 0
 	@variable(AdMST, x[1:num_pts], Bin);
 	@variable(AdMST, z[1:Pow_pts_size]);
 	@variable(AdMST, y[1:Pow_pts_size]);
@@ -222,54 +235,55 @@ if AdMST_instan
 
 
 	###############
-	print("\n\n\n\n MST \n")
-	MST = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim, Seed=grb_seed));
-
-	@variable(MST, X[1:num_pts,1:num_pts], Bin);
-
-	@objective( MST, Min, sum(distance_matrix[u,v]*X[u,v] for u=1:num_pts,
-	 v=1:num_pts if distance_matrix[u,v]<Inf) );
-
-	@constraint(MST, sum(X[u,v] for u=1:num_pts, v=1:num_pts if distance_matrix[u,v]<Inf) == num_pts-1);
-
-	for s=num_pts+1:Pow_pts_size-1
-		@constraint(MST, sum(X[u,v] for u in Pow_pts[s], v in Pow_pts[s] if distance_matrix[u,v]<Inf
-		)<= size(Pow_pts[s])[1]-1)
-
-	end
-
-	optimize!(MST)
-	print("obj val MST ",objective_value(MST), "\n");
-	X_ = JuMP.value.(X);
-	show_matrix("X", X_)
-
-
-	######################
-	print("\n\n\n\n MST dual \n")
-
-	MSTdual = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim, Seed=grb_seed));
-	@variable(MSTdual, z[1:Pow_pts_size]);
-
-	for u = 1:num_pts
-		for v = 1:num_pts
-			if distance_matrix[u,v] < Inf
-				@constraint(MSTdual, -sum(z[s] for s=num_pts+1:Pow_pts_size if u in Pow_pts[s] &&
-				 v in Pow_pts[s]) <= distance_matrix[u,v]);
-
-			end
-		end
-	end
-
-	for s=1:Pow_pts_size-1
-		@constraint(MSTdual, z[s] >= 0)
-	end
-
-	@objective(MSTdual,Max, -sum((size(Pow_pts[s])[1]-1)*z[s] for s=1:Pow_pts_size) );
-
-	optimize!(MSTdual)
-	print("obj val MST dual ",objective_value(MSTdual), "\n");
-	z_ = JuMP.value.(z);
-	print("z is ", z_, "\n")
+# 	print("\n\n\n\n MST \n")
+# 	MST = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim, Seed=grb_seed));
+#	X = 0
+# 	@variable(MST, X[1:num_pts,1:num_pts], Bin);
+#
+# 	@objective( MST, Min, sum(distance_matrix[u,v]*X[u,v] for u=1:num_pts,
+# 	 v=1:num_pts if distance_matrix[u,v]<Inf) );
+#
+# 	@constraint(MST, sum(X[u,v] for u=1:num_pts, v=1:num_pts if distance_matrix[u,v]<Inf) == num_pts-1);
+#
+# 	for s=num_pts+1:Pow_pts_size-1
+# 		@constraint(MST, sum(X[u,v] for u in Pow_pts[s], v in Pow_pts[s] if distance_matrix[u,v]<Inf
+# 		)<= size(Pow_pts[s])[1]-1)
+#
+# 	end
+#
+# 	optimize!(MST)
+# 	print("obj val MST ",objective_value(MST), "\n");
+# 	X_ = JuMP.value.(X);
+# 	show_matrix("X", X_)
+#
+#
+# 	######################
+# 	print("\n\n\n\n MST dual \n")
+#
+# 	MSTdual = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim, Seed=grb_seed));
+#	z = 0
+# 	@variable(MSTdual, z[1:Pow_pts_size]);
+#
+# 	for u = 1:num_pts
+# 		for v = 1:num_pts
+# 			if distance_matrix[u,v] < Inf
+# 				@constraint(MSTdual, -sum(z[s] for s=num_pts+1:Pow_pts_size if u in Pow_pts[s] &&
+# 				 v in Pow_pts[s]) <= distance_matrix[u,v]);
+#
+# 			end
+# 		end
+# 	end
+#
+# 	for s=1:Pow_pts_size-1
+# 		@constraint(MSTdual, z[s] >= 0)
+# 	end
+#
+# 	@objective(MSTdual,Max, -sum((size(Pow_pts[s])[1]-1)*z[s] for s=1:Pow_pts_size) );
+#
+# 	optimize!(MSTdual)
+# 	print("obj val MST dual ",objective_value(MSTdual), "\n");
+# 	z_ = JuMP.value.(z);
+# 	print("z is ", z_, "\n")
 
 
 end
@@ -287,6 +301,11 @@ if AdNN_instan
 
 	AdNN = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
 
+	x = 0
+	y = 0
+	z = 0
+	w = 0
+	p = 0
 	# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
 	@variable(AdNN, x[1:num_pts], Bin);
 	@variable(AdNN, y[1:num_pts]);
@@ -364,6 +383,7 @@ if AdNN_instan
 
 	##########################  Directed one into each vertex
 	NN = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
+	X = 0
 	@variable(NN, X[1:num_pts,1:num_pts], Bin);
 
 	for v=1:num_pts  # last one is all Inf if make it upper triangle distance_matrix
@@ -387,6 +407,8 @@ if AdNN_instan
 
 	#########
 	NNdual = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
+	y = 0
+	z = 0
 	@variable(NNdual, y[1:num_pts]);
 	@variable(NNdual, z[1:num_pts,1:num_pts]>=0);
 
@@ -424,6 +446,11 @@ if AdNNnew_instan
 
 	AdNN = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
 
+	x = 0
+	y = 0
+	z = 0
+	w = 0
+	p = 0
 	# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
 	@variable(AdNN, x[1:num_pts], Bin);
 	@variable(AdNN, y[1:num_pts]>=0);
@@ -499,177 +526,291 @@ if AdNNnew_instan
 	end
 
 
-	########################## directed but one into or out of each vertex
-	print("\n\n\n\n NNnew \n")
-	NN = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
-	@variable(NN, X[1:num_pts,1:num_pts], Bin); #IP
-# 	@variable(NN, X[1:num_pts,1:num_pts]>=0); #LP
-
-# 	for v=1:num_pts, u=1:num_pts
-# 		@constraint(NN, X[v,v]<=1)  # LP
+# 	########################## directed but one into or out of each vertex
+# 	print("\n\n\n\n NNnew \n")
+# 	NN = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
+#	X = 0
+# 	@variable(NN, X[1:num_pts,1:num_pts], Bin); #IP
+# # 	@variable(NN, X[1:num_pts,1:num_pts]>=0); #LP
+#
+# # 	for v=1:num_pts, u=1:num_pts
+# # 		@constraint(NN, X[v,v]<=1)  # LP
+# # 	end
+#
+# 	for v=1:num_pts  # last one is all Inf if make it upper triangle distance_matrix
+# 		@constraint(NN, sum(X[u,v] for u=1:num_pts if distance_matrix[u,v]<Inf)+
+# 		 sum(X[v,u] for u=1:num_pts if distance_matrix[v,u]<Inf) >= 1)
 # 	end
-
-	for v=1:num_pts  # last one is all Inf if make it upper triangle distance_matrix
-		@constraint(NN, sum(X[u,v] for u=1:num_pts if distance_matrix[u,v]<Inf)+
-		 sum(X[v,u] for u=1:num_pts if distance_matrix[v,u]<Inf) >= 1)
-	end
-
-	@objective(NN, Min,
-	sum(distance_matrix[u,v]*X[u,v] for u=1:num_pts,v=1:num_pts if distance_matrix[u,v]<Inf))
-
-# 	print(NN)
-	optimize!(NN)
-
-	print("obj val NNnew ",objective_value(NN), "\n");
-
-	X_ = JuMP.value.(X);
-# 	print("X is ", X_, "\n")
-	show_matrix("X", X_)
-
-
-
-	######################################
-	print("\n\n\n\n NNnew dual \n")
-	NNdual = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
-	@variable(NNdual, y[1:num_pts]>=0);
-	@variable(NNdual, z[1:num_pts,1:num_pts]>=0);
-
-	@objective(NNdual, Max,
-	sum(y[v] for v=1:num_pts)-
-	sum(z[u,v] for u=1:num_pts,v=1:num_pts if distance_matrix[u,v]<Inf));
-
-	for u = 1:num_pts
-		for v = 1:num_pts
-			if distance_matrix[v,u] < Inf
-					@constraint(NNdual, y[v] + y[u] -z[v,u]<= distance_matrix[v,u]);
-			end
-		end
-	end
-
-	optimize!(NNdual)
-
-	print("obj val NNnew dual ",objective_value(NNdual), "\n");
-
-	y_ = JuMP.value.(y);
-	z_ = JuMP.value.(z);
-	print("y is ", y_, "\n")
-	print("z is ", z_, "\n")
+#
+# 	@objective(NN, Min,
+# 	sum(distance_matrix[u,v]*X[u,v] for u=1:num_pts,v=1:num_pts if distance_matrix[u,v]<Inf))
+#
+# # 	print(NN)
+# 	optimize!(NN)
+#
+# 	print("obj val NNnew ",objective_value(NN), "\n");
+#
+# 	X_ = JuMP.value.(X);
+# # 	print("X is ", X_, "\n")
+# 	show_matrix("X", X_)
+#
+#
+#
+# 	######################################
+# 	print("\n\n\n\n NNnew dual \n")
+# 	NNdual = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
+#	y = 0
+# 	z = 0
+# 	@variable(NNdual, y[1:num_pts]>=0);
+# 	@variable(NNdual, z[1:num_pts,1:num_pts]>=0);
+#
+# 	@objective(NNdual, Max,
+# 	sum(y[v] for v=1:num_pts)-
+# 	sum(z[u,v] for u=1:num_pts,v=1:num_pts if distance_matrix[u,v]<Inf));
+#
+# 	for u = 1:num_pts
+# 		for v = 1:num_pts
+# 			if distance_matrix[v,u] < Inf
+# 					@constraint(NNdual, y[v] + y[u] -z[v,u]<= distance_matrix[v,u]);
+# 			end
+# 		end
+# 	end
+#
+# 	optimize!(NNdual)
+#
+# 	print("obj val NNnew dual ",objective_value(NNdual), "\n");
+#
+# 	y_ = JuMP.value.(y);
+# 	z_ = JuMP.value.(z);
+# 	print("y is ", y_, "\n")
+# 	print("z is ", z_, "\n")
 
 
 end
 
 if AdGTSP_instan
 
-	print("\n\n\n\n AdGTSP \n")
-	M_1 = 1000000000
-	M_2 = 1000000000
-	M_3 = 1000000000
-	M_4 = 1000000000
-	M_5 = 1000000000
+	v_1 = [0,0]
+	distance_matrix = add_v1_(distance_matrix, v_1, num_pts, data_points)
 
-	Pow_pts_v1 = collect(powerset(2:num_pts))
-	Pow_pts_v1 = Pow_pts_v1[2:end] # remove empty set
-	Pow_pts_v1_size = size(Pow_pts_v1)[1]
+# 	print("\n\n\n\n AdGTSP \n")
+# 	M_1 = 1000000000
+# 	M_2 = 1000000000
+# 	M_3 = 1000000000
+# 	M_4 = 1000000000
+# 	M_5 = 1000000000
+#
+# 	Pow_pts_v1 = collect(powerset(2:num_pts))
+# 	Pow_pts_v1 = Pow_pts_v1[2:end] # remove empty set
+# 	Pow_pts_v1_size = size(Pow_pts_v1)[1]
+#
+# 	AdGTSP = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
+#
+#
+#	x = 0
+# 	y = 0
+# 	z = 0
+# 	q = 0
+# 	w = 0
+# 	p = 0
+# 	g = 0
+# 	# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
+# 	@variable(AdGTSP, x[1:num_pts], Bin);
+# 	@variable(AdGTSP, y[1:num_pts]);
+# 	@variable(AdGTSP, z[1:Pow_pts_v1_size]>=0);
+# 	@variable(AdGTSP, q[1:num_pts,1:num_pts]>=0);
+# 	@variable(AdGTSP, w[1:num_pts]);
+# 	@variable(AdGTSP, p[1:Pow_pts_v1_size]);
+# 	@variable(AdGTSP, g[1:num_pts]>=0);
+#
+# 	# we take the first point as v_1
+# 	@constraint(AdGTSP, x[1]==1);
+#
+# 	for u = 2:num_pts
+# 		for v = 2:num_pts
+# 			if distance_matrix[u,v] < Inf
+# 				@constraint(AdGTSP, y[u]+y[v]-sum(p[s] for s=num_pts:Pow_pts_v1_size if u in Pow_pts_v1[s]
+# 				 && v in Pow_pts_v1[s]) <= distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
+# 			end
+# 		end
+# 	end
+#
+# 	for u=2:num_pts
+# 		if distance_matrix[u,1] < Inf
+# 			@constraint(AdGTSP, y[u]+y[1]-q[u,1] <= distance_matrix[u,1]+(1-x[u])*M_2)
+# 			@constraint(AdGTSP, g[u] >=0 )
+# 		end
+# 	end
+#
+#
+# 	for s=1:Pow_pts_v1_size-1  # s!= V\v_1
+# 		@constraint(AdGTSP, p[s] >=0 )
+# 	end
+#
+#
+# 	for v=1:num_pts
+# 		@constraint(AdGTSP, w[v] <=x[v]*M_3 )
+# 		@constraint(AdGTSP, w[v] <=y[v])
+# 		@constraint(AdGTSP, w[v] >=y[v]+x[v]-1)
+# 	end
+#
+# 	for s=1:Pow_pts_v1_size
+# 		@constraint(AdGTSP, p[s] <=z[s])
+# 		for v in Pow_pts_v1[s]
+# 		@constraint(AdGTSP, p[s] <=x[v]*M_4 )
+# 		end
+# 		@constraint(AdGTSP, p[s]>=z[s]+sum(x[v] for v in Pow_pts_v1[s])- size(Pow_pts_v1[s])[1]);
+# 	end
+#
+# 	for v=2:num_pts
+# 		if distance_matrix[v,1] < Inf
+# 			@constraint(AdGTSP, g[v] <=q[v] )
+# 			@constraint(AdGTSP, g[v] <=x[v]*M_5 )
+# 			@constraint(AdGTSP, g[v] >=q[v]+x[v]-1)
+# 		end
+# 	end
+#
+# 	for i=1:num_cluster
+# 		@constraint(AdGTSP, sum(x[v] for v=(i-1)*card+1:i*card) == visit_m);
+# 	end
+#
+# 	@objective(AdGTSP,Max,
+# 	sum(w[v] for v=1:num_pts) -sum((size(Pow_pts_v1[s])[1]-1)*p[s] for s=1:Pow_pts_v1_size)
+# 	- sum(g[v] for v=2:num_pts if distance_matrix[v,1]!=Inf)
+# 	);
+#
+#
+# 	optimize!(AdGTSP)
+#
+# 	print("obj val AdGTSP ",objective_value(AdGTSP), "\n");
+#
+# 	x_ = JuMP.value.(x);
+# 	y_ = JuMP.value.(y);
+# 	z_ = JuMP.value.(z);
+# 	q_ = JuMP.value.(q);
+# 	w_ = JuMP.value.(w);
+# 	p_ = JuMP.value.(p);
+# 	g_ = JuMP.value.(g);
+#
+# 	print("x is ", x_, "\n")
+# 	print("y is ", y_, "\n")
+# 	print("z is ", z_, "\n")
+# 	print("q is ", q_, "\n")
+# 	print("w is ", w_, "\n")
+# 	print("p is ", p_, "\n")
+# 	print("g is ", g_, "\n")
+#
+# 	if save_res
+# 		dir_ = string("AdGTSP_", num_cluster,"_",card,"_",visit_m,"/")
+# 		mkdire_(dir_)
+# 		j_file_name = string(num_cluster,"_",card,"_",visit_m)
+# 		to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
+# 		to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
+# 		to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
+# 		to_json(DataFrame(q_), string(dir_,"q_",j_file_name,".json"))
+# 		to_json(DataFrame(w_), string(dir_,"w_",j_file_name,".json"))
+# 		to_json(DataFrame(p_), string(dir_,"p_",j_file_name,".json"))
+# 		to_json(DataFrame(g_), string(dir_,"g_",j_file_name,".json"))
+#     end
 
-	AdGTSP = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
 
-	# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
-	@variable(AdGTSP, x[1:num_pts], Bin);
-	@variable(AdGTSP, y[1:num_pts]);
-	@variable(AdGTSP, z[1:Pow_pts_v1_size]>=0);
-	@variable(AdGTSP, q[1:num_pts,1:num_pts]>=0);
-	@variable(AdGTSP, w[1:num_pts]);
-	@variable(AdGTSP, p[1:Pow_pts_v1_size]);
-	@variable(AdGTSP, g[1:num_pts]>=0);
+	##########################
+# 	print("\n\n\n\n TSP \n")
+#
+#
+# 	TSP = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
+# 	X = 0
+# 	@variable(TSP, X[1:num_pts+1,1:num_pts+1], Bin);
+#
+# 	@objective(TSP, Min,
+# 	sum(distance_matrix[u,v]*X[u,v] for u=1:num_pts+1, v=1:num_pts+1 if distance_matrix[u,v]<Inf))
+#
+# 	for v=1:num_pts+1
+# 		@constraint(TSP, sum(X[v,u] for u=1:num_pts+1 if distance_matrix[v,u]<Inf )+
+# 		sum(X[u,v] for u=1:num_pts+1 if distance_matrix[u,v]<Inf )== 2)
+# 	end
+#
+# 	@constraint(TSP, sum(X[v,u] for v=1:num_pts, u=1:num_pts if distance_matrix[u,v]<Inf  ) == num_pts+1-2
+# 	)
+#
+# 	for s=1:Pow_pts_size-1
+# 		@constraint(TSP, sum(X[v,u] for v in Pow_pts[s], u in Pow_pts[s] if distance_matrix[v,u]<Inf) <=
+# 		 size(Pow_pts[s])[1]-1)
+# 	end
+#
+# 	optimize!(TSP)
+#
+# 	print("obj val TSP ",objective_value(TSP), "\n");
+#
+# 	X_ = JuMP.value.(X);
+#
+# # 	print("X is ", X_, "\n")
+# 	show_matrix("X ", X_)
 
-	# we take the first point as v_1
-	@constraint(AdGTSP, x[1]==1);
+# 	################################## dual TSP
+	print("\n\n\n\n TSP dual \n")
 
-	for u = 2:num_pts
-		for v = 2:num_pts
-			if distance_matrix[u,v] < Inf
-				@constraint(AdGTSP, y[u]+y[v]-sum(p[s] for s=num_pts:Pow_pts_v1_size if u in Pow_pts_v1[s]
-				 && v in Pow_pts_v1[s]) <= distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
-			end
+	TSPd = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
+
+	y = 0
+	z = 0
+	q = 0
+	@variable(TSPd, y[1:num_pts+1]);
+	@variable(TSPd, z[1:Pow_pts_size]);
+	@variable(TSPd, q[1:num_pts+1 , 1:num_pts+1 ]);
+
+	@objective(TSPd, Max, 2*sum(y[v] for v=1:num_pts)
+	- sum((size(Pow_pts[s])[1]-1)*z[s] for s=1:Pow_pts_size)
+	- sum(q[u,num_pts+1] for u=1:num_pts if distance_matrix[u,num_pts+1]<Inf)
+	- sum(q[num_pts+1,u] for u=1:num_pts if distance_matrix[num_pts+1,u]<Inf)
+	)
+
+	for u=1:num_pts, v=1:num_pts
+		if distance_matrix[u,v]<Inf
+		@constraint(TSPd,
+		 y[u]+y[v]-sum(z[s] for s=num_pts:Pow_pts_size if u in Pow_pts[s]
+		 && v in Pow_pts[s]) <= distance_matrix[u,v]);
+	 	end
+	end
+
+	for u=1:num_pts
+		if distance_matrix[u,num_pts+1] < Inf
+			@constraint(TSPd, y[u]+y[num_pts+1]-q[u,num_pts+1] <= distance_matrix[u,num_pts+1])
+		end
+		# 		if distance_matrix[num_pts+1,u] < Inf
+# 			@constraint(TSPd, y[u]+y[num_pts+1]-q[u,num_pts+1]
+# 			<= distance_matrix[u,num_pts+1])
+# 		end
+	end
+
+	for s=1:Pow_pts_size
+		@constraint(TSPd, z[s]>=0)
+	end
+
+	for u=1:num_pts
+		if distance_matrix[u,num_pts+1]<Inf
+			@constraint(TSPd, q[u,num_pts+1]>=0)
+		end
+		if distance_matrix[num_pts+1,u]<Inf
+			@constraint(TSPd, q[num_pts+1,u]>=0)
 		end
 	end
 
-	for u=2:num_pts
-		if distance_matrix[u,1] < Inf
-			@constraint(AdGTSP, y[u]+y[1]-q[u,1] <= distance_matrix[u,1]+(1-x[u])*M_2)
-			@constraint(AdGTSP, g[u] >=0 )
-		end
-	end
+# 	print(TSPd)
 
+	optimize!(TSPd)
 
-	for s=1:Pow_pts_v1_size-1  # s!= V\v_1
-		@constraint(AdGTSP, p[s] >=0 )
-	end
+	print("obj val TSPd ",objective_value(TSPd), "\n");
 
-
-	for v=1:num_pts
-		@constraint(AdGTSP, w[v] <=x[v]*M_3 )
-		@constraint(AdGTSP, w[v] <=y[v])
-		@constraint(AdGTSP, w[v] >=y[v]+x[v]-1)
-	end
-
-	for s=1:Pow_pts_v1_size
-		@constraint(AdGTSP, p[s] <=z[s])
-		for v in Pow_pts_v1[s]
-		@constraint(AdGTSP, p[s] <=x[v]*M_4 )
-		end
-		@constraint(AdGTSP, p[s]>=z[s]+sum(x[v] for v in Pow_pts_v1[s])- size(Pow_pts_v1[s])[1]);
-	end
-
-	for v=2:num_pts
-		if distance_matrix[v,1] < Inf
-			@constraint(AdGTSP, g[v] <=q[v] )
-			@constraint(AdGTSP, g[v] <=x[v]*M_5 )
-			@constraint(AdGTSP, g[v] >=q[v]+x[v]-1)
-		end
-	end
-
-	for i=1:num_cluster
-		@constraint(AdGTSP, sum(x[v] for v=(i-1)*card+1:i*card) == visit_m);
-	end
-
-	@objective(AdGTSP,Max,
-	sum(w[v] for v=1:num_pts) -sum((size(Pow_pts_v1[s])[1]-1)*p[s] for s=1:Pow_pts_v1_size)-
-	sum(g[v] for v=2:num_pts if distance_matrix[v,1]!=Inf));
-
-
-	optimize!(AdGTSP)
-
-	print("obj val AdGTSP ",objective_value(AdGTSP), "\n");
-
-	x_ = JuMP.value.(x);
 	y_ = JuMP.value.(y);
 	z_ = JuMP.value.(z);
 	q_ = JuMP.value.(q);
-	w_ = JuMP.value.(w);
-	p_ = JuMP.value.(p);
-	g_ = JuMP.value.(g);
 
-	print("x is ", x_, "\n")
 	print("y is ", y_, "\n")
 	print("z is ", z_, "\n")
-	print("q is ", q_, "\n")
-	print("w is ", w_, "\n")
-	print("p is ", p_, "\n")
-	print("g is ", g_, "\n")
+	show_matrix("q ", q_)
 
-	if save_res
-		dir_ = string("AdGTSP_", num_cluster,"_",card,"_",visit_m,"/")
-		mkdire_(dir_)
-		j_file_name = string(num_cluster,"_",card,"_",visit_m)
-		to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
-		to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
-		to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
-		to_json(DataFrame(q_), string(dir_,"q_",j_file_name,".json"))
-		to_json(DataFrame(w_), string(dir_,"w_",j_file_name,".json"))
-		to_json(DataFrame(p_), string(dir_,"p_",j_file_name,".json"))
-		to_json(DataFrame(g_), string(dir_,"g_",j_file_name,".json"))
-    end
+
 
 end
 
