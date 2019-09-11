@@ -13,10 +13,14 @@ grb_seed = 110
 
 
 function show_matrix(name, X)
-	print(name, " matrix is :\n ")
 	size_ = size(X)
-	for i=1:size_[1]
-		print(X[i,:], "\n")
+	if length(size_)==1
+		print(name, " vector is :\n ", X)
+	elseif length(size_)==2
+		print(name, " matrix is :\n ")
+		for i=1:size_[1]
+			print(X[i,:], "\n")
+		end
 	end
 end
 
@@ -113,7 +117,7 @@ AdGTSP_instan = true
 AdNN2_instan = false  # nonlinear
 
 
-num_cluster=3
+num_cluster=5
 card=1
 visit_m=1
 limits_=[1,1]
@@ -744,7 +748,6 @@ if AdGTSP_instan
 
 	X_ = JuMP.value.(X);
 
-# 	print("X is ", X_, "\n")
 	show_matrix("X ", X_)
 
 # 	################################## dual TSP
@@ -757,15 +760,25 @@ if AdGTSP_instan
 	q = 0
 	@variable(TSPd, y[1:num_pts+1]>=0);
 	@variable(TSPd, z[1:Pow_pts_size]);
-	@variable(TSPd, q[1:num_pts+1 , 1:num_pts+1 ]);
+# 	@variable(TSPd, q[1:num_pts+1 , 1:num_pts+1 ]);
+	@variable(TSPd, q[1:2*num_pts]);  # for e=(v,v_1) and e=(v_1,v)
 
-	@objective(TSPd, Max, 2*sum(y[v] for v=1:num_pts)
+# 	@objective(TSPd, Max,
+# 	2*sum(y[v] for v=1:num_pts)
+# 	- sum((size(Pow_pts[s])[1]-1)*z[s] for s=1:Pow_pts_size)
+# 	- sum(q[u,num_pts+1] for u=1:num_pts if distance_matrix[u,num_pts+1]<Inf)
+# 	- sum(q[num_pts+1,u] for u=1:num_pts if distance_matrix[num_pts+1,u]<Inf)
+# 	)
+
+	@objective(TSPd, Max,
+	2*sum(y[v] for v=1:num_pts)
 	- sum((size(Pow_pts[s])[1]-1)*z[s] for s=1:Pow_pts_size)
-	- sum(q[u,num_pts+1] for u=1:num_pts if distance_matrix[u,num_pts+1]<Inf)
-	- sum(q[num_pts+1,u] for u=1:num_pts if distance_matrix[num_pts+1,u]<Inf)
+	- sum(q[u] for u=1:num_pts if distance_matrix[u,num_pts+1]<Inf)
+	- sum(q[u] for u=num_pts+1:2*num_pts if distance_matrix[num_pts+1,u]<Inf)
 	)
 
-# 	@objective(TSPd, Max, 0)
+
+# 	@objective(TSPd, Max, 0) # to check feasibility bc it was unbounded
 
 	for u=1:num_pts, v=1:num_pts
 		if distance_matrix[u,v]<Inf
@@ -776,41 +789,177 @@ if AdGTSP_instan
 	end
 
 	for u=1:num_pts
-		if distance_matrix[u,num_pts+1] < Inf
-			@constraint(TSPd, y[u]+y[num_pts+1]-q[u,num_pts+1] <= distance_matrix[u,num_pts+1])
-		end
-		# 		if distance_matrix[num_pts+1,u] < Inf
-# 			@constraint(TSPd, y[u]+y[num_pts+1]-q[u,num_pts+1]
-# 			<= distance_matrix[u,num_pts+1])
+# 		if distance_matrix[u,num_pts+1] < Inf
+# 			@constraint(TSPd, y[u]+y[num_pts+1]-q[u,num_pts+1] <= distance_matrix[u,num_pts+1])  # for 2D q
 # 		end
+
+		if distance_matrix[u,num_pts+1] < Inf
+			@constraint(TSPd, y[u]+y[num_pts+1]-q[u] <= distance_matrix[u,num_pts+1])
+		end
+
 	end
 
 	for s=1:Pow_pts_size-1
 		@constraint(TSPd, z[s]>=0)
 	end
 
+# 	for u=1:num_pts
+# 		if distance_matrix[u,num_pts+1]<Inf
+# 			@constraint(TSPd, q[u,num_pts+1]>=0)
+# 		end
+# 		if distance_matrix[num_pts+1,u]<Inf
+# 			@constraint(TSPd, q[num_pts+1,u]>=0)
+# 		end
+# 	end
 	for u=1:num_pts
 		if distance_matrix[u,num_pts+1]<Inf
-			@constraint(TSPd, q[u,num_pts+1]>=0)
+			@constraint(TSPd, q[u]>=0)
 		end
+	end
+	for u=num_pts+1:2*num_pts
 		if distance_matrix[num_pts+1,u]<Inf
-			@constraint(TSPd, q[num_pts+1,u]>=0)
+			@constraint(TSPd, q[u]>=0)
 		end
 	end
 
-	print(TSPd)
-
+# 	print(TSPd)
 	optimize!(TSPd)
-
 	print("obj val TSPd ",objective_value(TSPd), "\n");
 
 	y_ = JuMP.value.(y);
 	z_ = JuMP.value.(z);
 	q_ = JuMP.value.(q);
 
+	show_matrix("y ", y_)
+	show_matrix("z ", z_)
+	show_matrix("q ", q_)
+
+	TSPd = 0 # kill the model
+
+	############################ AdGTSP
+	print("\n\n\n\n AdGTSP \n")
+
+	M_1 = 1000000000
+	M_2 = 1000000000
+	M_3 = 1000000000
+	M_4 = 1000000000
+	M_5 = 1000000000
+
+	AdGTSP = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
+
+	x = 0
+	y = 0
+	z = 0
+	q = 0
+	w = 0
+	p = 0
+	g = 0
+	@variable(AdGTSP, x[1:num_pts+1], Bin);
+	@variable(AdGTSP, y[1:num_pts+1]>=0);
+	@variable(AdGTSP, z[1:Pow_pts_size]);
+	@variable(AdGTSP, q[1:2*num_pts]);
+	@variable(AdGTSP, w[1:num_pts+1]>=0);
+	@variable(AdGTSP, p[1:Pow_pts_size]);
+	@variable(AdGTSP, g[1:2*num_pts]);
+
+	@constraint(AdGTSP, x[num_pts+1] ==1)
+
+	@objective(AdGTSP, Max,
+	2*sum(w[v] for v=1:num_pts+1)
+	- sum((size(Pow_pts[s])[1]-1)*p[s] for s=1:Pow_pts_size)
+	- sum(g[u] for u=1:num_pts if distance_matrix[u,num_pts+1]<Inf)
+	- sum(g[u] for u=num_pts+1:2*num_pts if distance_matrix[num_pts+1,u]<Inf)
+	)
+
+	for u=1:num_pts, v=1:num_pts
+		if distance_matrix[u,v]<Inf
+		@constraint(AdGTSP,
+		 y[u]+y[v]-sum(p[s] for s=num_pts:Pow_pts_size if u in Pow_pts[s]
+		 && v in Pow_pts[s]) <= distance_matrix[u,v]);
+	 	end
+	end
+
+	for u=1:num_pts
+		if distance_matrix[u,num_pts+1] < Inf
+			@constraint(AdGTSP, y[u]+y[num_pts+1]-q[u] <= distance_matrix[u,num_pts+1])
+		end
+	end
+
+	for s=1:Pow_pts_size-1
+		@constraint(AdGTSP, z[s]>=0)
+		@constraint(AdGTSP, p[s]>=0)
+	end
+
+	for u=1:num_pts
+		if distance_matrix[u,num_pts+1]<Inf
+			@constraint(AdGTSP, q[u]>=0)
+			@constraint(AdGTSP, g[u]>=0)
+			@constraint(AdGTSP, g[u] <=q[u] )
+			@constraint(AdGTSP, g[u] <=x[u]*M_5 )
+			@constraint(AdGTSP, g[u] >=q[u]+x[u]-1)
+		end
+	end
+	for u=num_pts+1:2*num_pts
+		if distance_matrix[num_pts+1,u]<Inf
+			@constraint(AdGTSP, q[u]>=0)
+			@constraint(AdGTSP, g[u]>=0)
+			@constraint(AdGTSP, g[u] <=q[u] )
+			@constraint(AdGTSP, g[u] <=x[u]*M_5 )
+			@constraint(AdGTSP, g[u] >=q[u]+x[u]-1)
+		end
+	end
+
+	for v=1:num_pts+1
+		@constraint(AdGTSP, w[v] <=x[v]*M_3 )
+		@constraint(AdGTSP, w[v] <=y[v])
+		@constraint(AdGTSP, w[v] >=y[v]+x[v]-1)
+	end
+
+	for s=1:Pow_pts_size
+		@constraint(AdGTSP, p[s] <=z[s])
+		for v in Pow_pts[s]
+		@constraint(AdGTSP, p[s] <=x[v]*M_4 )
+		end
+		@constraint(AdGTSP, p[s]>=z[s]+sum(x[v] for v in Pow_pts[s])- size(Pow_pts[s])[1]);
+	end
+
+	for i=1:num_cluster
+		@constraint(AdGTSP, sum(x[v] for v=(i-1)*card+1:i*card) == visit_m);
+	end
+
+
+	optimize!(AdGTSP)
+
+	print("obj val AdGTSP ",objective_value(AdGTSP), "\n");
+
+	x_ = JuMP.value.(x);
+	y_ = JuMP.value.(y);
+	z_ = JuMP.value.(z);
+	q_ = JuMP.value.(q);
+	w_ = JuMP.value.(w);
+	p_ = JuMP.value.(p);
+	g_ = JuMP.value.(g);
+
+	print("x is ", x_, "\n")
 	print("y is ", y_, "\n")
 	print("z is ", z_, "\n")
-	show_matrix("q ", q_)
+	print("q is ", q_, "\n")
+	print("w is ", w_, "\n")
+	print("p is ", p_, "\n")
+	print("g is ", g_, "\n")
+
+	if save_res
+		dir_ = string("AdGTSP_", num_cluster,"_",card,"_",visit_m,"/")
+		mkdire_(dir_)
+		j_file_name = string(num_cluster,"_",card,"_",visit_m)
+		to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
+		to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
+		to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
+		to_json(DataFrame(q_), string(dir_,"q_",j_file_name,".json"))
+		to_json(DataFrame(w_), string(dir_,"w_",j_file_name,".json"))
+		to_json(DataFrame(p_), string(dir_,"p_",j_file_name,".json"))
+		to_json(DataFrame(g_), string(dir_,"g_",j_file_name,".json"))
+    end
 
 
 
