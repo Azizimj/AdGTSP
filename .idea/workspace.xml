@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5e51aaf-04b4-4315-b162-813504fb9fc4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/codes.lnk" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dual NN directed but at least one in or out.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/nn_9_1_1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ad.jl" beforeDir="false" afterPath="$PROJECT_DIR$/Ad.jl" afterDir="false" />
     </list>
@@ -19,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Ad.jl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="73">
-              <caret line="273" lean-forward="true" selection-start-line="273" selection-end-line="273" />
+            <state relative-caret-position="204">
+              <caret line="95" column="17" lean-forward="true" selection-start-line="95" selection-start-column="17" selection-end-line="95" selection-end-column="17" />
               <folding>
                 <element signature="e#224#370#0" />
                 <element signature="e#261#265#0" />
@@ -94,7 +91,6 @@
                 <element signature="e#5587#5601#0" />
                 <element signature="e#5624#5628#0" />
                 <element signature="e#5670#5673#0" />
-                <element signature="e#6434#6450#0" />
                 <element signature="e#6475#6479#0" />
                 <element signature="e#6622#6626#0" />
                 <element signature="e#5826#10924#0" />
@@ -143,6 +139,7 @@
                 <element signature="e#7963#7967#0" />
                 <element signature="e#9280#9287#0" />
                 <element signature="e#9293#9297#0" />
+                <element signature="e#9724#13471#0" />
                 <element signature="e#10673#10677#0" />
                 <element signature="e#10812#10816#0" />
                 <element signature="e#10825#10832#0" />
@@ -722,7 +719,21 @@
       <option name="project" value="LOCAL" />
       <updated>1568179005830</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="NN model finalized">
+      <created>1568179932166</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1568179932166</updated>
+    </task>
+    <task id="LOCAL-00036" summary="MST model finalized">
+      <created>1568181870473</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1568181870473</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -734,7 +745,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.5499182" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.10310966" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.34042552" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -764,7 +775,8 @@
     <MESSAGE value="All corrected" />
     <MESSAGE value="NN model corrected" />
     <MESSAGE value="NN model finalized" />
-    <option name="LAST_COMMIT_MESSAGE" value="NN model finalized" />
+    <MESSAGE value="MST model finalized" />
+    <option name="LAST_COMMIT_MESSAGE" value="MST model finalized" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Ad.py" />
@@ -918,8 +930,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Ad.jl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="273" lean-forward="true" selection-start-line="273" selection-end-line="273" />
+        <state relative-caret-position="204">
+          <caret line="95" column="17" lean-forward="true" selection-start-line="95" selection-start-column="17" selection-end-line="95" selection-end-column="17" />
           <folding>
             <element signature="e#224#370#0" />
             <element signature="e#261#265#0" />
@@ -993,7 +1005,6 @@
             <element signature="e#5587#5601#0" />
             <element signature="e#5624#5628#0" />
             <element signature="e#5670#5673#0" />
-            <element signature="e#6434#6450#0" />
             <element signature="e#6475#6479#0" />
             <element signature="e#6622#6626#0" />
             <element signature="e#5826#10924#0" />
@@ -1042,6 +1053,7 @@
             <element signature="e#7963#7967#0" />
             <element signature="e#9280#9287#0" />
             <element signature="e#9293#9297#0" />
+            <element signature="e#9724#13471#0" />
             <element signature="e#10673#10677#0" />
             <element signature="e#10812#10816#0" />
             <element signature="e#10825#10832#0" />

@@ -160,7 +160,6 @@ if AdMST_instan
 
 	AdMST = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim, Seed=grb_seed));
 
-	# @variable(AdMST, 1>= x[1:num_pts] >= 0 );
 	@variable(AdMST, x[1:num_pts], Bin);
 	@variable(AdMST, z[1:Pow_pts_size]);
 	@variable(AdMST, y[1:Pow_pts_size]);
