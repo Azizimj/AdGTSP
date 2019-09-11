@@ -93,7 +93,7 @@ function optimizer_print(model, model_name, model_var)
 
 end
 
-AdMST_instan = false
+AdMST_instan = true
 AdNN_instan = false
 AdNNnew_instan = true
 AdGTSP_instan = false
@@ -103,8 +103,8 @@ AdNN2_instan = false
 #TODO: add *M in the bilinear cons
 
 num_cluster=5
-card=2
-visit_m=2
+card=1
+visit_m=1
 limits_=[1,1]
 dim = 2
 save_res = false
@@ -169,10 +169,8 @@ if AdMST_instan
 	for u = 1:num_pts
 		for v = 1:num_pts
 			if distance_matrix[u,v] < Inf
-# 					@constraint(AdMST, -sum(y[s] for s=num_pts+1:Pow_pts_size if u in Pow_pts[s] && v in Pow_pts[s]) <=
-# 					 distance_matrix[u,v]+(2-x[u]-x[v])*M_1);
-					@constraint(AdMST, -sum(y[s] for s=num_pts+1:Pow_pts_size if u in Pow_pts[s] && v in Pow_pts[s]) <=
-					 distance_matrix[u,v]);
+				@constraint(AdMST, -sum(y[s] for s=num_pts+1:Pow_pts_size if u in Pow_pts[s] && v in Pow_pts[s]) <=
+				distance_matrix[u,v]);
 
 			end
 		end
@@ -221,6 +219,7 @@ if AdMST_instan
 
 
 	###############
+	print("\n\n\n\n MST \n")
 	MST = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim, Seed=grb_seed));
 
 	@variable(MST, X[1:num_pts,1:num_pts], Bin);
@@ -228,7 +227,7 @@ if AdMST_instan
 	@objective( MST, Min, sum(distance_matrix[u,v]*X[u,v] for u=1:num_pts,
 	 v=1:num_pts if distance_matrix[u,v]<Inf) );
 
-	@constraint(MST, sum(X[u,v] for u=1:num_pts, v=1:num_pts if distance_matrix[u,v]<Inf) ==num_pts-1);
+	@constraint(MST, sum(X[u,v] for u=1:num_pts, v=1:num_pts if distance_matrix[u,v]<Inf) == num_pts-1);
 
 	for s=num_pts+1:Pow_pts_size-1
 		@constraint(MST, sum(X[u,v] for u in Pow_pts[s], v in Pow_pts[s] if distance_matrix[u,v]<Inf
@@ -236,7 +235,6 @@ if AdMST_instan
 
 	end
 
-# 	print(MST)
 	optimize!(MST)
 
 	print("obj val MST ",objective_value(MST), "\n");
@@ -244,6 +242,35 @@ if AdMST_instan
 	X_ = JuMP.value.(X);
 
 	show_matrix("X", X_)
+
+
+	######################
+	print("\n\n\n\n MST dual \n")
+	@variable(MSTdual, z[1:Pow_pts_size]);
+
+	for u = 1:num_pts
+		for v = 1:num_pts
+			if distance_matrix[u,v] < Inf
+				@constraint(MSTdual, -sum(z[s] for s=num_pts+1:Pow_pts_size if u in Pow_pts[s] &&
+				 v in Pow_pts[s]) <= distance_matrix[u,v]);
+
+			end
+		end
+	end
+
+	for s=1:Pow_pts_size-1
+		@constraint(MSTdual, z[s] >= 0)
+	end
+
+	@objective(MSTdual,Max, -sum((size(Pow_pts[s])[1]-1)*z[s] for s=1:Pow_pts_size) );
+
+	optimize!(MSTdual)
+
+	print("obj val AdMST ",objective_value(MSTdual), "\n");
+
+	z_ = JuMP.value.(z);
+
+	print("z is ", z_, "\n")
 
 
 end
@@ -409,8 +436,8 @@ if AdNNnew_instan
 	for u = 1:num_pts
 		for v = 1:num_pts
 			if distance_matrix[v,u] < Inf
-					@constraint(AdNN, y[u]+y[v]-z[v,u] <= distance_matrix[v,u]+(2-x[u]-x[v])*M_1);
-# 					@constraint(AdNN, y[u]+y[v]-z[v,u] <= distance_matrix[v,u]);
+# 					@constraint(AdNN, y[u]+y[v]-z[v,u] <= distance_matrix[v,u]+(2-x[u]-x[v])*M_1);
+					@constraint(AdNN, y[u]+y[v]-z[v,u] <= distance_matrix[v,u]);
 			end
 		end
 	end

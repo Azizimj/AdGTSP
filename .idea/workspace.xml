@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5e51aaf-04b4-4315-b162-813504fb9fc4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/codes.lnk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dual NN directed but at least one in or out.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/nn_9_1_1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ad.jl" beforeDir="false" afterPath="$PROJECT_DIR$/Ad.jl" afterDir="false" />
     </list>
@@ -16,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Ad.jl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="389" selection-start-line="389" selection-end-line="389" />
+            <state relative-caret-position="73">
+              <caret line="273" lean-forward="true" selection-start-line="273" selection-end-line="273" />
               <folding>
                 <element signature="e#224#370#0" />
                 <element signature="e#261#265#0" />
@@ -68,7 +71,6 @@
                 <element signature="e#1168#1172#0" />
                 <element signature="e#1180#1189#0" />
                 <element signature="e#1196#1200#0" />
-                <element signature="e#3286#5801#0" />
                 <element signature="e#3683#3699#0" />
                 <element signature="e#2829#2833#0" />
                 <element signature="e#2911#2918#0" />
@@ -92,6 +94,9 @@
                 <element signature="e#5587#5601#0" />
                 <element signature="e#5624#5628#0" />
                 <element signature="e#5670#5673#0" />
+                <element signature="e#6434#6450#0" />
+                <element signature="e#6475#6479#0" />
+                <element signature="e#6622#6626#0" />
                 <element signature="e#5826#10924#0" />
                 <element signature="e#5891#5909#0" />
                 <element signature="e#6347#6525#0" />
@@ -138,7 +143,6 @@
                 <element signature="e#7963#7967#0" />
                 <element signature="e#9280#9287#0" />
                 <element signature="e#9293#9297#0" />
-                <element signature="e#11051#16253#0" />
                 <element signature="e#10673#10677#0" />
                 <element signature="e#10812#10816#0" />
                 <element signature="e#10825#10832#0" />
@@ -711,7 +715,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568177091404</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="NN model finalized">
+      <created>1568179005830</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1568179005830</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -723,7 +734,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.53846157" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.5499182" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.34042552" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -907,8 +918,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Ad.jl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="389" selection-start-line="389" selection-end-line="389" />
+        <state relative-caret-position="73">
+          <caret line="273" lean-forward="true" selection-start-line="273" selection-end-line="273" />
           <folding>
             <element signature="e#224#370#0" />
             <element signature="e#261#265#0" />
@@ -959,7 +970,6 @@
             <element signature="e#1168#1172#0" />
             <element signature="e#1180#1189#0" />
             <element signature="e#1196#1200#0" />
-            <element signature="e#3286#5801#0" />
             <element signature="e#3683#3699#0" />
             <element signature="e#2829#2833#0" />
             <element signature="e#2911#2918#0" />
@@ -983,6 +993,9 @@
             <element signature="e#5587#5601#0" />
             <element signature="e#5624#5628#0" />
             <element signature="e#5670#5673#0" />
+            <element signature="e#6434#6450#0" />
+            <element signature="e#6475#6479#0" />
+            <element signature="e#6622#6626#0" />
             <element signature="e#5826#10924#0" />
             <element signature="e#5891#5909#0" />
             <element signature="e#6347#6525#0" />
@@ -1029,7 +1042,6 @@
             <element signature="e#7963#7967#0" />
             <element signature="e#9280#9287#0" />
             <element signature="e#9293#9297#0" />
-            <element signature="e#11051#16253#0" />
             <element signature="e#10673#10677#0" />
             <element signature="e#10812#10816#0" />
             <element signature="e#10825#10832#0" />
