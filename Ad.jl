@@ -904,8 +904,8 @@ if AdGTSP_instan
 			@constraint(AdGTSP, q[u]>=0)
 			@constraint(AdGTSP, g[u]>=0)
 			@constraint(AdGTSP, g[u] <=q[u] )
-			@constraint(AdGTSP, g[u] <=x[u]*M_5 )
-			@constraint(AdGTSP, g[u] >=q[u]+x[u]-1)
+			@constraint(AdGTSP, g[u] <=x[u-num_pts]*M_5 )
+			@constraint(AdGTSP, g[u] >=q[u]+x[u-num_pts]-1)
 		end
 	end
 
@@ -940,13 +940,14 @@ if AdGTSP_instan
 	p_ = JuMP.value.(p);
 	g_ = JuMP.value.(g);
 
-	print("x is ", x_, "\n")
-	print("y is ", y_, "\n")
-	print("z is ", z_, "\n")
-	print("q is ", q_, "\n")
-	print("w is ", w_, "\n")
-	print("p is ", p_, "\n")
-	print("g is ", g_, "\n")
+
+	show_matrix("x ", x_)
+	show_matrix("y ", y_)
+	show_matrix("z ", z_)
+	show_matrix("q ", q_)
+	show_matrix("w ", w_)
+	show_matrix("p ", p_)
+	show_matrix("g ", g_)
 
 	if save_res
 		dir_ = string("AdGTSP_", num_cluster,"_",card,"_",visit_m,"/")

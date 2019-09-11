@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5e51aaf-04b4-4315-b162-813504fb9fc4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ad.jl" beforeDir="false" afterPath="$PROJECT_DIR$/Ad.jl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Ad.jl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="757" column="34" selection-start-line="757" selection-start-column="34" selection-end-line="757" selection-end-column="34" />
+            <state relative-caret-position="95">
+              <caret line="874" column="35" lean-forward="true" selection-start-line="874" selection-start-column="35" selection-end-line="874" selection-end-column="35" />
               <folding>
                 <element signature="e#224#365#0" />
                 <element signature="e#268#285#0" />
@@ -219,17 +218,8 @@
                 <element signature="e#18183#18197#0" />
                 <element signature="e#18220#18224#0" />
                 <element signature="e#18320#18342#0" />
-                <element signature="e#18851#19022#0" />
-                <element signature="e#19048#19178#0" />
-                <element signature="e#19407#19488#0" />
-                <element signature="e#19491#19572#0" />
                 <element signature="e#19620#19635#0" />
                 <element signature="e#19659#19663#0" />
-                <element signature="e#19741#19748#0" />
-                <element signature="e#19754#19758#0" />
-                <element signature="e#19767#19774#0" />
-                <element signature="e#19780#19784#0" />
-                <element signature="e#19799#19803#0" />
                 <element signature="e#8885#10840#0" />
                 <element signature="e#8639#8658#0" />
                 <element signature="e#10091#10279#0" />
@@ -320,7 +310,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="170" />
     <option name="y" value="91" />
     <option name="width" value="1026" />
@@ -768,18 +758,26 @@
       <option name="project" value="LOCAL" />
       <updated>1568191285191</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="TSP corrected">
+      <created>1568220798818</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1568220798818</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12405446" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.24386252" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.09819967" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.34042552" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -811,7 +809,8 @@
     <MESSAGE value="NN model finalized" />
     <MESSAGE value="MST model finalized" />
     <MESSAGE value="TSP working" />
-    <option name="LAST_COMMIT_MESSAGE" value="TSP working" />
+    <MESSAGE value="TSP corrected" />
+    <option name="LAST_COMMIT_MESSAGE" value="TSP corrected" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Ad.py" />
@@ -965,8 +964,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Ad.jl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="757" column="34" selection-start-line="757" selection-start-column="34" selection-end-line="757" selection-end-column="34" />
+        <state relative-caret-position="95">
+          <caret line="874" column="35" lean-forward="true" selection-start-line="874" selection-start-column="35" selection-end-line="874" selection-end-column="35" />
           <folding>
             <element signature="e#224#365#0" />
             <element signature="e#268#285#0" />
@@ -1168,17 +1167,8 @@
             <element signature="e#18183#18197#0" />
             <element signature="e#18220#18224#0" />
             <element signature="e#18320#18342#0" />
-            <element signature="e#18851#19022#0" />
-            <element signature="e#19048#19178#0" />
-            <element signature="e#19407#19488#0" />
-            <element signature="e#19491#19572#0" />
             <element signature="e#19620#19635#0" />
             <element signature="e#19659#19663#0" />
-            <element signature="e#19741#19748#0" />
-            <element signature="e#19754#19758#0" />
-            <element signature="e#19767#19774#0" />
-            <element signature="e#19780#19784#0" />
-            <element signature="e#19799#19803#0" />
             <element signature="e#8885#10840#0" />
             <element signature="e#8639#8658#0" />
             <element signature="e#10091#10279#0" />
