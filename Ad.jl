@@ -101,7 +101,7 @@ AdNN2_instan = false
 #TODO: if e exits in some cons use check Inf in distance_matrix
 #TODO: add *M in the bilinear cons
 
-num_cluster=6
+num_cluster=9
 card=1
 visit_m=1
 limits_=[1,1]
@@ -220,29 +220,29 @@ if AdMST_instan
 
 
 	################
-	MST = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim, Seed=grb_seed));
-
-	@variable(MST, X[1:num_pts,1:num_pts], Bin);
-
-	@objective( MST, Min, sum(distance_matrix[u,v]*X[u,v] for u=1:num_pts,
-	 v=1:num_pts if distance_matrix[u,v]<Inf) );
-
-	@constraint(MST, sum(X[u,v] for u=1:num_pts, v=1:num_pts if distance_matrix[u,v]<Inf) ==num_pts-1);
-
-	for s=num_pts+1:Pow_pts_size-1
-		@constraint(MST, sum(X[u,v] for u in Pow_pts[s], v in Pow_pts[s] if distance_matrix[u,v]<Inf
-		)<= size(Pow_pts[s])[1]-1)
-
-	end
-
-# 	print(MST)
-	optimize!(MST)
-
-	print("obj val MST ",objective_value(MST), "\n");
-
-	X_ = JuMP.value.(X);
-
-	show_matrix("X", X_)
+# 	MST = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim, Seed=grb_seed));
+#
+# 	@variable(MST, X[1:num_pts,1:num_pts], Bin);
+#
+# 	@objective( MST, Min, sum(distance_matrix[u,v]*X[u,v] for u=1:num_pts,
+# 	 v=1:num_pts if distance_matrix[u,v]<Inf) );
+#
+# 	@constraint(MST, sum(X[u,v] for u=1:num_pts, v=1:num_pts if distance_matrix[u,v]<Inf) ==num_pts-1);
+#
+# 	for s=num_pts+1:Pow_pts_size-1
+# 		@constraint(MST, sum(X[u,v] for u in Pow_pts[s], v in Pow_pts[s] if distance_matrix[u,v]<Inf
+# 		)<= size(Pow_pts[s])[1]-1)
+#
+# 	end
+#
+# # 	print(MST)
+# 	optimize!(MST)
+#
+# 	print("obj val MST ",objective_value(MST), "\n");
+#
+# 	X_ = JuMP.value.(X);
+#
+# 	show_matrix("X", X_)
 
 
 end
@@ -337,9 +337,7 @@ if AdNN_instan
 # 	@variable(NN, X[1:num_pts,1:num_pts], Bin);
 #
 # 	for v=1:num_pts  # last one is all Inf if make it upper triangle distance_matrix
-# # 		@constraint(NN, X[v,v]==0)
-# # 		@constraint(NN, sum(X[v,u] for u=1:num_pts if distance_matrix[v,u]<Inf) +
-# # 		sum(X[u,v] for u=1:num_pts if distance_matrix[u,v]<Inf)==1) # this is for an undirected NN, gotta change the
+# # 	@constraint(NN, X[v,v]==0)
 # 		@constraint(NN, sum(X[u,v] for u=1:num_pts if distance_matrix[u,v]<Inf) ==1)
 # 	end
 #
@@ -387,17 +385,22 @@ if AdNN_instan
 
 	########################## directed but one into or out of each vertex
 	NN = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
-	@variable(NN, X[1:num_pts,1:num_pts], Bin);
+	@variable(NN, X[1:num_pts,1:num_pts], Bin); #IP
+# 	@variable(NN, X[1:num_pts,1:num_pts]>=0); #LP
+
+# 	for v=1:num_pts, u=1:num_pts
+# 		@constraint(NN, X[v,v]<=1)  # LP
+# 	end
 
 	for v=1:num_pts  # last one is all Inf if make it upper triangle distance_matrix
 		@constraint(NN, sum(X[u,v] for u=1:num_pts if distance_matrix[u,v]<Inf)+
-		 sum(X[v,u] for u=1:num_pts if distance_matrix[v,u]<Inf) == 1)
+		 sum(X[v,u] for u=1:num_pts if distance_matrix[v,u]<Inf) >= 1)
 	end
 
 	@objective(NN, Min,
 	sum(distance_matrix[u,v]*X[u,v] for u=1:num_pts,v=1:num_pts if distance_matrix[u,v]<Inf))
 
-	print(NN)
+# 	print(NN)
 	optimize!(NN)
 
 	print("obj val NN ",objective_value(NN), "\n");
@@ -410,7 +413,7 @@ if AdNN_instan
 
 	######################################
 	NNdual = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
-	@variable(NNdual, y[1:num_pts]);
+	@variable(NNdual, y[1:num_pts]>=0);
 	@variable(NNdual, z[1:num_pts,1:num_pts]>=0);
 
 	@objective(NNdual, Max,
@@ -420,7 +423,7 @@ if AdNN_instan
 	for u = 1:num_pts
 		for v = 1:num_pts
 			if distance_matrix[v,u] < Inf
-					@constraint(NNdual, y[v] + y[u] -z[v,u]<=distance_matrix[v,u]);
+					@constraint(NNdual, y[v] + y[u] -z[v,u]<= distance_matrix[v,u]);
 			end
 		end
 	end
