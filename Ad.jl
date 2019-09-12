@@ -122,8 +122,8 @@ function write_pandas(x_, name, dir_, j_file_name)
     to_json(Pandas.DataFrame(x_), string(dir_, name, j_file_name, ".json"))
 end
 
-AdMST_instan = true;
-AdNNnew_instan = true;
+AdMST_instan = false;
+AdNNnew_instan = false;
 AdGTSP_instan = true;
 
 AdNN2_instan = false  # nonlinear
@@ -276,14 +276,14 @@ if AdMST_instan
 
 # 	#print(read_json( "x_.json"))
 
-# 	x_ = 0
-# 	x = 0
-# 	y_ = 0
-# 	y = 0
-# 	z_ = 0
-# 	z = 0
-# 	AdMST = 0
-# 	objval = 0
+	x_ = 0
+	x = 0
+	y_ = 0
+	y = 0
+	z_ = 0
+	z = 0
+	AdMST = 0
+	objval = 0
 
 	###############
 # 	print("\n\n\n\n MST \n")
@@ -807,7 +807,7 @@ if AdGTSP_instan
 	2*sum(w[v] for v=1:num_pts+1)
 	- sum((size(Pow_pts[s])[1]-1)*p[s] for s=1:Pow_pts_size)
 	- sum(g[u] for u=1:num_pts if distance_matrix[u,num_pts+1]<Inf)
-	- sum(g[u] for u=num_pts+1:2*num_pts if distance_matrix[num_pts+1,u]<Inf)
+	- sum(g[u] for u=num_pts+1:2*num_pts if distance_matrix[num_pts+1,u-num_pts]<Inf)
 	)
 
 	for u=1:num_pts, v=1:num_pts
@@ -838,8 +838,9 @@ if AdGTSP_instan
 			@constraint(AdGTSP, g[u] >=q[u]+x[u]-1)
 		end
 	end
+
 	for u=num_pts+1:2*num_pts
-		if distance_matrix[num_pts+1,u]<Inf
+		if distance_matrix[num_pts+1,u-num_pts]<Inf
 			@constraint(AdGTSP, q[u]>=0)
 			@constraint(AdGTSP, g[u]>=0)
 			@constraint(AdGTSP, g[u] <=q[u] )

@@ -2,3 +2,5 @@ cd /auto/rcf-proj2/ma2/azizim/GTSP
 source /usr/usc/julia/1.1.1/setup.sh
 source /usr/usc/gurobi/default/setup.sh
 source /usr/usc/python/3.6.0/setup.sh
+
+salloc --ntasks=10 --time=01:00:00
