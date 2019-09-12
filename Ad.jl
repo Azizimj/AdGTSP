@@ -2,22 +2,24 @@
 # using DataFrames;
 using JuMP, DataFrames, CSV, Gurobi, Random, LinearAlgebra,
  Combinatorics, Pandas, Distributions, Plots
+#  ,HypothesisTests
 Plots_ = Plots;
-DataFrames_ = DataFrames
+DataFrames_ = DataFrames;
 
 ################################
-Random.seed!(110)
+Random.seed!(110);
 
-grb_seed = 110
+grb_seed = 110;
 save_res = true;
 
 function plot_mat(data_points, num_cluster, card)
 	display(Plots_.plot(data_points[:,1],data_points[:,2],seriestype=:scatter,title="points"))
-# 	Plots_.plot(data_points[:,1],data_points[:,2],seriestype=:scatter,title="points")
+	# Plots_.plot(data_points[:,1],data_points[:,2],seriestype=:scatter,title="points")
+	# a = rand(TruncatedNormal(0.5, sig, 0, 1),(n,2));display(Plots.plot(a[:,1],a[:,2], seriestype=:scatter))
 end
 
 function show_matrix(name, X)
-	size_ = size(X)
+	size_ = size(X);
 	if length(size_)==1
 		print(name, " vector is :\n ", X)
 	elseif length(size_)==2
@@ -120,9 +122,9 @@ function write_pandas(x_, name, dir_, j_file_name)
     to_json(Pandas.DataFrame(x_), string(dir_, name, j_file_name, ".json"))
 end
 
-AdMST_instan = true
-AdNNnew_instan = true
-AdGTSP_instan = true
+AdMST_instan = true;
+AdNNnew_instan = true;
+AdGTSP_instan = true;
 
 AdNN2_instan = false  # nonlinear
 AdNN_instan = false # first NN
@@ -133,6 +135,7 @@ card=1;
 visit_m=1;
 limits_=[1,1];
 dim = 2;
+visits_num = num_cluster*visit_m
 
 
 if size(ARGS)[1]>0
@@ -142,6 +145,7 @@ if size(ARGS)[1]>0
 	limits_=[1,1]
 	dim = 2
 	save_res = true
+	visits_num = num_cluster*visit_m
 # 	if ARGS[4] == "GTSP"
 # 		AdGTSP_instan = true
 # 	elseif ARGS[4] == "MST"
@@ -152,38 +156,46 @@ if size(ARGS)[1]>0
 
 end
 
-print("num_cluster is ", num_cluster, "\n")
-print("card is ", card, "\n")
-print("visit_m is ", visit_m, "\n")
-print("limits_ is ", limits_, "\n")
-print("dim is ", dim, "\n")
+print("num_cluster is ", num_cluster, "\n");
+print("card is ", card, "\n");
+print("visit_m is ", visit_m, "\n");
+print("limits_ is ", limits_, "\n");
+print("dim is ", dim, "\n");
 
-gtsp_ex = gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
-num_pts = gtsp_ex[1]
-data_points = gtsp_ex[2]
-distance_matrix = gtsp_ex[3]
+gtsp_ex = gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim);
+num_pts = gtsp_ex[1];
+data_points = gtsp_ex[2];
+distance_matrix = gtsp_ex[3];
 
-Pow_pts = collect(powerset(1:num_pts))
-Pow_pts = Pow_pts[2:end] # remove empty set
+Pow_pts = collect(powerset(1:num_pts));
+Pow_pts = Pow_pts[2:end]; # remove empty set
 # Pow_pts_edge = Pow_pts[num_pts+1:end] # remove singeltons
 
-Pow_pts_size = size(Pow_pts)[1]
+Pow_pts_size = size(Pow_pts)[1];
 # print("Pow set size is ", Pow_pts_size)
 
 # Pow_pts_edge_size = size(Pow_pts_edge)
 
-M_1 = 1000000000
-M_2 = 1000000000
+M_1 = 1000000000;
+M_2 = 1000000000;
 
 
 # env = Gurobi.Env()
-t_lim = 22*3600
+t_lim = 22*3600;
 # setparams!(env; IterationLimit=1000, TimeLimit= t_lim)
 
 function write_res(algo, objval, bound, x, distance_matrix_new)
+	chosen = [];
+	for i=1:num_pts
+		if x[i]>0
+			push!(chosen, data_points[i,:])
+		end
+	end
+
 	df = DataFrames_.DataFrame(algo_name=algo, objval=objval, bound=bound, x=[x], num_pts=num_pts,
 	data_points=[data_points], distance_matrix=[distance_matrix], Pow_pts_size=Pow_pts_size,
-	distance_matrix_new=[distance_matrix_new])
+	distance_matrix_new=[distance_matrix_new], chosen=[chosen])
+
     CSV.write("res.csv", df, append=true)
 end
 
@@ -246,6 +258,8 @@ if AdMST_instan
 
 	write_res("AdMST ", objval, best_bound, x_, 0)
 
+
+
 	if save_res
 
 		dir_ = string("AdMST_",num_cluster,"_",card,"_",visit_m,"/")
@@ -261,14 +275,14 @@ if AdMST_instan
 
 # 	#print(read_json( "x_.json"))
 
-	x_ = 0
-	x = 0
-	y_ = 0
-	y = 0
-	z_ = 0
-	z = 0
-	AdMST = 0
-	objval = 0
+# 	x_ = 0
+# 	x = 0
+# 	y_ = 0
+# 	y = 0
+# 	z_ = 0
+# 	z = 0
+# 	AdMST = 0
+# 	objval = 0
 
 	###############
 # 	print("\n\n\n\n MST \n")
