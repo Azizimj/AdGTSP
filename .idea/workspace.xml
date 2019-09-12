@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5e51aaf-04b4-4315-b162-813504fb9fc4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Ad.jl" beforeDir="false" afterPath="$PROJECT_DIR$/Ad.jl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AdJob.py" beforeDir="false" afterPath="$PROJECT_DIR$/AdJob.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Ad.jl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="197" column="53" selection-start-line="197" selection-start-column="47" selection-end-line="197" selection-end-column="53" />
+            <state relative-caret-position="510">
+              <caret line="126" column="21" lean-forward="true" selection-start-line="126" selection-start-column="21" selection-end-line="126" selection-end-column="21" />
               <folding>
                 <element signature="e#255#485#0" />
                 <element signature="e#371#379#0" />
@@ -77,6 +77,7 @@
                 <element signature="e#1168#1172#0" />
                 <element signature="e#1180#1189#0" />
                 <element signature="e#1196#1200#0" />
+                <element signature="e#4360#4701#0" />
                 <element signature="e#4566#4616#0" />
                 <element signature="e#4496#4505#0" />
                 <element signature="e#3549#6634#0" />
@@ -156,7 +157,6 @@
                 <element signature="e#16135#16139#0" />
                 <element signature="e#10468#10472#0" />
                 <element signature="e#10491#10495#0" />
-                <element signature="e#14062#23791#0" />
                 <element signature="e#10100#10117#0" />
                 <element signature="e#7346#7350#0" />
                 <element signature="e#7599#7606#0" />
@@ -207,7 +207,6 @@
                 <element signature="e#21529#21700#0" />
                 <element signature="e#21885#22005#0" />
                 <element signature="e#22297#22368#0" />
-                <element signature="e#22403#22474#0" />
                 <element signature="e#22898#22915#0" />
                 <element signature="e#22941#22945#0" />
                 <element signature="e#19642#19646#0" />
@@ -317,11 +316,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AdJob.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="33" column="10" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
+            <state relative-caret-position="153">
+              <caret line="14" column="70" lean-forward="true" selection-start-line="14" selection-start-column="70" selection-end-line="14" selection-end-column="70" />
               <folding>
                 <element signature="e#57#155#0" />
                 <element signature="e#93#155#0" />
@@ -379,8 +378,8 @@
         <option value="$PROJECT_DIR$/AdMST.jl" />
         <option value="$PROJECT_DIR$/test.jl" />
         <option value="$PROJECT_DIR$/Adold.jl" />
-        <option value="$PROJECT_DIR$/AdJob.py" />
         <option value="$PROJECT_DIR$/Ad.jl" />
+        <option value="$PROJECT_DIR$/AdJob.py" />
       </list>
     </option>
   </component>
@@ -881,19 +880,32 @@
       <option name="project" value="LOCAL" />
       <updated>1568271425321</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="finalized to run">
+      <created>1568328969026</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1568328969026</updated>
+    </task>
+    <task id="LOCAL-00047" summary="AdGTSP corrected">
+      <created>1568330675184</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1568330675184</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12405446" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.23404256" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.29787233" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.34042552" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -930,7 +942,8 @@
     <MESSAGE value="u-num_pts in x[u] for g &lt;-&gt; q" />
     <MESSAGE value="AdGTSP works" />
     <MESSAGE value="finalized to run" />
-    <option name="LAST_COMMIT_MESSAGE" value="finalized to run" />
+    <MESSAGE value="AdGTSP corrected" />
+    <option name="LAST_COMMIT_MESSAGE" value="AdGTSP corrected" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Ad.py" />
@@ -1072,21 +1085,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AdJob.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="33" column="10" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
-          <folding>
-            <element signature="e#57#155#0" />
-            <element signature="e#93#155#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Ad.jl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="197" column="53" selection-start-line="197" selection-start-column="47" selection-end-line="197" selection-end-column="53" />
+        <state relative-caret-position="510">
+          <caret line="126" column="21" lean-forward="true" selection-start-line="126" selection-start-column="21" selection-end-line="126" selection-end-column="21" />
           <folding>
             <element signature="e#255#485#0" />
             <element signature="e#371#379#0" />
@@ -1146,6 +1148,7 @@
             <element signature="e#1168#1172#0" />
             <element signature="e#1180#1189#0" />
             <element signature="e#1196#1200#0" />
+            <element signature="e#4360#4701#0" />
             <element signature="e#4566#4616#0" />
             <element signature="e#4496#4505#0" />
             <element signature="e#3549#6634#0" />
@@ -1225,7 +1228,6 @@
             <element signature="e#16135#16139#0" />
             <element signature="e#10468#10472#0" />
             <element signature="e#10491#10495#0" />
-            <element signature="e#14062#23791#0" />
             <element signature="e#10100#10117#0" />
             <element signature="e#7346#7350#0" />
             <element signature="e#7599#7606#0" />
@@ -1276,7 +1278,6 @@
             <element signature="e#21529#21700#0" />
             <element signature="e#21885#22005#0" />
             <element signature="e#22297#22368#0" />
-            <element signature="e#22403#22474#0" />
             <element signature="e#22898#22915#0" />
             <element signature="e#22941#22945#0" />
             <element signature="e#19642#19646#0" />
@@ -1381,6 +1382,17 @@
             <element signature="e#10124#10131#0" />
             <element signature="e#10170#10174#0" />
             <element signature="e#10187#10194#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AdJob.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="14" column="70" lean-forward="true" selection-start-line="14" selection-start-column="70" selection-end-line="14" selection-end-column="70" />
+          <folding>
+            <element signature="e#57#155#0" />
+            <element signature="e#93#155#0" />
           </folding>
         </state>
       </provider>
