@@ -131,7 +131,7 @@ AdNN_instan = false # first NN
 
 
 num_cluster=4;
-card=1;
+card=3;
 visit_m=1;
 limits_=[1,1];
 dim = 2;
@@ -192,7 +192,8 @@ function write_res(algo, objval, bound, x, distance_matrix_new)
 		end
 	end
 
-	df = DataFrames_.DataFrame(algo_name=algo, objval=objval, bound=bound, x=[x], num_pts=num_pts,
+	df = DataFrames_.DataFrame(algo_name=algo, num_cluster=num_cluster, card=card, visit_m=visit_m,
+	 limits_=[limits_], dim =dim, objval=objval, bound=bound, x=[x], num_pts=num_pts,
 	data_points=[data_points], distance_matrix=[distance_matrix], Pow_pts_size=Pow_pts_size,
 	distance_matrix_new=[distance_matrix_new], chosen=[chosen])
 
