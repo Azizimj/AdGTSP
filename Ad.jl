@@ -7,18 +7,62 @@ Plots_ = Plots;
 DataFrames_ = DataFrames;
 
 ################################
+num_cluster=4;
+card=2;
+visit_m=1;
+limits_=[1,1];
+dim = 2;
+visits_num = num_cluster*visit_m
+seed_g = 101
 
-# parse(Int,ARGS[4])
 
-Random.seed!(11);
+if size(ARGS)[1]>0
+	num_cluster=parse(Int,ARGS[1])
+	card=parse(Int,ARGS[2])
+	visit_m=parse(Int,ARGS[3])
+	limits_=[1,1]
+	dim = 2
+	save_res = true
+	visits_num = num_cluster*visit_m
+	seed_g = parse(Int,ARGS[4])
 
-grb_seed = 110;
+# 	if ARGS[4] == "GTSP"
+# 		AdGTSP_instan = true
+# 	elseif ARGS[4] == "MST"
+# 		AdMSTinstan = true
+# 	elseif ARGS[4] == "NN"
+# 		AdNNinstan = false
+# 	end
+
+end
+
+print("num_cluster is ", num_cluster, "\n");
+print("card is ", card, "\n");
+print("visit_m is ", visit_m, "\n");
+print("limits_ is ", limits_, "\n");
+print("dim is ", dim, "\n");
+
+Random.seed!(seed_g);
+
+grb_seed = seed_g;
 save_res = true;
+
+AdMST_instan = true;
+AdNNnew_instan = true;
+AdGTSP_instan = true;
+
+AdNN2_instan = false  # nonlinear
+AdNN_instan = false # first NN
+
 
 function plot_mat(data_points, num_cluster, card)
 	display(Plots_.plot(data_points[:,1],data_points[:,2],seriestype=:scatter,title="points"))
 	# Plots_.plot(data_points[:,1],data_points[:,2],seriestype=:scatter,title="points")
 	# a = rand(TruncatedNormal(0.5, sig, 0, 1),(n,2));display(Plots.plot(a[:,1],a[:,2], seriestype=:scatter))
+# 	for i=1:20
+#           global a; a = vcat(a, rand(TruncatedNormal(0.5, sig, 0, 1),(n,2)));
+#        end
+
 end
 
 function show_matrix(name, X)
@@ -125,51 +169,12 @@ function write_pandas(x_, name, dir_, j_file_name)
     to_json(Pandas.DataFrame(x_), string(dir_, name, j_file_name, ".json"))
 end
 
-AdMST_instan = false;
-AdNNnew_instan = false;
-AdGTSP_instan = true;
-
-AdNN2_instan = false  # nonlinear
-AdNN_instan = false # first NN
-
-
-num_cluster=4;
-card=3;
-visit_m=1;
-limits_=[1,1];
-dim = 2;
-visits_num = num_cluster*visit_m
-
-
-if size(ARGS)[1]>0
-	num_cluster=parse(Int,ARGS[1])
-	card=parse(Int,ARGS[2])
-	visit_m=parse(Int,ARGS[3])
-	limits_=[1,1]
-	dim = 2
-	save_res = true
-	visits_num = num_cluster*visit_m
-# 	if ARGS[4] == "GTSP"
-# 		AdGTSP_instan = true
-# 	elseif ARGS[4] == "MST"
-# 		AdMSTinstan = true
-# 	elseif ARGS[4] == "NN"
-# 		AdNNinstan = false
-# 	end
-
-end
-
-print("num_cluster is ", num_cluster, "\n");
-print("card is ", card, "\n");
-print("visit_m is ", visit_m, "\n");
-print("limits_ is ", limits_, "\n");
-print("dim is ", dim, "\n");
 
 gtsp_ex = gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim);
 num_pts = gtsp_ex[1];
 data_points = gtsp_ex[2];
 distance_matrix = gtsp_ex[3];
-exit()
+# exit()
 
 Pow_pts = collect(powerset(1:num_pts));
 Pow_pts = Pow_pts[2:end]; # remove empty set
@@ -196,7 +201,7 @@ function write_res(algo, objval, bound, x, distance_matrix_new)
 		end
 	end
 
-	df = DataFrames_.DataFrame(algo_name=algo, num_cluster=num_cluster, card=card, visit_m=visit_m,
+	df = DataFrames_.DataFrame(algo_name=algo, num_cluster=num_cluster, card=card, visit_m=visit_m, seed_g=seed_g,
 	 limits_=[limits_], dim =dim, objval=objval, bound=bound, x=[x], num_pts=num_pts,
 	data_points=[data_points], distance_matrix=[distance_matrix], Pow_pts_size=Pow_pts_size,
 	distance_matrix_new=[distance_matrix_new], chosen=[chosen])
@@ -267,7 +272,7 @@ if AdMST_instan
 
 	if save_res
 
-		dir_ = string("AdMST_",num_cluster,"_",card,"_",visit_m,"/")
+		dir_ = string("AdMST_",num_cluster,"_",card,"_",visit_m,"_",seed_g,"/")
 		mkdire_(dir_)
 		j_file_name = string(num_cluster,"_",card,"_",visit_m)
 # 		to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
@@ -431,7 +436,7 @@ if AdNNnew_instan
 
 	if save_res
 
-		dir_ = string("AdNNnew_", num_cluster,"_",card,"_",visit_m,"/")
+		dir_ = string("AdNNnew_", num_cluster,"_",card,"_",visit_m,"_",seed_g,"/")
 		mkdire_(dir_)
 		j_file_name = string(num_cluster,"_",card,"_",visit_m)
 # 		to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
@@ -897,7 +902,7 @@ if AdGTSP_instan
 	write_res("AdGTSP ", objval, best_bound, x_, distance_matrix)
 
 	if save_res
-		dir_ = string("AdGTSP_", num_cluster,"_",card,"_",visit_m,"/")
+		dir_ = string("AdGTSP_", num_cluster,"_",card,"_",visit_m,"_",seed_g,"/")
 		mkdire_(dir_)
 		j_file_name = string(num_cluster,"_",card,"_",visit_m)
 # 		to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
