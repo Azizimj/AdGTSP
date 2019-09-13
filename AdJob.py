@@ -17,7 +17,7 @@ hpc_is = True
 
 # num_clusters_card_m = [(4,3,1),(5,2,1),(5,2,2),(6,2,1),(5,3,1),(10,2,1),(20,4,2)]
 num_clusters_card_m = [(4,3,1), (4,3,2),(5,2,1),(5,2,2),(5,3,1),(6,2,1),(5,4,2),(10,3,1),(11,3,1),(12,3,1)]
-
+seeds = [112,12,14,24, 5,33,45,72, 92, 98, 1,2,3,4,5,6,7,8,9,10]
 
 if hpc_is:
 
@@ -29,30 +29,28 @@ if hpc_is:
     gurobi_dir_ = "/usr/usc/gurobi/default/setup.sh"
 
 
-    # for num_cluster, card, m, model_ in num_clusters_card_m:
-    for num_cluster, card, m in num_clusters_card_m:
-        ntasks = min(30 * num_cluster * card, 1000)
-        mem_per_cpu = "8G"
-        # jname = model_+"_"+ str(num_cluster)+"_"+str(card)+"_"+str(m)
-        jname = str(num_cluster) + "_" + str(card) + "_" + str(m)
-        f = open(jname + ".slurm", "w")
-        jobs_files.append(jname + ".slurm")
-        f.write("#!/bin/bash \n")
-        f.write("#SBATCH --ntasks={}\n".format(ntasks))
-        f.write("#SBATCH --mem-per-cpu={}\n".format(mem_per_cpu))
-        f.write("#SBATCH --time={}\n".format(time_))
-        f.write("#SBATCH --output=O" + jname + ".txt" + "\n")
-        f.write("#SBATCH --error=" + "e" + jname + ".txt" + "\n")
-        f.write("#SBATCH --job-name=" + jname + "\n")
-        f.write("cd " + hdir + "\n")
-        f.write("source " + julia_dir + "\n")
-        f.write("source " + gurobi_dir_ + "\n")
-        # f.write("julia Ad.jl " + str(num_cluster) + " "
-        #         + str(card) + " "+ str(m)+" "+ model_+ " > "+jname+".txt \n")
-        f.write("julia Ad.jl " + str(num_cluster) + " "
-                + str(card) + " " + str(m) + " > " + jname + ".txt \n")
-        print(jname)
-        f.close()
+    for seed_g in seeds:
+        for num_cluster, card, m in num_clusters_card_m:
+            ntasks = min(30 * num_cluster * card, 1000)
+            mem_per_cpu = "8G"
+            # jname = model_+"_"+ str(num_cluster)+"_"+str(card)+"_"+str(m)
+            jname = str(num_cluster) + "_" + str(card) + "_" + str(m) +"_" + str(seed_g)
+            f = open(jname + ".slurm", "w")
+            jobs_files.append(jname + ".slurm")
+            f.write("#!/bin/bash \n")
+            f.write("#SBATCH --ntasks={}\n".format(ntasks))
+            f.write("#SBATCH --mem-per-cpu={}\n".format(mem_per_cpu))
+            f.write("#SBATCH --time={}\n".format(time_))
+            f.write("#SBATCH --output=O" + jname + ".txt" + "\n")
+            f.write("#SBATCH --error=" + "e" + jname + ".txt" + "\n")
+            f.write("#SBATCH --job-name=" + jname + "\n")
+            f.write("cd " + hdir + "\n")
+            f.write("source " + julia_dir + "\n")
+            f.write("source " + gurobi_dir_ + "\n")
+            f.write("julia Ad.jl " + str(num_cluster) + " "
+                    + str(card) + " " + str(m) +" " + str(seed_g) + " > " + jname + ".txt \n")
+            print(jname)
+            f.close()
 
     time.sleep(2)
 
