@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5e51aaf-04b4-4315-b162-813504fb9fc4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/res_review.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AdJob.py" beforeDir="false" afterPath="$PROJECT_DIR$/AdJob.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/hpc/res.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/res/hpc/res.xlsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,8 +18,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Ad.jl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+            <state relative-caret-position="204">
+              <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
               <folding>
                 <element signature="e#359#697#0" />
                 <element signature="e#748#765#0" />
@@ -309,15 +311,24 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AdJob.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+            <state relative-caret-position="191">
+              <caret line="55" column="17" lean-forward="true" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
               <folding>
                 <element signature="e#57#155#0" />
                 <element signature="e#93#155#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/res_review.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="23" lean-forward="true" selection-end-line="9" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -375,6 +386,7 @@
         <option value="$PROJECT_DIR$/Adold.jl" />
         <option value="$PROJECT_DIR$/Ad.jl" />
         <option value="$PROJECT_DIR$/AdJob.py" />
+        <option value="$PROJECT_DIR$/res_review.py" />
       </list>
     </option>
   </component>
@@ -420,7 +432,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Julia.Ad">
+  <component name="RunManager" selected="Python.AdJob">
     <configuration name="Ad" type="JULIA_RUN_CONFIG_ID" factoryName="Julia" temporary="true">
       <setting name="workingDir" value="$PROJECT_DIR$" />
       <setting name="targetFile" value="$PROJECT_DIR$/Ad.jl" />
@@ -541,8 +553,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Julia.Ad" />
         <item itemvalue="Python.AdJob" />
+        <item itemvalue="Julia.Ad" />
         <item itemvalue="Julia.test" />
         <item itemvalue="Julia.AdMST" />
         <item itemvalue="Python.Ad" />
@@ -559,20 +571,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567538791613</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Working Model">
-      <created>1567571116703</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1567571116703</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Working Model">
-      <created>1567571709264</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1567571709264</updated>
     </task>
     <task id="LOCAL-00004" summary="hpc">
       <created>1567572166407</created>
@@ -903,7 +901,21 @@
       <option name="project" value="LOCAL" />
       <updated>1568348179402</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="seed_g">
+      <created>1568348372207</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1568348372207</updated>
+    </task>
+    <task id="LOCAL-00052" summary="seed_g">
+      <created>1568348800272</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1568348800272</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -915,13 +927,13 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.24222586" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924356" weight="0.41571194" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.34042552" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4977307" weight="0.43535188" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4977307" visible="true" weight="0.16366611" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50075644" side_tool="true" weight="0.39443535" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -955,6 +967,17 @@
     <MESSAGE value="AdGTSP corrected" />
     <MESSAGE value="seed_g" />
     <option name="LAST_COMMIT_MESSAGE" value="seed_g" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/res_review.py</url>
+          <line>5</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Ad.py" />
@@ -1098,8 +1121,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Ad.jl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+        <state relative-caret-position="204">
+          <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
           <folding>
             <element signature="e#359#697#0" />
             <element signature="e#748#765#0" />
@@ -1392,12 +1415,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AdJob.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+        <state relative-caret-position="191">
+          <caret line="55" column="17" lean-forward="true" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
           <folding>
             <element signature="e#57#155#0" />
             <element signature="e#93#155#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res_review.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="23" lean-forward="true" selection-end-line="9" selection-end-column="15" />
         </state>
       </provider>
     </entry>
