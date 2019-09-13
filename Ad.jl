@@ -15,6 +15,8 @@ dim = 2;
 visits_num = num_cluster*visit_m
 seed_g = 101
 
+sig = 0.1
+ave = 0.5
 
 if size(ARGS)[1]>0
 	num_cluster=parse(Int,ARGS[1])
@@ -83,7 +85,7 @@ function gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
     for i in 1:num_pts
 		for d in 1:dim
 # 			data_points[i,d] = (rand(1)*limits_[d])[1]
-			data_points[i,d] =  rand(TruncatedNormal(0, .1, 0, limits_[d]))
+			data_points[i,d] =  rand(TruncatedNormal(ave, sig, 0, limits_[d]))
 		end
 	end
 
@@ -202,7 +204,7 @@ function write_res(algo, objval, bound, x, distance_matrix_new)
 	end
 
 	df = DataFrames_.DataFrame(algo_name=algo, num_cluster=num_cluster, card=card, visit_m=visit_m, seed_g=seed_g,
-	 limits_=[limits_], dim =dim, objval=objval, bound=bound, x=[x], num_pts=num_pts,
+	 limits_=[limits_], dim =dim, sig=sig, ave=ave, objval=objval, bound=bound, x=[x], num_pts=num_pts,
 	data_points=[data_points], distance_matrix=[distance_matrix], Pow_pts_size=Pow_pts_size,
 	distance_matrix_new=[distance_matrix_new], chosen=[chosen])
 
