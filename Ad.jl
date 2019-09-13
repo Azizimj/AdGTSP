@@ -7,7 +7,10 @@ Plots_ = Plots;
 DataFrames_ = DataFrames;
 
 ################################
-Random.seed!(110);
+
+# parse(Int,ARGS[4])
+
+Random.seed!(11);
 
 grb_seed = 110;
 save_res = true;
@@ -166,6 +169,7 @@ gtsp_ex = gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim);
 num_pts = gtsp_ex[1];
 data_points = gtsp_ex[2];
 distance_matrix = gtsp_ex[3];
+exit()
 
 Pow_pts = collect(powerset(1:num_pts));
 Pow_pts = Pow_pts[2:end]; # remove empty set
