@@ -17,7 +17,7 @@ hpc_is = True
 
 # num_clusters_card_m = [(4,3,1),(5,2,1),(5,2,2),(6,2,1),(5,3,1),(10,2,1),(20,4,2)]
 num_clusters_card_m = [(4,3,1), (4,3,2),(5,2,1),(5,2,2),(5,3,1),(6,2,1),(5,4,2),(10,3,1),(11,3,1),(12,3,1)]
-seeds = [112,12,14,24, 5,33,45,72, 92, 98, 1,2,3,4,5,6,7,8,9,10]
+seeds = [111,222,333,444,555,666,777,888,999,1111,2222,3333,4444,5555,6666,7777,8888,9999,1010,2020]
 
 if hpc_is:
 
@@ -54,12 +54,12 @@ if hpc_is:
 
     time.sleep(2)
 
-    make_dir("log_")
-    f_jobs = open("log_/jobs.txt","a")
-    f_jobs.write("#############################\n")
+    # make_dir("log_")
+    # f_jobs = open("log_/jobs.txt","a")
+    # f_jobs.write("#############################\n")
 
-    for jname in jobs_files:
-        os.system("sbatch "+jname)
-        f_jobs.write(jname+"\n")
-        time.sleep(2)
-    f_jobs.close()
+    # for jname in jobs_files:
+    #     os.system("sbatch "+jname)
+    #     f_jobs.write(jname+"\n")
+    #     time.sleep(2)
+    # f_jobs.close()
