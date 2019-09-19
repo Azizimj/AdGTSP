@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5e51aaf-04b4-4315-b162-813504fb9fc4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pkgs-julia.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ad.jl" beforeDir="false" afterPath="$PROJECT_DIR$/Ad.jl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AdJob.py" beforeDir="false" afterPath="$PROJECT_DIR$/AdJob.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,12 +47,6 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Ad.jl" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="170" />
-    <option name="y" value="91" />
-    <option name="width" value="1026" />
-    <option name="height" value="546" />
-  </component>
   <component name="ProjectId" id="1R5oLLZxOuKYq92mWUuYHXPyudS" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -69,13 +66,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.res_review">
+  <component name="RunManager">
     <configuration name="Ad" type="JULIA_RUN_CONFIG_ID" factoryName="Julia" temporary="true">
       <setting name="workingDir" value="$PROJECT_DIR$" />
       <setting name="targetFile" value="$PROJECT_DIR$/Ad.jl" />
       <setting name="additionalOptions" value="" />
       <setting name="programArgs" value="" />
-      <setting name="juliaExecutive" value="E:\program\julia_v1\Julia-1.2.0\bin\julia.exe" />
+      <setting name="juliaExecutive" value="C:\Users\JGCLab\Julia-1.2.0\bin\julia.exe" />
       <setting name="jitCompiler" value="yes" />
       <setting name="deprecationWarning" value="yes" />
       <setting name="codeCoverage" value="none" />
@@ -93,110 +90,9 @@
       <setting name="optimizationLevel" value="3" />
       <method v="2" />
     </configuration>
-    <configuration name="AdMST" type="JULIA_RUN_CONFIG_ID" factoryName="Julia" temporary="true">
-      <setting name="workingDir" value="$PROJECT_DIR$" />
-      <setting name="targetFile" value="$PROJECT_DIR$/AdMST.jl" />
-      <setting name="additionalOptions" value="" />
-      <setting name="programArgs" value="" />
-      <setting name="juliaExecutive" value="E:\program\julia_v1\Julia-1.2.0\bin\julia.exe" />
-      <setting name="jitCompiler" value="yes" />
-      <setting name="deprecationWarning" value="yes" />
-      <setting name="codeCoverage" value="none" />
-      <setting name="trackAllocation" value="none" />
-      <setting name="systemImage" value="" />
-      <setting name="systemImageOption" value="false" />
-      <setting name="inlineOption" value="false" />
-      <setting name="checkBoundsOption" value="false" />
-      <setting name="colorOption" value="true" />
-      <setting name="mathModeOption" value="false" />
-      <setting name="handleSignalOption" value="false" />
-      <setting name="startupFileOption" value="true" />
-      <setting name="historyOption" value="false" />
-      <setting name="launchReplOption" value="false" />
-      <setting name="optimizationLevel" value="3" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test" type="JULIA_RUN_CONFIG_ID" factoryName="Julia" temporary="true">
-      <setting name="workingDir" value="$PROJECT_DIR$" />
-      <setting name="targetFile" value="$PROJECT_DIR$/test.jl" />
-      <setting name="additionalOptions" value="" />
-      <setting name="programArgs" value="" />
-      <setting name="juliaExecutive" value="E:\program\julia_v1\Julia-1.1.1\bin\julia.exe" />
-      <setting name="jitCompiler" value="yes" />
-      <setting name="deprecationWarning" value="yes" />
-      <setting name="codeCoverage" value="none" />
-      <setting name="trackAllocation" value="none" />
-      <setting name="systemImage" value="" />
-      <setting name="systemImageOption" value="false" />
-      <setting name="inlineOption" value="false" />
-      <setting name="checkBoundsOption" value="false" />
-      <setting name="colorOption" value="true" />
-      <setting name="mathModeOption" value="false" />
-      <setting name="handleSignalOption" value="false" />
-      <setting name="startupFileOption" value="true" />
-      <setting name="historyOption" value="false" />
-      <setting name="launchReplOption" value="false" />
-      <setting name="optimizationLevel" value="3" />
-      <method v="2" />
-    </configuration>
-    <configuration name="AdJob" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="AdTSP_code" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/AdJob.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="res_review" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="AdTSP_code" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="E:\program\python3\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/res/hpc" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/res/hpc/res_review.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Julia.AdMST" />
-      <item itemvalue="Julia.test" />
-      <item itemvalue="Julia.Ad" />
-      <item itemvalue="Python.AdJob" />
-      <item itemvalue="Python.res_review" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.res_review" />
-        <item itemvalue="Python.AdJob" />
         <item itemvalue="Julia.Ad" />
-        <item itemvalue="Julia.test" />
-        <item itemvalue="Julia.AdMST" />
       </list>
     </recent_temporary>
   </component>
@@ -210,14 +106,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567538791613</updated>
-      <workItem from="1568966262226" duration="18000" />
-    </task>
-    <task id="LOCAL-00009" summary="save json">
-      <created>1567632256990</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1567632256990</updated>
+      <workItem from="1568966262226" duration="532000" />
     </task>
     <task id="LOCAL-00010" summary="model corrected">
       <created>1567879958699</created>
@@ -555,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568401784683</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="res review">
+      <created>1568966303945</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1568966303945</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

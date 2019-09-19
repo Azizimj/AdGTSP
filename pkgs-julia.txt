@@ -1,0 +1,31 @@
+Pkg.add("JuMP")
+using JuMP
+
+Pkg.add("DataFrames")
+using DataFrames
+
+Pkg.add("CSV")
+using CSV
+
+Pkg.add("Gurobi")
+using Gurobi
+
+Pkg.add("Random")
+using Random
+
+Pkg.add("LinearAlgebra")
+using LinearAlgebra
+
+Pkg.add("Combinatorics")
+using Combinatorics
+
+Pkg.add("Pandas")
+using Pandas
+
+Pkg.add("Distributions")
+using Distributions
+
+Pkg.add("Plots")
+using Plots
+
+

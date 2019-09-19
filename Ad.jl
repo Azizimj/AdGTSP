@@ -7,8 +7,10 @@ Plots_ = Plots;
 DataFrames_ = DataFrames;
 
 ################################
-num_cluster=4;
-card=2;
+save_res = true;
+
+num_cluster=5;
+card=5;
 visit_m=1;
 limits_=[1,1];
 dim = 2;
@@ -47,7 +49,6 @@ print("dim is ", dim, "\n");
 Random.seed!(seed_g);
 
 grb_seed = seed_g;
-save_res = true;
 
 AdMST_instan = true;
 AdNNnew_instan = true;
