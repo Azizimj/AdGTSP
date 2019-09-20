@@ -7,7 +7,7 @@ def make_dir(dir):
         print("dir ( {} ) is made ".format(dir))
         os.mkdir(dir)
 
-hpc_is = True
+hpc_is = False
 
 # num_clusters_card_m = [(5,2,1,'GTSP'),(5,2,1,'MST'),(5,2,1,'NN'),
 #                        (5,4,2,'GTSP'),(5,4,2,'MST'),(5,4,2,'NN'),
@@ -64,3 +64,17 @@ if hpc_is:
         f_jobs.write(jname+"\n")
         time.sleep(2)
     f_jobs.close()
+
+else:
+    make_dir("log_")
+    f_jobs = open("log_/jobs.txt", "a")
+    f_jobs.write("#############################\n")
+
+    for seed_g in seeds:
+        for num_cluster, card, m in num_clusters_card_m:
+            jname = str(num_cluster) + "_" + str(card) + "_" + str(m) + "_" + str(seed_g)
+            f_jobs.write(jname + "\n")
+            os.write("julia Ad.jl " + str(num_cluster) + " "
+                     + str(card) + " " + str(m) + " " + str(seed_g) + " > " + jname + ".txt \n")
+
+            time.sleep(1)
