@@ -50,9 +50,9 @@ Random.seed!(seed_g);
 
 grb_seed = seed_g;
 
-AdMST_instan = true;
+AdMST_instan = false;
 AdNNnew_instan = true;
-AdGTSP_instan = true;
+AdGTSP_instan = false;
 
 AdNN2_instan = false  # nonlinear
 AdNN_instan = false # first NN

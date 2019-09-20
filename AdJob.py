@@ -16,9 +16,10 @@ hpc_is = False
 #                        (20,5,1,'GTSP'),(20,5,1,'MST'),(20,5,1,'NN')]
 
 # num_clusters_card_m = [(4,3,1),(5,2,1),(5,2,2),(6,2,1),(5,3,1),(10,2,1),(20,4,2)]
-num_clusters_card_m = [(4,4,1), (4,5,2),(3,5,1),(5,5,1),(5,3,1)]
+num_clusters_card_m = [(4,4,1), (4,5,2), (5,5,1), (5,5,2),(10,3,1)]
 # ,(6,2,1),(5,4,2),(10,3,1),(11,3,1),(12,3,1)
-seeds = [111,222,333,444,555,666,777,888,999,1111,2222,3333,4444,5555,6666,7777,8888,9999,1010,2020]
+# seeds = [111,222,333,444,555,666,777,888,999,1111,2222,3333,4444,5555,6666,7777,8888,9999,1010,2020]
+seeds = [222,333,444,555,666,777,888,999,113]
 
 if hpc_is:
 
@@ -74,7 +75,9 @@ else:
         for num_cluster, card, m in num_clusters_card_m:
             jname = str(num_cluster) + "_" + str(card) + "_" + str(m) + "_" + str(seed_g)
             f_jobs.write(jname + "\n")
-            os.write("julia Ad.jl " + str(num_cluster) + " "
+            print("job {} started".format(jname))
+            st_t = time.time()
+            os.system("julia Ad.jl " + str(num_cluster) + " "
                      + str(card) + " " + str(m) + " " + str(seed_g) + " > " + jname + ".txt \n")
-
+            print("job {} end in {} sec".format(jname, time.time()-st_t))
             time.sleep(1)
