@@ -14,11 +14,11 @@ Plots_ = Plots;
 DataFrames_ = DataFrames;
 
 ################################
-save_res = false;
+save_res = false; #TODO: change to true for runs
 
 num_cluster=3;
 card=2;
-visit_m=1;
+visit_m=2;
 limits_=[1,1];
 dim = 2;
 visits_num = num_cluster*visit_m
@@ -57,8 +57,8 @@ Random.seed!(seed_g);
 
 grb_seed = seed_g;
 
-AdMST_instan = false;
-AdNNnew_instan = false;
+AdMST_instan = true;
+AdNNnew_instan = true;
 AdGTSP_instan = true;
 
 AdNN2_instan = false  # nonlinear
@@ -100,8 +100,8 @@ function gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
 	distance_matrix = ones(num_pts, num_pts) * Inf
     for i in 1:num_pts
         for j in 1:num_pts
-#             if i < j  # if want to make the dis mat traingle
-			if i != j
+            if i < j  # if want to make the dis mat traingle (tried and gives same answer)
+# 			if i != j
                 distance_matrix[i, j] = norm(data_points[i,:]- data_points[j,:])
 			end
 		end
@@ -139,7 +139,8 @@ function add_v1_(distance_matrix, v_1, num_pts, data_points)
 
 	a1 = [distance_matrix dis_to_v1]
 	b1 = [dis_to_v1; Inf]
-	distance_matrix_ = [a1; transpose(b1)]
+# 	distance_matrix_ = [a1; transpose(b1)]
+	distance_matrix_ = [a1; ones(1,num_pts+1) * Inf] # if wanna have upper triangle matrix
 	show_matrix("dis mat with v_1", distance_matrix_)
 	return distance_matrix_
 end
@@ -203,7 +204,7 @@ M_2 = 1000000000;
 t_lim = 22*3600;
 # setparams!(env; IterationLimit=1000, TimeLimit= t_lim)
 
-function write_res(algo, objval, bound, x, distance_matrix_new)
+function write_res(algo, objval, bound, x, distance_matrix_new, t_)
 	chosen = [];
 	for i=1:num_pts
 		if x[i]>0
@@ -214,7 +215,7 @@ function write_res(algo, objval, bound, x, distance_matrix_new)
 	df = DataFrames_.DataFrame(algo_name=algo, num_cluster=num_cluster, card=card, visit_m=visit_m, seed_g=seed_g,
 	 limits_=[limits_], dim =dim, sig=sig, ave=ave, objval=objval, bound=bound, x=[x], num_pts=num_pts,
 	data_points=[data_points], distance_matrix=[distance_matrix], Pow_pts_size=Pow_pts_size,
-	distance_matrix_new=[distance_matrix_new], chosen=[chosen])
+	distance_matrix_new=[distance_matrix_new], chosen=[chosen], time_ = time()-t_)
 
     CSV.write("res.csv", df, append=true)
 end
@@ -222,6 +223,7 @@ end
 
 if AdMST_instan
 	print("\n\n\n\n AdMST \n")
+	t_ = time();
 
 	AdMST = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim, Seed=grb_seed));
 	x = 0
@@ -267,6 +269,7 @@ if AdMST_instan
 	objval = objective_value(AdMST)
 	best_bound = objective_bound(AdMST)
 	print("obj val AdMST ", objval, "\n");
+	print("done in ", time()-t, " seconds\n");
 
 	x_ = JuMP.value.(x);
 	y_ = JuMP.value.(y);
@@ -276,8 +279,7 @@ if AdMST_instan
 	show_matrix("y ", y_)
 	show_matrix("z ", z_)
 
-	write_res("AdMST ", objval, best_bound, x_, 0)
-
+	write_res("AdMST ", objval, best_bound, x_, 0, t_)
 
 
 	if save_res
@@ -305,63 +307,68 @@ if AdMST_instan
 	objval = 0
 
 	###############
-# 	print("\n\n\n\n MST \n")
-# 	MST = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim, Seed=grb_seed));
-# 	X = 0
-# 	@variable(MST, X[1:num_pts,1:num_pts], Bin);
-#
-# 	@objective( MST, Min, sum(distance_matrix[u,v]*X[u,v] for u=1:num_pts,
-# 	 v=1:num_pts if distance_matrix[u,v]<Inf) );
-#
-# 	@constraint(MST, sum(X[u,v] for u=1:num_pts, v=1:num_pts if distance_matrix[u,v]<Inf) == num_pts-1);
-#
-# 	for s=num_pts+1:Pow_pts_size-1
-# 		@constraint(MST, sum(X[u,v] for u in Pow_pts[s], v in Pow_pts[s] if distance_matrix[u,v]<Inf
-# 		)<= size(Pow_pts[s])[1]-1)
-#
-# 	end
-#
-# 	optimize!(MST)
-# 	objval = objective_value(MST)
-# 	best_bound = objective_bound(MST)
-# 	print("obj val MST ",objval, "\n");
-# 	X_ = JuMP.value.(X);
-# 	show_matrix("X", X_)
-#
-# 	X_ = 0
-# 	X = 0
-#
-# 	######################
-# 	print("\n\n\n\n MST dual \n")
-#
-# 	MSTdual = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim, Seed=grb_seed));
-# 	z = 0
-# 	@variable(MSTdual, z[1:Pow_pts_size]);
-#
-# 	for u = 1:num_pts
-# 		for v = 1:num_pts
-# 			if distance_matrix[u,v] < Inf
-# 				@constraint(MSTdual, -sum(z[s] for s=num_pts+1:Pow_pts_size if u in Pow_pts[s] &&
-# 				 v in Pow_pts[s]) <= distance_matrix[u,v]);
-#
-# 			end
-# 		end
-# 	end
-#
-# 	for s=1:Pow_pts_size-1
-# 		@constraint(MSTdual, z[s] >= 0)
-# 	end
-#
-# 	@objective(MSTdual,Max, -sum((size(Pow_pts[s])[1]-1)*z[s] for s=1:Pow_pts_size) );
-#
-# 	optimize!(MSTdual)
-# 	print("obj val MST dual ",objective_value(MSTdual), "\n");
-# 	z_ = JuMP.value.(z);
-# 	show_matrix("z ", z_)
-#
-# 	z = 0
-# 	z_ = 0
-# 	MSTdual = 0
+	print("\n\n\n\n MST \n")
+	t_ = time();
+
+	MST = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim, Seed=grb_seed));
+	X = 0
+	@variable(MST, X[1:num_pts,1:num_pts], Bin);
+
+	@objective( MST, Min, sum(distance_matrix[u,v]*X[u,v] for u=1:num_pts,
+	 v=1:num_pts if distance_matrix[u,v]<Inf) );
+
+	@constraint(MST, sum(X[u,v] for u=1:num_pts, v=1:num_pts if distance_matrix[u,v]<Inf) == num_pts-1);
+
+	for s=num_pts+1:Pow_pts_size-1
+		@constraint(MST, sum(X[u,v] for u in Pow_pts[s], v in Pow_pts[s] if distance_matrix[u,v]<Inf
+		)<= size(Pow_pts[s])[1]-1)
+
+	end
+
+	optimize!(MST)
+	objval = objective_value(MST)
+	best_bound = objective_bound(MST)
+	print("obj val MST ",objval, "\n");
+	print("done in ", time()-t, " seconds\n");
+	X_ = JuMP.value.(X);
+	show_matrix("X", X_)
+
+	X_ = 0
+	X = 0
+
+	######################
+	print("\n\n\n\n MST dual \n")
+	t_ = time();
+
+	MSTdual = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim, Seed=grb_seed));
+	z = 0
+	@variable(MSTdual, z[1:Pow_pts_size]);
+
+	for u = 1:num_pts
+		for v = 1:num_pts
+			if distance_matrix[u,v] < Inf
+				@constraint(MSTdual, -sum(z[s] for s=num_pts+1:Pow_pts_size if u in Pow_pts[s] &&
+				 v in Pow_pts[s]) <= distance_matrix[u,v]);
+
+			end
+		end
+	end
+
+	for s=1:Pow_pts_size-1
+		@constraint(MSTdual, z[s] >= 0)
+	end
+
+	@objective(MSTdual,Max, -sum((size(Pow_pts[s])[1]-1)*z[s] for s=1:Pow_pts_size) );
+
+	optimize!(MSTdual)
+	print("obj val MST dual ",objective_value(MSTdual), "\n");
+	print("done in ", time()-t, " seconds\n");
+	z_ = JuMP.value.(z);
+	show_matrix("z ", z_)
+
+	z = 0
+	z_ = 0
+	MSTdual = 0
 
 
 end
@@ -369,6 +376,7 @@ end
 if AdNNnew_instan
 
 	print("\n\n\n\n AdNNnew \n")
+	t_ = time();
 	M_1 = 1000000000
 	M_2 = 1000000000
 	M_3 = 1000000000
@@ -429,6 +437,7 @@ if AdNNnew_instan
 	objval = objective_value(AdNN)
 	best_bound = objective_bound(AdNN)
 	print("obj val AdNNnew ", objval, "\n");
+	print("done in ", time()-t_, " seconds\n");
 
 	x_ = JuMP.value.(x);
 	y_ = JuMP.value.(y);
@@ -475,68 +484,68 @@ if AdNNnew_instan
 	AdNN = 0
 
 	########################## directed but one into or out of each vertex
-# 	print("\n\n\n\n NNnew \n")
-# 	NN = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
-# 	X = 0
-# 	@variable(NN, X[1:num_pts,1:num_pts], Bin); #IP
-# # 	@variable(NN, X[1:num_pts,1:num_pts]>=0); #LP
-#
-# # 	for v=1:num_pts, u=1:num_pts
-# # 		@constraint(NN, X[v,v]<=1)  # LP
-# # 	end
-#
-# 	for v=1:num_pts  # last one is all Inf if make it upper triangle distance_matrix
-# 		@constraint(NN, sum(X[u,v] for u=1:num_pts if distance_matrix[u,v]<Inf)+
-# 		 sum(X[v,u] for u=1:num_pts if distance_matrix[v,u]<Inf) >= 1)
+	print("\n\n\n\n NNnew \n")
+	NN = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
+	X = 0
+	@variable(NN, X[1:num_pts,1:num_pts], Bin); #IP
+# 	@variable(NN, X[1:num_pts,1:num_pts]>=0); #LP
+
+# 	for v=1:num_pts, u=1:num_pts
+# 		@constraint(NN, X[v,v]<=1)  # LP
 # 	end
-#
-# 	@objective(NN, Min,
-# 	sum(distance_matrix[u,v]*X[u,v] for u=1:num_pts,v=1:num_pts if distance_matrix[u,v]<Inf))
-#
-# 	optimize!(NN)
-# 	print("obj val NNnew ",objective_value(NN), "\n");
-#
-# 	X_ = JuMP.value.(X);
-# 	show_matrix("X", X_)
-#
-# 	X = 0
-# 	X_ = 0
-#
-#
-# 	######################################
-# 	print("\n\n\n NNnew dual \n")
-# 	NNdual = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
-# 	y = 0
-# 	z = 0
-# 	@variable(NNdual, y[1:num_pts]>=0);
-# 	@variable(NNdual, z[1:num_pts,1:num_pts]>=0);
-#
-# 	@objective(NNdual, Max,
-# 	sum(y[v] for v=1:num_pts)-
-# 	sum(z[u,v] for u=1:num_pts,v=1:num_pts if distance_matrix[u,v]<Inf));
-#
-# 	for u = 1:num_pts
-# 		for v = 1:num_pts
-# 			if distance_matrix[v,u] < Inf
-# 					@constraint(NNdual, y[v] + y[u] -z[v,u]<= distance_matrix[v,u]);
-# 			end
-# 		end
-# 	end
-#
-# 	optimize!(NNdual)
-#
-# 	print("obj val NNnew dual ",objective_value(NNdual), "\n");
-#
-# 	y_ = JuMP.value.(y);
-# 	z_ = JuMP.value.(z);
-# 	show_matrix("y ", y_)
-# 	show_matrix("z ", z_)
-#
-# 	y = 0
-# 	y_ = 0
-# 	z = 0
-# 	z_ = 0
-# 	NNdual = 0
+
+	for v=1:num_pts  # last one is all Inf if make it upper triangle distance_matrix
+		@constraint(NN, sum(X[u,v] for u=1:num_pts if distance_matrix[u,v]<Inf)+
+		 sum(X[v,u] for u=1:num_pts if distance_matrix[v,u]<Inf) >= 1)
+	end
+
+	@objective(NN, Min,
+	sum(distance_matrix[u,v]*X[u,v] for u=1:num_pts,v=1:num_pts if distance_matrix[u,v]<Inf))
+
+	optimize!(NN)
+	print("obj val NNnew ",objective_value(NN), "\n");
+
+	X_ = JuMP.value.(X);
+	show_matrix("X", X_)
+
+	X = 0
+	X_ = 0
+
+
+	######################################
+	print("\n\n\n NNnew dual \n")
+	NNdual = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
+	y = 0
+	z = 0
+	@variable(NNdual, y[1:num_pts]>=0);
+	@variable(NNdual, z[1:num_pts,1:num_pts]>=0);
+
+	@objective(NNdual, Max,
+	sum(y[v] for v=1:num_pts)-
+	sum(z[u,v] for u=1:num_pts,v=1:num_pts if distance_matrix[u,v]<Inf));
+
+	for u = 1:num_pts
+		for v = 1:num_pts
+			if distance_matrix[v,u] < Inf
+					@constraint(NNdual, y[v] + y[u] -z[v,u]<= distance_matrix[v,u]);
+			end
+		end
+	end
+
+	optimize!(NNdual)
+
+	print("obj val NNnew dual ",objective_value(NNdual), "\n");
+
+	y_ = JuMP.value.(y);
+	z_ = JuMP.value.(z);
+	show_matrix("y ", y_)
+	show_matrix("z ", z_)
+
+	y = 0
+	y_ = 0
+	z = 0
+	z_ = 0
+	NNdual = 0
 
 
 end
@@ -668,131 +677,131 @@ if AdGTSP_instan
 
 
 	#########################
-# 	print("\n\n\n\n TSP \n")
-#
-#
-# 	TSP = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
-# 	X = 0
-# 	@variable(TSP, X[1:num_pts+1,1:num_pts+1], Bin);
-#
-# 	@objective(TSP, Min,
-# 	sum(distance_matrix[u,v]*X[u,v] for u=1:num_pts+1, v=1:num_pts+1 if distance_matrix[u,v]<Inf))
-#
-# 	for v=1:num_pts+1
-# 		@constraint(TSP, sum(X[v,u] for u=1:num_pts+1 if distance_matrix[v,u]<Inf )+
-# 		sum(X[u,v] for u=1:num_pts+1 if distance_matrix[u,v]<Inf )== 2)
-# 	end
-#
-# 	@constraint(TSP, sum(X[v,u] for v=1:num_pts, u=1:num_pts if distance_matrix[u,v]<Inf  ) == num_pts+1-2
-# 	)
-#
-# 	for s=1:Pow_pts_size-1
-# 		@constraint(TSP, sum(X[v,u] for v in Pow_pts[s], u in Pow_pts[s] if distance_matrix[v,u]<Inf) <=
-# 		 size(Pow_pts[s])[1]-1)
-# 	end
-#
-# 	optimize!(TSP)
-#
-# 	print("obj val TSP ",objective_value(TSP), "\n");
-#
-# 	X_ = JuMP.value.(X);
-#
-# 	show_matrix("X ", X_)
-# 	X = 0
-# 	X_ = 0
-# 	TSP = 0
-#
-# # 	################################## dual TSP
-# 	print("\n\n\n\n TSP dual \n")
-#
-# 	TSPd = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
-#
-# 	y = 0
-# 	z = 0
-# 	q = 0
-# 	@variable(TSPd, y[1:num_pts+1]>=0);
-# 	@variable(TSPd, z[1:Pow_pts_size]);
-# # 	@variable(TSPd, q[1:num_pts+1 , 1:num_pts+1 ]);
-# 	@variable(TSPd, q[1:2*num_pts]);  # for e=(v,v_1) and e=(v_1,v)
-#
-# # 	@objective(TSPd, Max,
-# # 	2*sum(y[v] for v=1:num_pts)
-# # 	- sum((size(Pow_pts[s])[1]-1)*z[s] for s=1:Pow_pts_size)
-# # 	- sum(q[u,num_pts+1] for u=1:num_pts if distance_matrix[u,num_pts+1]<Inf)
-# # 	- sum(q[num_pts+1,u] for u=1:num_pts if distance_matrix[num_pts+1,u]<Inf)
-# # 	)
-#
+	print("\n\n\n\n TSP \n")
+
+
+	TSP = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
+	X = 0
+	@variable(TSP, X[1:num_pts+1,1:num_pts+1], Bin);
+
+	@objective(TSP, Min,
+	sum(distance_matrix[u,v]*X[u,v] for u=1:num_pts+1, v=1:num_pts+1 if distance_matrix[u,v]<Inf))
+
+	for v=1:num_pts+1
+		@constraint(TSP, sum(X[v,u] for u=1:num_pts+1 if distance_matrix[v,u]<Inf )+
+		sum(X[u,v] for u=1:num_pts+1 if distance_matrix[u,v]<Inf )== 2)
+	end
+
+	@constraint(TSP, sum(X[v,u] for v=1:num_pts, u=1:num_pts if distance_matrix[u,v]<Inf  ) == num_pts+1-2
+	)
+
+	for s=1:Pow_pts_size-1
+		@constraint(TSP, sum(X[v,u] for v in Pow_pts[s], u in Pow_pts[s] if distance_matrix[v,u]<Inf) <=
+		 size(Pow_pts[s])[1]-1)
+	end
+
+	optimize!(TSP)
+
+	print("obj val TSP ",objective_value(TSP), "\n");
+
+	X_ = JuMP.value.(X);
+
+	show_matrix("X ", X_)
+	X = 0
+	X_ = 0
+	TSP = 0
+
+# 	################################## dual TSP
+	print("\n\n\n\n TSP dual \n")
+
+	TSPd = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
+
+	y = 0
+	z = 0
+	q = 0
+	@variable(TSPd, y[1:num_pts+1]>=0);
+	@variable(TSPd, z[1:Pow_pts_size]);
+# 	@variable(TSPd, q[1:num_pts+1 , 1:num_pts+1 ]);
+	@variable(TSPd, q[1:2*num_pts]);  # for e=(v,v_1) and e=(v_1,v)
+
 # 	@objective(TSPd, Max,
 # 	2*sum(y[v] for v=1:num_pts)
 # 	- sum((size(Pow_pts[s])[1]-1)*z[s] for s=1:Pow_pts_size)
-# 	- sum(q[u] for u=1:num_pts if distance_matrix[u,num_pts+1]<Inf)
-# 	- sum(q[u] for u=num_pts+1:2*num_pts if distance_matrix[num_pts+1,u]<Inf)
+# 	- sum(q[u,num_pts+1] for u=1:num_pts if distance_matrix[u,num_pts+1]<Inf)
+# 	- sum(q[num_pts+1,u] for u=1:num_pts if distance_matrix[num_pts+1,u]<Inf)
 # 	)
-#
-#
-# # 	@objective(TSPd, Max, 0) # to check feasibility bc it was unbounded
-#
-# 	for u=1:num_pts, v=1:num_pts
-# 		if distance_matrix[u,v]<Inf
-# 		@constraint(TSPd,
-# 		 y[u]+y[v]-sum(z[s] for s=num_pts:Pow_pts_size if u in Pow_pts[s]
-# 		 && v in Pow_pts[s]) <= distance_matrix[u,v]);
-# 	 	end
-# 	end
-#
-# 	for u=1:num_pts
-# # 		if distance_matrix[u,num_pts+1] < Inf
-# # 			@constraint(TSPd, y[u]+y[num_pts+1]-q[u,num_pts+1] <= distance_matrix[u,num_pts+1])  # for 2D q
-# # 		end
-#
+
+	@objective(TSPd, Max,
+	2*sum(y[v] for v=1:num_pts)
+	- sum((size(Pow_pts[s])[1]-1)*z[s] for s=1:Pow_pts_size)
+	- sum(q[u] for u=1:num_pts if distance_matrix[u,num_pts+1]<Inf)
+	- sum(q[u] for u=num_pts+1:2*num_pts if distance_matrix[num_pts+1,u]<Inf)
+	)
+
+
+# 	@objective(TSPd, Max, 0) # to check feasibility bc it was unbounded
+
+	for u=1:num_pts, v=1:num_pts
+		if distance_matrix[u,v]<Inf
+		@constraint(TSPd,
+		 y[u]+y[v]-sum(z[s] for s=num_pts:Pow_pts_size if u in Pow_pts[s]
+		 && v in Pow_pts[s]) <= distance_matrix[u,v]);
+	 	end
+	end
+
+	for u=1:num_pts
 # 		if distance_matrix[u,num_pts+1] < Inf
-# 			@constraint(TSPd, y[u]+y[num_pts+1]-q[u] <= distance_matrix[u,num_pts+1])
+# 			@constraint(TSPd, y[u]+y[num_pts+1]-q[u,num_pts+1] <= distance_matrix[u,num_pts+1])  # for 2D q
 # 		end
-#
-# 	end
-#
-# 	for s=1:Pow_pts_size-1
-# 		@constraint(TSPd, z[s]>=0)
-# 	end
-#
-# # 	for u=1:num_pts
-# # 		if distance_matrix[u,num_pts+1]<Inf
-# # 			@constraint(TSPd, q[u,num_pts+1]>=0)
-# # 		end
-# # 		if distance_matrix[num_pts+1,u]<Inf
-# # 			@constraint(TSPd, q[num_pts+1,u]>=0)
-# # 		end
-# # 	end
+
+		if distance_matrix[u,num_pts+1] < Inf
+			@constraint(TSPd, y[u]+y[num_pts+1]-q[u] <= distance_matrix[u,num_pts+1])
+		end
+
+	end
+
+	for s=1:Pow_pts_size-1
+		@constraint(TSPd, z[s]>=0)
+	end
+
 # 	for u=1:num_pts
 # 		if distance_matrix[u,num_pts+1]<Inf
-# 			@constraint(TSPd, q[u]>=0)
+# 			@constraint(TSPd, q[u,num_pts+1]>=0)
 # 		end
-# 	end
-# 	for u=num_pts+1:2*num_pts
 # 		if distance_matrix[num_pts+1,u]<Inf
-# 			@constraint(TSPd, q[u]>=0)
+# 			@constraint(TSPd, q[num_pts+1,u]>=0)
 # 		end
 # 	end
-#
-# # 	print(TSPd)
-# 	optimize!(TSPd)
-# 	print("obj val TSPd ",objective_value(TSPd), "\n");
-#
-# 	y_ = JuMP.value.(y);
-# 	z_ = JuMP.value.(z);
-# 	q_ = JuMP.value.(q);
-#
-# 	show_matrix("y ", y_)
-# 	show_matrix("z ", z_)
-# 	show_matrix("q ", q_)
-#
-# 	y=0
-# 	z = 0
-# 	q = 0
-# 	y_ =0
-# 	z_=0
-# 	q_=0
-# 	TSPd = 0 # kill the model
+	for u=1:num_pts
+		if distance_matrix[u,num_pts+1]<Inf
+			@constraint(TSPd, q[u]>=0)
+		end
+	end
+	for u=num_pts+1:2*num_pts
+		if distance_matrix[num_pts+1,u]<Inf
+			@constraint(TSPd, q[u]>=0)
+		end
+	end
+
+# 	print(TSPd)
+	optimize!(TSPd)
+	print("obj val TSPd ",objective_value(TSPd), "\n");
+
+	y_ = JuMP.value.(y);
+	z_ = JuMP.value.(z);
+	q_ = JuMP.value.(q);
+
+	show_matrix("y ", y_)
+	show_matrix("z ", z_)
+	show_matrix("q ", q_)
+
+	y=0
+	z = 0
+	q = 0
+	y_ =0
+	z_=0
+	q_=0
+	TSPd = 0 # kill the model
 
 	############################ AdGTSP
 	print("\n\n\n\n AdGTSP \n")
