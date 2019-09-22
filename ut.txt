@@ -1,0 +1,177 @@
+E:\program\julia_v1\Julia-1.2.0\bin\julia.exe --check-bounds=no --history-file=no --inline=no --color=yes --math-mode=ieee --handle-signals=no --startup-file=yes --compile=yes --depwarn=yes --code-coverage=none --track-allocation=none F:/Acad/research/JGC/ATSP/AdTSP_code/Adcut.jl
+num_cluster is 3
+card is 2
+visit_m is 2
+limits_ is [1, 1]
+dim is 2
+sum dis 3.899397972885715
+
+dis_mat matrix is :
+ [Inf, 0.2257512656119786, 0.42417972065599324, 0.15612283551337602, 0.2650839464527471, 0.029910564356126705]
+[Inf, Inf, 0.23293574005647766, 0.3317537593320045, 0.241838588964742, 0.2352632964895578]
+[Inf, Inf, Inf, 0.4689580770682607, 0.2596920963440102, 0.42118538831391067]
+[Inf, Inf, Inf, Inf, 0.2338365259976405, 0.12739040992613532]
+[Inf, Inf, Inf, Inf, Inf, 0.24549575780275307]
+[Inf, Inf, Inf, Inf, Inf, Inf]
+data points matrix is :
+ [0.48237172444016113, 0.6943950905291976]
+[0.6282097935021776, 0.522073032922887]
+[0.6099462209718076, 0.2898543839859705]
+[0.32897896415060146, 0.6653261920380893]
+[0.3998422230863265, 0.442485622518862]
+[0.455321718266367, 0.6816303333399794]
+
+
+
+
+ AdMST 
+Academic license - for non-commercial use only
+Academic license - for non-commercial use only
+Optimize a model with 522 rows, 132 columns and 1260 nonzeros
+Variable types: 126 continuous, 6 integer (6 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+09]
+  Objective range  [1e+00, 5e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e-02, 6e+00]
+Warning: Model contains large matrix coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Found heuristic solution: objective -0.0000000
+Presolve removed 507 rows and 75 columns
+Presolve time: 0.00s
+Presolved: 15 rows, 57 columns, 240 nonzeros
+Variable types: 57 continuous, 0 integer (0 binary)
+
+Root relaxation: objective 8.498245e-01, 13 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+*    0     0               0       0.8498245    0.84982  0.00%     -    0s
+
+Explored 0 nodes (13 simplex iterations) in 0.00 seconds
+Thread count was 4 (of 4 available processors)
+
+Solution count 2: 0.849825 -0 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 8.498245059484e-01, best bound 8.498245059484e-01, gap 0.0000%
+obj val AdMST 0.8498245059483588
+done in 35.72499990463257 seconds
+x  vector is :
+ [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]y  vector is :
+ [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.008085260385661874, 0.0, 0.0, 0.0, 0.1262122711572493, 0.0009007859411628294, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.028732425587240706, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.07771369048426446, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.2338365259976405]z  vector is :
+ [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.008085260385661874, 0.0, 0.0, 0.0, 0.1262122711572493, 0.0009007859411628294, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.028732425587240706, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.07771369048426446, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.2338365259976405]
+
+
+
+ AdNNnew 
+Academic license - for non-commercial use only
+Academic license - for non-commercial use only
+Optimize a model with 96 rows, 90 columns and 243 nonzeros
+Variable types: 84 continuous, 6 integer (6 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+09]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e-02, 2e+00]
+Warning: Model contains large matrix coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Found heuristic solution: objective -0.0000000
+Presolve removed 81 rows and 69 columns
+Presolve time: 0.00s
+Presolved: 15 rows, 21 columns, 45 nonzeros
+Variable types: 21 continuous, 0 integer (0 binary)
+
+Root relaxation: objective 4.966828e-01, 9 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+*    0     0               0       0.4966828    0.49668  0.00%     -    0s
+
+Explored 0 nodes (9 simplex iterations) in 0.00 seconds
+Thread count was 4 (of 4 available processors)
+
+Solution count 2: 0.496683 -0 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 4.966828304102e-01, best bound 4.966828304102e-01, gap 0.0000%
+obj val AdNNnew 0.49668283041024486
+done in 3.636000156402588 seconds
+x vector is :
+ [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]y vector is :
+ [0.029910564356126705, 0.10754111633860472, 0.1253946237178729, 0.0995390533715032, 0.13429747262613728, 0.0]z matrix is :
+ [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+w vector is :
+ [0.029910564356126705, 0.10754111633860472, 0.1253946237178729, 0.0995390533715032, 0.13429747262613728, 0.0]p matrix is :
+ [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+dis mat with v_1 matrix is :
+ [Inf, 0.2257512656119786, 0.42417972065599324, 0.15612283551337602, 0.2650839464527471, 0.029910564356126705, 0.8454980912399668]
+[Inf, Inf, 0.23293574005647766, 0.3317537593320045, 0.241838588964742, 0.2352632964895578, 0.8168278866183197]
+[Inf, Inf, Inf, 0.4689580770682607, 0.2596920963440102, 0.42118538831391067, 0.6753147091495013]
+[Inf, Inf, Inf, Inf, 0.2338365259976405, 0.12739040992613532, 0.7422170172298039]
+[Inf, Inf, Inf, Inf, Inf, 0.24549575780275307, 0.5963785119356]
+[Inf, Inf, Inf, Inf, Inf, Inf, 0.8197181091413122]
+[Inf, Inf, Inf, Inf, Inf, Inf, Inf]
+
+
+
+
+ AdGTSP 
+Academic license - for non-commercial use only
+Academic license - for non-commercial use only
+Optimize a model with 518 rows, 171 columns and 1350 nonzeros
+Variable types: 164 continuous, 7 integer (7 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+09]
+  Objective range  [1e+00, 5e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e-02, 6e+00]
+Warning: Model contains large matrix coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Found heuristic solution: objective -0.0000000
+Presolve removed 497 rows and 101 columns
+Presolve time: 0.00s
+Presolved: 21 rows, 70 columns, 288 nonzeros
+Variable types: 70 continuous, 0 integer (0 binary)
+
+Root relaxation: objective 2.121518e+00, 18 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+*    0     0               0       2.1215177    2.12152  0.00%     -    0s
+
+Explored 0 nodes (18 simplex iterations) in 0.00 seconds
+Thread count was 4 (of 4 available processors)
+
+Solution count 2: 2.12152 -0 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.121517727033e+00, best bound 2.121517727033e+00, gap 0.0000%
+obj val AdGTSP 2.12151772703346
+done in 0.8050000667572021 seconds
+x  vector is :
+ [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]y  vector is :
+ [0.0, 0.0, 0.025855570346369705, 0.0, 0.0, 0.0, 0.6494591388031317]z  vector is :
+ [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.008085260385661874, 0.0, 0.0, 0.0, 0.1262122711572493, 0.026756356287532534, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.028732425587240706, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.07771369048426446, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.2338365259976405]q  vector is :
+ [0.0, 0.0, 0.0, 0.0, 0.05308062686753168, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]w  vector is :
+ [0.0, 0.0, 0.025855570346369705, 0.0, 0.0, 0.0, 0.6494591388031317]p  vector is :
+ [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.008085260385661874, 0.0, 0.0, 0.0, 0.1262122711572493, 0.026756356287532534, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.028732425587240706, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.07771369048426446, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.2338365259976405]g  vector is :
+ [0.0, 0.0, 0.0, 0.0, 0.05308062686753168, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]WARNING: both Pandas and DataFrames export "DataFrame"; uses of it in module Main must be qualified
+
+Process finished with exit code 0

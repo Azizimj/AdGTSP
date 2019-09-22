@@ -1,3 +1,10 @@
+#=
+Adcut:
+- Julia version: 1.2.0
+- Author: JGCLab
+- Date: 2019-09-22
+=#
+
 # cd("F:/Acad/research/JGC/ATSP/AdTSP_code")
 # using DataFrames;
 using JuMP, DataFrames, CSV, Gurobi, Random, LinearAlgebra,
@@ -7,11 +14,11 @@ Plots_ = Plots;
 DataFrames_ = DataFrames;
 
 ################################
-save_res = true;
+save_res = false; #TODO: change to true for runs
 
-num_cluster=4;
+num_cluster=3;
 card=2;
-visit_m=1;
+visit_m=2;
 limits_=[1,1];
 dim = 2;
 visits_num = num_cluster*visit_m
@@ -49,7 +56,6 @@ print("dim is ", dim, "\n");
 Random.seed!(seed_g);
 
 grb_seed = seed_g;
-
 
 AdMST_instan = true;
 AdNNnew_instan = true;
@@ -94,7 +100,7 @@ function gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
 	distance_matrix = ones(num_pts, num_pts) * Inf
     for i in 1:num_pts
         for j in 1:num_pts
-#             if i < j  # if want to make the dis mat traingle
+#             if i < j  # if want to make the dis mat traingle (tried and gives same answer)
 			if i != j
                 distance_matrix[i, j] = norm(data_points[i,:]- data_points[j,:])
 			end
@@ -134,6 +140,7 @@ function add_v1_(distance_matrix, v_1, num_pts, data_points)
 	a1 = [distance_matrix dis_to_v1]
 	b1 = [dis_to_v1; Inf]
 	distance_matrix_ = [a1; transpose(b1)]
+# 	distance_matrix_ = [a1; ones(1,num_pts+1) * Inf] # if wanna have upper triangle matrix
 	show_matrix("dis mat with v_1", distance_matrix_)
 	return distance_matrix_
 end
@@ -197,7 +204,7 @@ M_2 = 1000000000;
 t_lim = 22*3600;
 # setparams!(env; IterationLimit=1000, TimeLimit= t_lim)
 
-function write_res(algo, objval, bound, x, distance_matrix_new)
+function write_res(algo, objval, bound, x, distance_matrix_new, t_)
 	chosen = [];
 	for i=1:num_pts
 		if x[i]>0
@@ -208,7 +215,7 @@ function write_res(algo, objval, bound, x, distance_matrix_new)
 	df = DataFrames_.DataFrame(algo_name=algo, num_cluster=num_cluster, card=card, visit_m=visit_m, seed_g=seed_g,
 	 limits_=[limits_], dim =dim, sig=sig, ave=ave, objval=objval, bound=bound, x=[x], num_pts=num_pts,
 	data_points=[data_points], distance_matrix=[distance_matrix], Pow_pts_size=Pow_pts_size,
-	distance_matrix_new=[distance_matrix_new], chosen=[chosen])
+	distance_matrix_new=[distance_matrix_new], chosen=[chosen], time_ = time()-t_)
 
     CSV.write("res.csv", df, append=true)
 end
@@ -216,6 +223,7 @@ end
 
 if AdMST_instan
 	print("\n\n\n\n AdMST \n")
+	t_ = time();
 
 	AdMST = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim, Seed=grb_seed));
 	x = 0
@@ -261,6 +269,7 @@ if AdMST_instan
 	objval = objective_value(AdMST)
 	best_bound = objective_bound(AdMST)
 	print("obj val AdMST ", objval, "\n");
+	print("done in ", time()-t_, " seconds\n");
 
 	x_ = JuMP.value.(x);
 	y_ = JuMP.value.(y);
@@ -270,8 +279,7 @@ if AdMST_instan
 	show_matrix("y ", y_)
 	show_matrix("z ", z_)
 
-	write_res("AdMST ", objval, best_bound, x_, 0)
-
+	write_res("AdMST ", objval, best_bound, x_, 0, t_)
 
 
 	if save_res
@@ -289,17 +297,19 @@ if AdMST_instan
 
 # 	#print(read_json( "x_.json"))
 
-	x_ = 0
-	x = 0
-	y_ = 0
-	y = 0
-	z_ = 0
-	z = 0
-	AdMST = 0
-	objval = 0
-
-	###############
+# 	x_ = 0
+# 	x = 0
+# 	y_ = 0
+# 	y = 0
+# 	z_ = 0
+# 	z = 0
+# 	AdMST = 0
+# 	objval = 0
+#
+# 	###############
 # 	print("\n\n\n\n MST \n")
+# 	t_ = time();
+#
 # 	MST = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim, Seed=grb_seed));
 # 	X = 0
 # 	@variable(MST, X[1:num_pts,1:num_pts], Bin);
@@ -319,6 +329,7 @@ if AdMST_instan
 # 	objval = objective_value(MST)
 # 	best_bound = objective_bound(MST)
 # 	print("obj val MST ",objval, "\n");
+# 	print("done in ", time()-t_, " seconds\n");
 # 	X_ = JuMP.value.(X);
 # 	show_matrix("X", X_)
 #
@@ -327,6 +338,7 @@ if AdMST_instan
 #
 # 	######################
 # 	print("\n\n\n\n MST dual \n")
+# 	t_ = time();
 #
 # 	MSTdual = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim, Seed=grb_seed));
 # 	z = 0
@@ -350,6 +362,7 @@ if AdMST_instan
 #
 # 	optimize!(MSTdual)
 # 	print("obj val MST dual ",objective_value(MSTdual), "\n");
+# 	print("done in ", time()-t_, " seconds\n");
 # 	z_ = JuMP.value.(z);
 # 	show_matrix("z ", z_)
 #
@@ -363,6 +376,7 @@ end
 if AdNNnew_instan
 
 	print("\n\n\n\n AdNNnew \n")
+	t_ = time();
 	M_1 = 1000000000
 	M_2 = 1000000000
 	M_3 = 1000000000
@@ -423,6 +437,7 @@ if AdNNnew_instan
 	objval = objective_value(AdNN)
 	best_bound = objective_bound(AdNN)
 	print("obj val AdNNnew ", objval, "\n");
+	print("done in ", time()-t_, " seconds\n");
 
 	x_ = JuMP.value.(x);
 	y_ = JuMP.value.(y);
@@ -436,7 +451,7 @@ if AdNNnew_instan
 	show_matrix("w", w_)
 	show_matrix("p", p_)
 
-	write_res("AdNNnew ", objval, best_bound, x_, 0)
+	write_res("AdNNnew ", objval, best_bound, x_, 0, t_)
 
 	if save_res
 
@@ -456,20 +471,22 @@ if AdNNnew_instan
 
 	end
 
-	x_ = 0
-	x = 0
-	y_ = 0
-	y = 0
-	z = 0
-	z_ = 0
-	w = 0
-	w_ = 0
-	p = 0
-	p_ = 0
-	AdNN = 0
-
-	########################## directed but one into or out of each vertex
+# 	x_ = 0
+# 	x = 0
+# 	y_ = 0
+# 	y = 0
+# 	z = 0
+# 	z_ = 0
+# 	w = 0
+# 	w_ = 0
+# 	p = 0
+# 	p_ = 0
+# 	AdNN = 0
+#
+# 	########################## directed but one into or out of each vertex
 # 	print("\n\n\n\n NNnew \n")
+# 	t_ = time();
+#
 # 	NN = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
 # 	X = 0
 # 	@variable(NN, X[1:num_pts,1:num_pts], Bin); #IP
@@ -489,6 +506,7 @@ if AdNNnew_instan
 #
 # 	optimize!(NN)
 # 	print("obj val NNnew ",objective_value(NN), "\n");
+# 	print("done in ", time()-t_, " seconds\n");
 #
 # 	X_ = JuMP.value.(X);
 # 	show_matrix("X", X_)
@@ -499,6 +517,8 @@ if AdNNnew_instan
 #
 # 	######################################
 # 	print("\n\n\n NNnew dual \n")
+# 	t_ = time();
+#
 # 	NNdual = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
 # 	y = 0
 # 	z = 0
@@ -520,6 +540,7 @@ if AdNNnew_instan
 # 	optimize!(NNdual)
 #
 # 	print("obj val NNnew dual ",objective_value(NNdual), "\n");
+# 	print("done in ", time()-t_, " seconds\n");
 #
 # 	y_ = JuMP.value.(y);
 # 	z_ = JuMP.value.(z);
@@ -663,6 +684,7 @@ if AdGTSP_instan
 
 	#########################
 # 	print("\n\n\n\n TSP \n")
+# 	t_ = time();
 #
 #
 # 	TSP = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
@@ -688,6 +710,7 @@ if AdGTSP_instan
 # 	optimize!(TSP)
 #
 # 	print("obj val TSP ",objective_value(TSP), "\n");
+# 	print("done in ", time()-t_, " seconds\n");
 #
 # 	X_ = JuMP.value.(X);
 #
@@ -698,7 +721,7 @@ if AdGTSP_instan
 #
 # # 	################################## dual TSP
 # 	print("\n\n\n\n TSP dual \n")
-#
+# 	t_ = time();
 # 	TSPd = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
 #
 # 	y = 0
@@ -771,6 +794,7 @@ if AdGTSP_instan
 # # 	print(TSPd)
 # 	optimize!(TSPd)
 # 	print("obj val TSPd ",objective_value(TSPd), "\n");
+# 	print("done in ", time()-t_, " seconds\n");
 #
 # 	y_ = JuMP.value.(y);
 # 	z_ = JuMP.value.(z);
@@ -790,6 +814,7 @@ if AdGTSP_instan
 
 	############################ AdGTSP
 	print("\n\n\n\n AdGTSP \n")
+	t_ = time();
 
 	M_1 = 1000000000
 	M_2 = 1000000000
@@ -885,6 +910,7 @@ if AdGTSP_instan
 	objval = objective_value(AdGTSP)
 	best_bound = objective_bound(AdGTSP)
 	print("obj val AdGTSP ",objval, "\n");
+	print("done in ", time()-t_, " seconds\n");
 
 	x_ = JuMP.value.(x);
 	y_ = JuMP.value.(y);
@@ -903,7 +929,7 @@ if AdGTSP_instan
 	show_matrix("p ", p_)
 	show_matrix("g ", g_)
 
-	write_res("AdGTSP ", objval, best_bound, x_, distance_matrix)
+	write_res("AdGTSP ", objval, best_bound, x_, distance_matrix, t_)
 
 	if save_res
 		dir_ = string("AdGTSP_", num_cluster,"_",card,"_",visit_m,"_",seed_g,"/")
