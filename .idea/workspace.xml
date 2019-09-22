@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5e51aaf-04b4-4315-b162-813504fb9fc4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Adcut.jl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/7_4_1_333.txt" beforeDir="false" afterPath="$PROJECT_DIR$/7_4_1_333.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/res_review_.py" beforeDir="false" afterPath="$PROJECT_DIR$/res/res_review_.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adcut.jl" beforeDir="false" afterPath="$PROJECT_DIR$/Adcut.jl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -180,14 +178,7 @@
       <updated>1567538791613</updated>
       <workItem from="1568966262226" duration="1316000" />
       <workItem from="1568935444632" duration="3563000" />
-      <workItem from="1569088091588" duration="5478000" />
-    </task>
-    <task id="LOCAL-00012" summary="model corrected">
-      <created>1567882508201</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1567882508201</updated>
+      <workItem from="1569088091588" duration="6844000" />
     </task>
     <task id="LOCAL-00013" summary="model corrected">
       <created>1567882592072</created>
@@ -525,7 +516,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569108921063</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="jgclab">
+      <created>1569178515083</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1569178515083</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -582,6 +580,11 @@
           <url>file://$PROJECT_DIR$/res/hpc/res_review.py</url>
           <line>19</line>
           <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="julia-line">
+          <url>file://$PROJECT_DIR$/Adcut.jl</url>
+          <line>558</line>
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
