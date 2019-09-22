@@ -2,35 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5e51aaf-04b4-4315-b162-813504fb9fc4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Adcut.jl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/10_3_1_222.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/4_4_1_222.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/4_5_2_222.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/5_5_1_222.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/5_5_2_222.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdJob.py" beforeDir="false" afterPath="$PROJECT_DIR$/AdJob.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_4_4_1_222/p_4_4_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_4_4_1_222/w_4_4_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_4_4_1_222/x_4_4_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_4_4_1_222/y_4_4_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_4_4_1_222/z_4_4_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_4_5_2_222/p_4_5_2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_4_5_2_222/w_4_5_2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_4_5_2_222/x_4_5_2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_4_5_2_222/y_4_5_2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_4_5_2_222/z_4_5_2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_5_5_1_222/p_5_5_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_5_5_1_222/w_5_5_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_5_5_1_222/x_5_5_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_5_5_1_222/y_5_5_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_5_5_1_222/z_5_5_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_5_5_2_222/p_5_5_2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_5_5_2_222/w_5_5_2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_5_5_2_222/x_5_5_2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_5_5_2_222/y_5_5_2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdNNnew_5_5_2_222/z_5_5_2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/log_/jobs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log_/jobs.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/7_4_1_333.txt" beforeDir="false" afterPath="$PROJECT_DIR$/7_4_1_333.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/res_review_.py" beforeDir="false" afterPath="$PROJECT_DIR$/res/res_review_.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,6 +17,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="Julia File" />
       </list>
     </option>
   </component>
@@ -70,6 +46,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Adcut.jl" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Ad.jl" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1R5oLLZxOuKYq92mWUuYHXPyudS" />
@@ -92,7 +69,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.j">
+  <component name="RunManager" selected="Python.res_review_">
     <configuration name="Ad" type="JULIA_RUN_CONFIG_ID" factoryName="Julia" temporary="true">
       <setting name="workingDir" value="$PROJECT_DIR$" />
       <setting name="targetFile" value="$PROJECT_DIR$/Ad.jl" />
@@ -160,8 +137,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="res_review_" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="AdTSP_code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/res" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/res/res_review_.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.res_review_" />
         <item itemvalue="Python.j" />
         <item itemvalue="Python.AdJob" />
         <item itemvalue="Julia.Ad" />
@@ -180,14 +180,7 @@
       <updated>1567538791613</updated>
       <workItem from="1568966262226" duration="1316000" />
       <workItem from="1568935444632" duration="3563000" />
-      <workItem from="1569088091588" duration="3066000" />
-    </task>
-    <task id="LOCAL-00011" summary="model corrected">
-      <created>1567882495929</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1567882495929</updated>
+      <workItem from="1569088091588" duration="5478000" />
     </task>
     <task id="LOCAL-00012" summary="model corrected">
       <created>1567882508201</created>
@@ -525,7 +518,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568935209534</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="jgclab">
+      <created>1569108921063</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1569108921063</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -588,6 +588,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AdGTSP$j.coverage" NAME="j Coverage Results" MODIFIED="1569095076701" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AdGTSP$res_review_.coverage" NAME="res_review_ Coverage Results" MODIFIED="1569109088152" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/res" />
     <SUITE FILE_PATH="coverage/AdGTSP$AdJob.coverage" NAME="AdJob Coverage Results" MODIFIED="1569092264355" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">

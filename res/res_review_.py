@@ -17,7 +17,7 @@ def extract_plot(name, sig, ave):
     print(name+" "+str(sig)+" "+str(ave))
     chosen = np.zeros((1, dim))
     for i, row in enumerate(rd[name]):
-        if str(row) != 'nan' and str(rd['Algo'][i]) == 'AdGTSP ':
+        if str(row) != 'nan' and str(rd['Algo'][i]) == 'AdNNnew ':
             # print(row)
             tmp = re.findall('\.\d+',row)
             tmp = list(map(float, tmp))
@@ -43,7 +43,8 @@ if __name__ == '__main__':
 
     sig = 0.1
     ave = 0.5
-    rd = pandas.read_csv('res_'+str(sig)+"_"+str(ave)+'.csv')
+    # rd = pandas.read_csv('res_'+str(sig)+"_"+str(ave)+'.csv')
+    rd = pandas.read_csv('res_9_21.csv')
     num_ex = len(rd['x'])
     dim = int(rd['dim'][1])
     limits_ = list(map(float, re.findall('\d+',(rd['limits_'][1]))))
