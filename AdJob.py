@@ -51,7 +51,7 @@ if hpc_is:
             f.write("cd " + hdir + "\n")
             f.write("source " + julia_dir + "\n")
             f.write("source " + gurobi_dir_ + "\n")
-            f.write("julia Ad.jl " + str(num_cluster) + " "
+            f.write("julia Adcut.jl " + str(num_cluster) + " "
                     + str(card) + " " + str(m) +" " + str(seed_g) + " > " + jname + ".txt \n")
             print(jname)
             f.close()
