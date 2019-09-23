@@ -14,7 +14,7 @@ Plots_ = Plots;
 DataFrames_ = DataFrames;
 
 ################################
-save_res = True;
+save_res = true;
 
 num_cluster=3;
 card=2;

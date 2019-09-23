@@ -3,7 +3,564 @@
   <component name="ChangeListManager">
     <list default="true" id="c5e51aaf-04b4-4315-b162-813504fb9fc4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/3_5_2_333.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/3_6_1_333.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/4_8_1_333.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/5_3_2_333.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/7_4_1_333.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdJob.py" beforeDir="false" afterPath="$PROJECT_DIR$/AdJob.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdNNnew_3_5_2_333/p_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdNNnew_3_5_2_333/w_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdNNnew_3_5_2_333/x_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdNNnew_3_5_2_333/y_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdNNnew_3_5_2_333/z_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdNNnew_3_6_1_333/p_3_6_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdNNnew_3_6_1_333/w_3_6_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdNNnew_3_6_1_333/x_3_6_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdNNnew_3_6_1_333/y_3_6_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdNNnew_3_6_1_333/z_3_6_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdNNnew_5_3_2_333/p_5_3_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdNNnew_5_3_2_333/w_5_3_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdNNnew_5_3_2_333/x_5_3_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdNNnew_5_3_2_333/y_5_3_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdNNnew_5_3_2_333/z_5_3_2.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Adcut.jl" beforeDir="false" afterPath="$PROJECT_DIR$/Adcut.jl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log_/jobs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log_/jobs.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/chosen_0.1_0.5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/data_points_0.1_0.5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_5_2_113.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_5_2_333.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_5_2_444.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_5_2_555.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_5_2_666.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_5_2_777.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_5_2_888.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_5_2_999.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_8_1_113.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_8_1_333.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_8_1_444.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_8_1_555.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_8_1_666.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_8_1_777.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_8_1_888.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_8_1_999.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_8_2_113.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_8_2_333.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_8_2_444.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_8_2_555.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_8_2_666.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_8_2_777.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_8_2_888.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/3_8_2_999.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_4_1_111.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_4_1_113.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_4_1_222.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_4_1_333.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_4_1_444.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_4_1_555.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_4_1_666.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_4_1_777.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_4_1_888.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_4_1_999.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_5_1_113.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_5_1_333.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_5_1_444.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_5_1_555.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_5_1_666.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_5_1_777.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_5_1_888.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_5_1_999.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_5_2_111.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_5_2_113.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_5_2_222.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_5_2_333.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_5_2_444.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_5_2_555.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_5_2_666.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_5_2_777.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_5_2_888.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/4_5_2_999.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_4_2_113.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_4_2_333.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_4_2_444.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_4_2_555.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_4_2_666.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_4_2_777.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_4_2_888.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_4_2_999.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_5_1_111.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_5_1_113.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_5_1_222.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_5_1_333.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_5_1_444.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_5_1_555.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_5_1_666.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_5_1_777.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_5_1_888.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_5_1_999.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_5_2_113.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_5_2_222.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_5_2_333.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_5_2_444.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_5_2_555.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_5_2_666.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_5_2_777.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_5_2_888.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/5_5_2_999.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/6_4_1_113.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/6_4_1_333.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/6_4_1_444.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/6_4_1_555.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/6_4_1_666.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/6_4_1_777.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/6_4_1_888.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/6_4_1_999.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdGTSP_4_4_1_111/g_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdGTSP_4_4_1_111/p_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdGTSP_4_4_1_111/q_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdGTSP_4_4_1_111/w_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdGTSP_4_4_1_111/x_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdGTSP_4_4_1_111/y_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdGTSP_4_4_1_111/z_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdMST_4_4_1_111/x_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdMST_4_4_1_111/y_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdMST_4_4_1_111/z_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdMST_4_5_2_111/x_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdMST_4_5_2_111/y_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdMST_4_5_2_111/z_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_113/p_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_113/w_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_113/x_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_113/y_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_113/z_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_333/p_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_333/w_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_333/x_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_333/y_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_333/z_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_444/p_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_444/w_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_444/x_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_444/y_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_444/z_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_555/p_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_555/w_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_555/x_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_555/y_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_555/z_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_666/p_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_666/w_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_666/x_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_666/y_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_666/z_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_777/p_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_777/w_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_777/x_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_777/y_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_777/z_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_888/p_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_888/w_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_888/x_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_888/y_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_888/z_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_999/p_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_999/w_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_999/x_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_999/y_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_5_2_999/z_3_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_113/p_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_113/w_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_113/x_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_113/y_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_113/z_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_333/p_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_333/w_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_333/x_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_333/y_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_333/z_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_444/p_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_444/w_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_444/x_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_444/y_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_444/z_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_555/p_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_555/w_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_555/x_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_555/y_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_555/z_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_666/p_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_666/w_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_666/x_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_666/y_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_666/z_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_777/p_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_777/w_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_777/x_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_777/y_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_777/z_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_888/p_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_888/w_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_888/x_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_888/y_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_888/z_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_999/p_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_999/w_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_999/x_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_999/y_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_1_999/z_3_8_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_113/p_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_113/w_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_113/x_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_113/y_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_113/z_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_333/p_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_333/w_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_333/x_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_333/y_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_333/z_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_444/p_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_444/w_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_444/x_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_444/y_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_444/z_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_555/p_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_555/w_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_555/x_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_555/y_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_555/z_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_666/p_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_666/w_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_666/x_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_666/y_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_666/z_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_777/p_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_777/w_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_777/x_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_777/y_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_777/z_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_888/p_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_888/w_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_888/x_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_888/y_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_888/z_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_999/p_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_999/w_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_999/x_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_999/y_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_3_8_2_999/z_3_8_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_111/p_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_111/w_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_111/x_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_111/y_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_111/z_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_113/p_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_113/w_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_113/x_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_113/y_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_113/z_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_222/p_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_222/w_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_222/x_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_222/y_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_222/z_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_333/p_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_333/w_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_333/x_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_333/y_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_333/z_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_444/p_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_444/w_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_444/x_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_444/y_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_444/z_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_555/p_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_555/w_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_555/x_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_555/y_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_555/z_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_666/p_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_666/w_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_666/x_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_666/y_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_666/z_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_777/p_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_777/w_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_777/x_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_777/y_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_777/z_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_888/p_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_888/w_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_888/x_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_888/y_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_888/z_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_999/p_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_999/w_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_999/x_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_999/y_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_4_1_999/z_4_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_113/p_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_113/w_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_113/x_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_113/y_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_113/z_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_333/p_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_333/w_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_333/x_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_333/y_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_333/z_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_444/p_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_444/w_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_444/x_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_444/y_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_444/z_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_555/p_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_555/w_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_555/x_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_555/y_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_555/z_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_666/p_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_666/w_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_666/x_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_666/y_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_666/z_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_777/p_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_777/w_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_777/x_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_777/y_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_777/z_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_888/p_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_888/w_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_888/x_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_888/y_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_888/z_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_999/p_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_999/w_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_999/x_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_999/y_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_1_999/z_4_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_111/p_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_111/w_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_111/x_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_111/y_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_111/z_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_113/p_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_113/w_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_113/x_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_113/y_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_113/z_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_222/p_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_222/w_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_222/x_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_222/y_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_222/z_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_333/p_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_333/w_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_333/x_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_333/y_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_333/z_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_444/p_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_444/w_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_444/x_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_444/y_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_444/z_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_555/p_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_555/w_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_555/x_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_555/y_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_555/z_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_666/p_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_666/w_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_666/x_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_666/y_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_666/z_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_777/p_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_777/w_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_777/x_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_777/y_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_777/z_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_888/p_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_888/w_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_888/x_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_888/y_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_888/z_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_999/p_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_999/w_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_999/x_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_999/y_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_4_5_2_999/z_4_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_113/p_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_113/w_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_113/x_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_113/y_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_113/z_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_333/p_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_333/w_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_333/x_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_333/y_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_333/z_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_444/p_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_444/w_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_444/x_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_444/y_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_444/z_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_555/p_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_555/w_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_555/x_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_555/y_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_555/z_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_666/p_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_666/w_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_666/x_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_666/y_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_666/z_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_777/p_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_777/w_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_777/x_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_777/y_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_777/z_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_888/p_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_888/w_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_888/x_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_888/y_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_888/z_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_999/p_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_999/w_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_999/x_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_999/y_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_4_2_999/z_5_4_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_113/p_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_113/w_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_113/x_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_113/y_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_113/z_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_222/p_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_222/w_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_222/x_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_222/y_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_222/z_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_333/p_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_333/w_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_333/x_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_333/y_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_333/z_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_444/p_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_444/w_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_444/x_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_444/y_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_444/z_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_555/p_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_555/w_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_555/x_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_555/y_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_555/z_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_666/p_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_666/w_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_666/x_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_666/y_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_666/z_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_777/p_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_777/w_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_777/x_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_777/y_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_777/z_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_888/p_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_888/w_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_888/x_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_888/y_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_888/z_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_999/p_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_999/w_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_999/x_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_999/y_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_1_999/z_5_5_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_113/p_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_113/w_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_113/x_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_113/y_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_113/z_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_222/p_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_222/w_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_222/x_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_222/y_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_222/z_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_333/p_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_333/w_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_333/x_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_333/y_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_333/z_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_444/p_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_444/w_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_444/x_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_444/y_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_444/z_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_555/p_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_555/w_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_555/x_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_555/y_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_555/z_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_666/p_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_666/w_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_666/x_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_666/y_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_666/z_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_777/p_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_777/w_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_777/x_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_777/y_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_777/z_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_888/p_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_888/w_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_888/x_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_888/y_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_888/z_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_999/p_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_999/w_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_999/x_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_999/y_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_5_5_2_999/z_5_5_2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_113/p_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_113/w_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_113/x_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_113/y_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_113/z_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_333/p_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_333/w_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_333/x_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_333/y_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_333/z_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_444/p_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_444/w_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_444/x_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_444/y_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_444/z_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_555/p_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_555/w_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_555/x_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_555/y_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_555/z_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_666/p_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_666/w_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_666/x_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_666/y_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_666/z_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_777/p_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_777/w_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_777/x_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_777/y_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_777/z_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_888/p_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_888/w_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_888/x_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_888/y_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_888/z_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_999/p_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_999/w_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_999/x_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_999/y_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/jgclab/AdNNnew_6_4_1_999/z_6_4_1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/res_9_21.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/res_review_.py" beforeDir="false" afterPath="$PROJECT_DIR$/res/res_review_.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -160,8 +717,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.res_review_" />
-        <item itemvalue="Python.j" />
         <item itemvalue="Python.AdJob" />
+        <item itemvalue="Python.j" />
         <item itemvalue="Julia.Ad" />
       </list>
     </recent_temporary>
@@ -178,21 +735,8 @@
       <updated>1567538791613</updated>
       <workItem from="1568966262226" duration="1316000" />
       <workItem from="1568935444632" duration="3563000" />
-      <workItem from="1569088091588" duration="6844000" />
-    </task>
-    <task id="LOCAL-00013" summary="model corrected">
-      <created>1567882592072</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1567882592072</updated>
-    </task>
-    <task id="LOCAL-00014" summary="model corrected">
-      <created>1567882618881</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1567882618881</updated>
+      <workItem from="1569088091588" duration="9296000" />
+      <workItem from="1569212455307" duration="4013000" />
     </task>
     <task id="LOCAL-00015" summary="model corrected">
       <created>1567884309204</created>
@@ -523,7 +1067,21 @@
       <option name="project" value="LOCAL" />
       <updated>1569178515083</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="upper tri">
+      <created>1569187298870</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1569187298870</updated>
+    </task>
+    <task id="LOCAL-00063" summary="upper tri">
+      <created>1569187342542</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1569187342542</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -566,7 +1124,8 @@
     <MESSAGE value="seed_g" />
     <MESSAGE value="res review" />
     <MESSAGE value="jgclab" />
-    <option name="LAST_COMMIT_MESSAGE" value="jgclab" />
+    <MESSAGE value="upper tri" />
+    <option name="LAST_COMMIT_MESSAGE" value="upper tri" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -591,8 +1150,8 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AdGTSP$j.coverage" NAME="j Coverage Results" MODIFIED="1569095076701" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/AdGTSP$res_review_.coverage" NAME="res_review_ Coverage Results" MODIFIED="1569109088152" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/res" />
-    <SUITE FILE_PATH="coverage/AdGTSP$AdJob.coverage" NAME="AdJob Coverage Results" MODIFIED="1569092264355" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AdGTSP$res_review_.coverage" NAME="res_review_ Coverage Results" MODIFIED="1569265908512" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/res" />
+    <SUITE FILE_PATH="coverage/AdGTSP$AdJob.coverage" NAME="AdJob Coverage Results" MODIFIED="1569257008474" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">

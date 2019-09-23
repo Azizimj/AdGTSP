@@ -44,7 +44,8 @@ if __name__ == '__main__':
     sig = 0.1
     ave = 0.5
     # rd = pandas.read_csv('res_'+str(sig)+"_"+str(ave)+'.csv')
-    rd = pandas.read_csv('res_9_21.csv')
+    # rd = pandas.read_csv('res_9_21.csv')
+    rd = pandas.read_csv('res_9_23.csv')
     num_ex = len(rd['x'])
     dim = int(rd['dim'][1])
     limits_ = list(map(float, re.findall('\d+',(rd['limits_'][1]))))
