@@ -1,0 +1,6 @@
+cd F:\Acad\research\JGC\ATSP\AdTSP_code
+F:
+git status
+git add .
+git commit -a
+git push -u origin master
