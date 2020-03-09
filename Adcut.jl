@@ -18,7 +18,7 @@ save_res = false; #TODO: change to true for runs
 
 num_cluster=3;
 card=2;
-visit_m=2;
+visit_m=1;
 limits_=[1,1];
 dim = 2;
 visits_num = num_cluster*visit_m
@@ -57,8 +57,8 @@ Random.seed!(seed_g);
 
 grb_seed = seed_g;
 
-AdMST_instan = true;
-AdNNnew_instan = true;
+AdMST_instan = false;
+AdNNnew_instan = false;
 AdGTSP_instan = true;
 
 AdNN2_instan = false  # nonlinear
@@ -100,8 +100,8 @@ function gen_rand_gtsp(num_cluster, card, visit_m, limits_, dim)
 	distance_matrix = ones(num_pts, num_pts) * Inf
     for i in 1:num_pts
         for j in 1:num_pts
-#             if i < j  # if want to make the dis mat traingle (tried and gives same answer)
-			if i != j
+            if i < j  # if want to make the dis mat traingle (tried and gives same answer)
+# 			if i != j
                 distance_matrix[i, j] = norm(data_points[i,:]- data_points[j,:])
 			end
 		end
@@ -139,8 +139,8 @@ function add_v1_(distance_matrix, v_1, num_pts, data_points)
 
 	a1 = [distance_matrix dis_to_v1]
 	b1 = [dis_to_v1; Inf]
-	distance_matrix_ = [a1; transpose(b1)]
-# 	distance_matrix_ = [a1; ones(1,num_pts+1) * Inf] # if wanna have upper triangle matrix
+# 	distance_matrix_ = [a1; transpose(b1)]
+	distance_matrix_ = [a1; ones(1,num_pts+1) * Inf] # if wanna have upper triangle matrix
 	show_matrix("dis mat with v_1", distance_matrix_)
 	return distance_matrix_
 end
@@ -813,8 +813,165 @@ if AdGTSP_instan
 # 	TSPd = 0 # kill the model
 
 	############################ AdGTSP
-	print("\n\n\n\n AdGTSP \n")
+# 	print("\n\n\n\n AdGTSP \n")
+# 	t_ = time();
+#
+# 	M_1 = 1000000000
+# 	M_2 = 1000000000
+# 	M_3 = 1000000000
+# 	M_4 = 1000000000
+# 	M_5 = 1000000000
+#
+# 	AdGTSP = Model(with_optimizer(Gurobi.Optimizer, TimeLimit= t_lim,Seed=grb_seed));
+#
+# 	x = 0
+# 	y = 0
+# 	z = 0
+# 	q = 0
+# 	w = 0
+# 	p = 0
+# 	g = 0
+# 	@variable(AdGTSP, x[1:num_pts+1], Bin);
+# 	@variable(AdGTSP, y[1:num_pts+1]>=0);
+# 	@variable(AdGTSP, z[1:Pow_pts_size]);
+# 	@variable(AdGTSP, q[1:2*num_pts]);
+# 	@variable(AdGTSP, w[1:num_pts+1]>=0);
+# 	@variable(AdGTSP, p[1:Pow_pts_size]);
+# 	@variable(AdGTSP, g[1:2*num_pts]);
+#
+# 	@constraint(AdGTSP, x[num_pts+1] ==1)
+#
+# 	@objective(AdGTSP, Max,
+# 	2*sum(w[v] for v=1:num_pts+1)
+# 	- sum((size(Pow_pts[s])[1]-1)*p[s] for s=1:Pow_pts_size)
+# 	- sum(g[u] for u=1:num_pts if distance_matrix[u,num_pts+1]<Inf)
+# 	- sum(g[u] for u=num_pts+1:2*num_pts if distance_matrix[num_pts+1,u-num_pts]<Inf)
+# 	)
+#
+# 	for u=1:num_pts, v=1:num_pts
+# 		if distance_matrix[u,v]<Inf
+# 		@constraint(AdGTSP,
+# 		 y[u]+y[v]-sum(p[s] for s=num_pts:Pow_pts_size if u in Pow_pts[s]
+# 		 && v in Pow_pts[s]) <= distance_matrix[u,v]);
+# 	 	end
+# 	end
+#
+# 	for u=1:num_pts
+# 		if distance_matrix[u,num_pts+1] < Inf
+# 			@constraint(AdGTSP, y[u]+y[num_pts+1]-q[u] <= distance_matrix[u,num_pts+1])
+# 		end
+# 	end
+#
+# 	for s=1:Pow_pts_size-1
+# 		@constraint(AdGTSP, z[s]>=0)
+# 		@constraint(AdGTSP, p[s]>=0)
+# 	end
+#
+# 	for u=1:num_pts
+# 		if distance_matrix[u,num_pts+1]<Inf
+# 			@constraint(AdGTSP, q[u]>=0)
+# 			@constraint(AdGTSP, g[u]>=0)
+# 			@constraint(AdGTSP, g[u] <=q[u] )
+# 			@constraint(AdGTSP, g[u] <=x[u]*M_5 )
+# 			@constraint(AdGTSP, g[u] >=q[u]+x[u]-1)
+# 		end
+# 	end
+#
+# 	for u=num_pts+1:2*num_pts
+# 		if distance_matrix[num_pts+1,u-num_pts]<Inf
+# 			@constraint(AdGTSP, q[u]>=0)
+# 			@constraint(AdGTSP, g[u]>=0)
+# 			@constraint(AdGTSP, g[u] <=q[u] )
+# 			@constraint(AdGTSP, g[u] <=x[u-num_pts]*M_5 )
+# 			@constraint(AdGTSP, g[u] >=q[u]+x[u-num_pts]-1)
+# 		end
+# 	end
+#
+# 	for v=1:num_pts+1
+# 		@constraint(AdGTSP, w[v] <=x[v]*M_3 )
+# 		@constraint(AdGTSP, w[v] <=y[v])
+# 		@constraint(AdGTSP, w[v] >=y[v]+x[v]-1)
+# 	end
+#
+# 	for s=1:Pow_pts_size
+# 		@constraint(AdGTSP, p[s] <=z[s])
+# 		for v in Pow_pts[s]
+# 		@constraint(AdGTSP, p[s] <=x[v]*M_4 )
+# 		end
+# 		@constraint(AdGTSP, p[s]>=z[s]+sum(x[v] for v in Pow_pts[s])- size(Pow_pts[s])[1]);
+# 	end
+#
+# 	for i=1:num_cluster
+# 		@constraint(AdGTSP, sum(x[v] for v=(i-1)*card+1:i*card) == visit_m);
+# 	end
+#
+# 	optimize!(AdGTSP)
+# 	objval = objective_value(AdGTSP)
+# 	best_bound = objective_bound(AdGTSP)
+# 	print("obj val AdGTSP ",objval, "\n");
+# 	print("done in ", time()-t_, " seconds\n");
+#
+# 	x_ = JuMP.value.(x);
+# 	y_ = JuMP.value.(y);
+# 	z_ = JuMP.value.(z);
+# 	q_ = JuMP.value.(q);
+# 	w_ = JuMP.value.(w);
+# 	p_ = JuMP.value.(p);
+# 	g_ = JuMP.value.(g);
+#
+#
+# 	show_matrix("x ", x_)
+# 	show_matrix("y ", y_)
+# 	show_matrix("z ", z_)
+# 	show_matrix("q ", q_)
+# 	show_matrix("w ", w_)
+# 	show_matrix("p ", p_)
+# 	show_matrix("g ", g_)
+#
+# 	write_res("AdGTSP ", objval, best_bound, x_, distance_matrix, t_)
+#
+# 	if save_res
+# 		dir_ = string("AdGTSP_", num_cluster,"_",card,"_",visit_m,"_",seed_g,"/")
+# 		mkdire_(dir_)
+# 		j_file_name = string(num_cluster,"_",card,"_",visit_m)
+# # 		to_json(DataFrame(x_), string(dir_,"x_",j_file_name,".json"))
+# # 		to_json(DataFrame(y_), string(dir_,"y_",j_file_name,".json"))
+# # 		to_json(DataFrame(z_), string(dir_,"z_",j_file_name,".json"))
+# # 		to_json(DataFrame(q_), string(dir_,"q_",j_file_name,".json"))
+# # 		to_json(DataFrame(w_), string(dir_,"w_",j_file_name,".json"))
+# # 		to_json(DataFrame(p_), string(dir_,"p_",j_file_name,".json"))
+# # 		to_json(DataFrame(g_), string(dir_,"g_",j_file_name,".json"))
+# 		write_pandas(x_, "x_", dir_, j_file_name)
+# 		write_pandas(y_, "y_", dir_, j_file_name)
+# 		write_pandas(z_, "z_", dir_, j_file_name)
+# 		write_pandas(q_, "q_", dir_, j_file_name)
+# 		write_pandas(w_, "w_", dir_, j_file_name)
+# 		write_pandas(p_, "p_", dir_, j_file_name)
+# 		write_pandas(g_, "g_", dir_, j_file_name)
+#
+#     end
+#
+# 	x=0
+# 	y=0
+# 	z=0
+# 	q=0
+# 	w=0
+# 	p=0
+# 	g=0
+# 	x_=0
+# 	y_=0
+# 	z_=0
+# 	q_=0
+# 	w_=0
+# 	p_=0
+# 	g_=0
+# 	AdGTSP = 0
+
+
+	####################################
+	print("\n\n\n\n AdGTSP_cut \n")
 	t_ = time();
+	AdGTSP = 0
 
 	M_1 = 1000000000
 	M_2 = 1000000000
@@ -862,10 +1019,10 @@ if AdGTSP_instan
 		end
 	end
 
-	for s=1:Pow_pts_size-1
-		@constraint(AdGTSP, z[s]>=0)
-		@constraint(AdGTSP, p[s]>=0)
-	end
+# 	for s=1:Pow_pts_size-1
+# 		@constraint(AdGTSP, z[s]>=0)
+# 		@constraint(AdGTSP, p[s]>=0)
+# 	end
 
 	for u=1:num_pts
 		if distance_matrix[u,num_pts+1]<Inf
@@ -893,23 +1050,109 @@ if AdGTSP_instan
 		@constraint(AdGTSP, w[v] >=y[v]+x[v]-1)
 	end
 
-	for s=1:Pow_pts_size
-		@constraint(AdGTSP, p[s] <=z[s])
-		for v in Pow_pts[s]
-		@constraint(AdGTSP, p[s] <=x[v]*M_4 )
-		end
-		@constraint(AdGTSP, p[s]>=z[s]+sum(x[v] for v in Pow_pts[s])- size(Pow_pts[s])[1]);
-	end
+# 	for s=1:Pow_pts_size
+# 		@constraint(AdGTSP, p[s] <=z[s])
+# 		for v in Pow_pts[s]
+# 		@constraint(AdGTSP, p[s] <=x[v]*M_4 )
+# 		end
+# 		@constraint(AdGTSP, p[s]>=z[s]+sum(x[v] for v in Pow_pts[s])- size(Pow_pts[s])[1]);
+# 	end
 
 	for i=1:num_cluster
 		@constraint(AdGTSP, sum(x[v] for v=(i-1)*card+1:i*card) == visit_m);
 	end
 
+	MOI.set(AdGTSP, Gurobi.CallbackFunction() do cb_data, cb_where
+	Gurobi.load_callback_variable_primal!(AdGTSP, cb_data, cb_where)
+#     	x_val = JuMP.result_value(x)
+#     	y_val = JuMP.result_value(y)
+# 		# We have two constraints, one cutting off the top
+# 		# left corner and one cutting off the top right corner, e.g.
+# 		# (0,2) +---+---+ (2,2)
+# 		#       |xx/ \xx|
+# 		#       |x/   \x|
+# 		#       |/     \|
+# 		# (0,1) +       + (2,1)
+# 		#       |       |
+# 		# (0,0) +---+---+ (2,0)
+# 		TOL = 1e-6  # Allow for some impreciseness in the solution
+# 		if y_val - x_val > 1 + TOL
+# 			Gurobi.cblazy!(cb_data, model, JuMP.@function_in_set(y <= 1 + x));
+# 		elseif y_val + x_val > 3 + TOL
+# 			Gurobi.cblazy!(cb_data, model, JuMP.@function_in_set(y <= 3 - x));
+# 		end
+
+		z_ = JuMP.value.(z)
+		p_ = JuMP.value.(p)
+		x_ = JuMP.value.(x)
+
+		for s=1:Pow_pts_size-1
+			if (z_[s] < -TOL)
+				Gurobi.cblazy!(cb_data, AdGTSP, JuMP.@build_constraint(z[s]>=0));
+			end
+			if (p_[s] < -TOL)
+				Gurobi.cblazy!(cb_data, AdGTSP, JuMP.@build_constraint(p[s]>=0));
+			end
+		end
+
+		for s=1:Pow_pts_size
+			if (p_[s] - z_[s] > TOL)
+				Gurobi.cblazy!(cb_data, AdGTSP, JuMP.@build_constraint(p[s] <=z[s]));
+			end
+		for v in Pow_pts[s]
+			if (p_[s] - x_[v]*M_4 > TOL)
+				Gurobi.cblazy!(cb_data, AdGTSP, JuMP.@build_constraint(p[s] <=x[v]*M_4));
+			end
+		end
+			if (p_[s]>=z_[s]+sum(x_[v] for v in Pow_pts[s])- size(Pow_pts[s])[1])
+				Gurobi.cblazy!(cb_data, AdGTSP,
+				JuMP.@build_constraint(p[s]>=z[s]+sum(x[v] for v in Pow_pts[s])- size(Pow_pts[s])[1]))
+			end
+		end
+
+	end)
+
+# 	cb_calls = Int32[]
+# 	function cba(cb_data::Gurobi.CallbackData, cb_where::Int32)
+# 		push!(cb_calls, cb_where)
+# 		if cb_where == Gurobi.CB_MIPSOL
+# 			Gurobi.loadcbsolution!(m, cb_data, cb_where)
+# 			z_ = MOI.get(AdGTSP, MOI.VariablePrimal(), z)
+# 			p_ = MOI.get(AdGTSP, MOI.VariablePrimal(), p)
+# 			x_ = MOI.get(AdGTSP, MOI.VariablePrimal(), x)
+#
+#
+# 			for s=1:Pow_pts_size-1
+# 				if (z_[s] < -TOL)
+# 					Gurobi.cblazy!(cb_data, AdGTSP, JuMP.@build_constraint(z[s]>=0));
+# 				end
+# 				if (p_[s] < -TOL)
+# 					Gurobi.cblazy!(cb_data, AdGTSP, JuMP.@build_constraint(p[s]>=0));
+# 				end
+# 			end
+#
+# 			for s=1:Pow_pts_size
+# 				if (p_[s] - z_[s] > TOL)
+# 					Gurobi.cblazy!(cb_data, AdGTSP, JuMP.@build_constraint(p[s] <=z[s]));
+# 				end
+# 			for v in Pow_pts[s]
+# 				if (p_[s] - x_[v]*M_4 > TOL)
+# 					Gurobi.cblazy!(cb_data, AdGTSP, JuMP.@build_constraint(p[s] <=x[v]*M_4));
+# 				end
+# 			end
+# 				if (p_[s]>=z_[s]+sum(x_[v] for v in Pow_pts[s])- size(Pow_pts[s])[1])
+# 					Gurobi.cblazy!(cb_data, AdGTSP,
+# 					JuMP.@build_constraint(p[s]>=z[s]+sum(x[v] for v in Pow_pts[s])- size(Pow_pts[s])[1]))
+# 				end
+# 			end
+# 		end
+# 	end
+# 	MOI.set(AdGTSP, Gurobi.CallbackFunction(), cba)
 
 	optimize!(AdGTSP)
 	objval = objective_value(AdGTSP)
 	best_bound = objective_bound(AdGTSP)
-	print("obj val AdGTSP ",objval, "\n");
+	print("obj val AdGTSP_cut ",objval, "\n");
 	print("done in ", time()-t_, " seconds\n");
 
 	x_ = JuMP.value.(x);
@@ -967,6 +1210,7 @@ if AdGTSP_instan
 	p_=0
 	g_=0
 	AdGTSP = 0
+
 
 
 end
@@ -1193,3 +1437,4 @@ if AdNN2_instan
 
 
 end
+
