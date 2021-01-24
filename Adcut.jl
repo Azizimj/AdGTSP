@@ -57,9 +57,9 @@ Random.seed!(seed_g);
 
 grb_seed = seed_g;
 
-AdMST_instan = false;
+AdMST_instan = true;
 AdNNnew_instan = false;
-AdGTSP_instan = true;
+AdGTSP_instan = false;
 
 AdNN2_instan = false  # nonlinear
 AdNN_instan = false # first NN
@@ -1437,4 +1437,3 @@ if AdNN2_instan
 
 
 end
-
